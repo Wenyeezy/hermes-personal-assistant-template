@@ -1,0 +1,21 @@
+# Example Hermes-style configuration
+# This is a sanitized example. Do not commit your real config.yaml.
+
+model:
+  default: "example-model-name"
+  provider: "example-provider"
+  base_url: "https://example.provider/v1"
+
+# Store real keys in .env or a secret manager, not here.
+
+memory:
+  memory_enabled: true
+  user_profile_enabled: true
+
+gateway:
+  # Actual gateway configuration varies by platform.
+  # Do not commit real account IDs, tokens, bot secrets, or webhook URLs.
+  enabled: true
+
+security:
+  redact_secrets: true

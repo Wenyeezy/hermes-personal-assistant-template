@@ -1,0 +1,31 @@
+# Secrets
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.token
+secrets/
+
+# Private runtime state
+private/
+real-memory/
+logs/
+sessions/
+cache/
+
+# Hermes live config/state
+.hermes/
+config.local.yaml
+*.local.yaml
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Generated artifacts
+*.log
+*.tmp
+*.bak
