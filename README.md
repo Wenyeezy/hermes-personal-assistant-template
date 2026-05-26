@@ -38,6 +38,7 @@ Phone / Chat App
 ├── README.md
 ├── docs/
 │   ├── architecture.md
+│   ├── m1-max-ollama-migration.md
 │   ├── provider-strategy.md
 │   ├── safety-and-privacy.md
 │   └── wechat-gateway-notes.md
@@ -153,6 +154,7 @@ Use this repository as a template, not as a dump of a live assistant environment
 ## Docs
 
 - [Architecture](docs/architecture.md)
+- [M1 Max + Ollama Migration Checklist](docs/m1-max-ollama-migration.md)
 - [Provider Strategy](docs/provider-strategy.md)
 - [Safety and Privacy](docs/safety-and-privacy.md)
 - [WeChat Gateway Notes](docs/wechat-gateway-notes.md)
