@@ -38,9 +38,11 @@ Phone / Chat App
 ├── README.md
 ├── docs/
 │   ├── architecture.md
+│   ├── desktop-mirror-and-voice.md
 │   ├── m1-max-ollama-migration.md
 │   ├── provider-strategy.md
 │   ├── safety-and-privacy.md
+│   ├── task-app-integrations.md
 │   └── wechat-gateway-notes.md
 ├── templates/
 │   ├── START_HERE.template.md
@@ -154,9 +156,11 @@ Use this repository as a template, not as a dump of a live assistant environment
 ## Docs
 
 - [Architecture](docs/architecture.md)
+- [Desktop Mirror and Voice Input](docs/desktop-mirror-and-voice.md)
 - [M1 Max + Ollama Migration Checklist](docs/m1-max-ollama-migration.md)
 - [Provider Strategy](docs/provider-strategy.md)
 - [Safety and Privacy](docs/safety-and-privacy.md)
+- [Task App Integrations](docs/task-app-integrations.md)
 - [WeChat Gateway Notes](docs/wechat-gateway-notes.md)
 - [Maintenance Routine](docs/maintenance-routine.md)
 

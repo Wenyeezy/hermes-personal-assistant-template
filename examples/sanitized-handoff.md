@@ -8,6 +8,8 @@ _This is an example handoff file. Replace placeholders with non-sensitive projec
 
 Hermes is installed and connected to a messaging gateway. A portable markdown memory layer has been created. The current cloud provider is used only for non-sensitive tasks.
 
+The messaging gateway has been tested for voice-to-text style input, and a local desktop mirror can be used when the mobile gateway conversation does not sync cleanly to a desktop messaging client.
+
 ---
 
 ## Important Paths
@@ -61,12 +63,15 @@ Low-cost cloud model:
 - Messaging APIs may be rate-limited or unstable.
 - Low-cost provider routes may have wrapper prompts or inconsistent behavior.
 - Tool calls may occasionally produce empty final responses.
+- Gateway/bot conversations may not appear in every desktop client.
+- DNS failures can look like provider failures; test DNS and endpoint reachability before rotating API keys.
 
 ---
 
 ## Next Steps
 
 1. Test gateway reliability.
-2. Improve memory triage workflow.
-3. Move private tasks to a local model host.
-4. Keep public templates separate from private memory.
+2. Add task/reminder creation through a local task app integration.
+3. Improve memory triage workflow.
+4. Move private tasks to a local model host.
+5. Keep public templates separate from private memory.

@@ -51,6 +51,7 @@ WeChat/mobile gateway is good for:
 
 - quick notes;
 - quick questions;
+- voice-to-text commands when the gateway or messaging app provides transcription;
 - non-sensitive images;
 - project updates;
 - memory triage;
@@ -92,3 +93,19 @@ For images, files, study, technical, or decision questions, use detailed analysi
 The gateway sends user content to whichever model provider Hermes is configured to use.
 
 If the current provider is a low-cost third-party route, avoid sending sensitive screenshots, private documents, credentials, or raw personal memory through the gateway.
+
+---
+
+## Desktop Sync Caveat
+
+Some gateway conversations may not sync into the platform's desktop app like ordinary human-to-human chats.
+
+A practical workaround is a local desktop mirror:
+
+```text
+Gateway turn
+  -> local markdown log
+  -> desktop tail/viewer window
+```
+
+This gives the desktop machine a receive-only view and an archive, but it does not replace a true desktop chat input.
