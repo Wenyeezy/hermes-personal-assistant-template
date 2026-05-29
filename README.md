@@ -42,6 +42,7 @@ Phone / Chat App
 │   ├── m1-max-ollama-migration.md
 │   ├── provider-strategy.md
 │   ├── safety-and-privacy.md
+│   ├── conversation-preprocessing.md
 │   ├── task-app-integrations.md
 │   └── wechat-gateway-notes.md
 ├── templates/
@@ -160,6 +161,7 @@ Use this repository as a template, not as a dump of a live assistant environment
 - [M1 Max + Ollama Migration Checklist](docs/m1-max-ollama-migration.md)
 - [Provider Strategy](docs/provider-strategy.md)
 - [Safety and Privacy](docs/safety-and-privacy.md)
+- [Conversation Preprocessing Workflow](docs/conversation-preprocessing.md)
 - [Task App Integrations](docs/task-app-integrations.md)
 - [WeChat Gateway Notes](docs/wechat-gateway-notes.md)
 - [Maintenance Routine](docs/maintenance-routine.md)

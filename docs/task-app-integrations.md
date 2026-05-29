@@ -47,6 +47,25 @@ For ambiguous commands, ask a short clarification before writing.
 
 ---
 
+## Recommended Routing Policy
+
+A practical split is:
+
+```text
+Task/project manager = primary task inbox.
+System reminders app = strong time-based alerts.
+```
+
+Example routing:
+
+- "Add this task", "put this into my to-do list", or project/study planning -> task manager.
+- "Remind me at...", "alert me when...", or anything with a hard notification time -> system reminders.
+- If something needs both planning context and a hard alert, create both after the user's intent is clear.
+
+This keeps the task manager useful for organizing work while reserving system reminders for moments where the operating system notification layer matters.
+
+---
+
 ## Things-Style Integration
 
 Many local task apps support one or more automation surfaces:
@@ -67,6 +86,19 @@ Hermes command
 
 Keep the helper script small and explicit. It should create a task only from structured input, not from arbitrary shell text.
 
+For shopping lists, errands, route-based lists, or checklists, prefer one parent task with native checklist items when the task app supports it:
+
+```text
+Shopping list request
+  -> one parent task
+  -> native checklist items
+  -> one confirmation message
+```
+
+Do not create one task per grocery item unless the user explicitly asks for that. On chat gateways with rate limits, repeated per-item writes and progress replies can create unnecessary API calls and failed sends.
+
+If the app does not expose native checklist creation through its stable automation API, fall back to a single task note with visual checkbox markers such as `[ ]` or `☐`.
+
 ---
 
 ## Apple Reminders-Style Integration
@@ -75,12 +107,14 @@ For system reminder apps, a practical first path is:
 
 ```text
 Hermes command
-  -> AppleScript or Shortcuts
+  -> CLI helper, AppleScript, or Shortcuts
   -> create reminder
   -> confirmation message
 ```
 
 Use a fixed default list at first, then add list selection later.
+
+If a stable command-line tool exists for the system reminder app, prefer that over ad hoc scripts. Keep script-based automation as a fallback.
 
 ---
 
