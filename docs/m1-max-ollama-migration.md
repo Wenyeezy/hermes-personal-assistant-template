@@ -118,3 +118,21 @@ Keep a simple rollback path:
 5. Add only sanitized lessons learned to the public template.
 
 Migration is complete only when normal daily use works from the new host and the old host is no longer needed for gateway availability.
+
+
+---
+
+## Memory Package Handoff
+
+When moving the assistant to a new always-on host, use a private handoff file outside the public repo.
+
+Before loading memory on the new host:
+
+1. Verify the synced memory package exists.
+2. Update the path registry if local paths changed.
+3. Load ordinary memory first.
+4. Test retrieval.
+5. Configure local-sensitive routing.
+6. Load sensitive memory only after routing is explicit.
+
+Do not copy private handoff files, source paths, or personal memory into public documentation.

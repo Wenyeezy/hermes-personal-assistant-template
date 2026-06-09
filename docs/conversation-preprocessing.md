@@ -111,3 +111,14 @@ Detailed project/profile memory exists at: /path/to/private/knowledge-base/file.
 
 This keeps the assistant lightweight while preserving the full source of truth in files that can be synced, inspected, backed up, and repaired.
 
+
+
+---
+
+## Final Write Package
+
+After local preprocessing and strong-model review, create a final write package before loading memory into the assistant.
+
+The package should split ordinary memory, local-sensitive memory, do-not-store rules, audit controls, and a migration handoff. Run at least one leak scan on ordinary memory and keep unresolved facts marked as `needs_human_review`.
+
+See [Final Write Package Workflow](final-write-package.md).

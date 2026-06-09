@@ -43,6 +43,8 @@ Phone / Chat App
 │   ├── provider-strategy.md
 │   ├── safety-and-privacy.md
 │   ├── conversation-preprocessing.md
+│   ├── final-write-package.md
+│   ├── health-dashboard-workflow.md
 │   ├── task-app-integrations.md
 │   └── wechat-gateway-notes.md
 ├── templates/
@@ -162,6 +164,8 @@ Use this repository as a template, not as a dump of a live assistant environment
 - [Provider Strategy](docs/provider-strategy.md)
 - [Safety and Privacy](docs/safety-and-privacy.md)
 - [Conversation Preprocessing Workflow](docs/conversation-preprocessing.md)
+- [Final Write Package Workflow](docs/final-write-package.md)
+- [Health Dashboard Workflow](docs/health-dashboard-workflow.md)
 - [Task App Integrations](docs/task-app-integrations.md)
 - [WeChat Gateway Notes](docs/wechat-gateway-notes.md)
 - [Maintenance Routine](docs/maintenance-routine.md)
