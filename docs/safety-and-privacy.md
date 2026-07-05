@@ -55,6 +55,41 @@ Low-cost third-party provider:
   Use only for non-sensitive and reviewable tasks.
 ```
 
+Aggregator or fallback provider:
+
+```text
+Use only after explicit same-turn authorization.
+Do not silently switch sensitive/private content to this route.
+```
+
+---
+
+## Data Zones
+
+Use three practical zones:
+
+```text
+Zone A: local-only
+  raw finance, statements, account details, tokens, credentials,
+  private identity documents, medical/private health exports,
+  local-sensitive memory, private screenshots
+
+Zone B: redacted or aggregate
+  review counts, account aliases, category totals, sanitized health summaries,
+  status-only sync reports
+
+Zone C: ordinary cloud-capable
+  public research, drafting, non-sensitive planning, sanitized project notes
+```
+
+The gateway should route Zone A locally by default. Zone B can be shown on a
+dashboard or sent to cloud only when the user policy allows it. Zone C may use
+the normal high-quality route.
+
+Health and food data need project-specific policy. Some users may allow daily
+activity summaries or confirmed food rows through a small cloud relay, while
+medical-grade exports and unrelated private photos remain local-first.
+
 ---
 
 ## What Not To Commit
@@ -84,6 +119,7 @@ Before publishing:
 - remove real account IDs;
 - remove personal names unless intentionally public;
 - remove private file paths if they reveal personal data;
+- remove real hostnames and callback URLs;
 - replace real model endpoint keys with placeholders;
 - sanitize logs;
 - review images for private content.

@@ -12,7 +12,7 @@ Do not begin with full automatic model routing. It is harder to make reliable th
 Level 1: Single provider
 Level 2: Manual switching
 Level 3: Rule-based switching
-Level 4: Automatic routing with fallback
+Level 4: Automatic routing with explicit fallback gates
 ```
 
 Start at Level 1 or Level 2.
@@ -52,7 +52,7 @@ Examples:
 - official Anthropic API;
 - OpenRouter or similar aggregator platforms.
 
-### Low-Cost Cloud Provider
+### Aggregator or Low-Cost Cloud Provider
 
 Best for:
 
@@ -64,7 +64,8 @@ Best for:
 
 These providers can be useful, but they should be chosen by the user based on price, reliability, privacy policy, and compatibility.
 
-Avoid using low-cost third-party routes for sensitive memory or private raw documents.
+Avoid using aggregator or low-cost third-party routes for sensitive memory,
+private raw documents, and anything that the user has not explicitly approved.
 
 ---
 
@@ -77,7 +78,6 @@ Default:
 Use cloud when:
   - user explicitly requests cloud;
   - task needs stronger reasoning;
-  - local model fails;
   - task is non-sensitive and cost matters.
 
 Pause and ask when:
@@ -86,6 +86,44 @@ Pause and ask when:
   - content includes personal identity documents;
   - content should be saved into long-term memory.
 ```
+
+For fallback providers:
+
+```text
+Never silently fallback to an aggregator or expensive provider.
+Ask for same-turn permission, or queue the turn for local handling.
+```
+
+---
+
+## Fast Path vs Full Tool Path
+
+Route control should happen before model inference:
+
+```text
+"/local" or "/qwen"
+  -> update route state
+  -> short acknowledgement
+  -> no full tool catalog
+
+"/cloud" or "/square"
+  -> update route state
+  -> short acknowledgement
+```
+
+Then choose the inference path:
+
+```text
+Simple private/local answer:
+  local model + compact memory snippets
+
+Web/PDF/files/tasks/health/finance:
+  full Hermes tool path + provider chosen by privacy rules
+```
+
+This keeps local models usable. Smaller or locally hosted models can become slow
+or brittle if every turn includes the full system prompt, all tool definitions,
+and long chat history.
 
 ---
 

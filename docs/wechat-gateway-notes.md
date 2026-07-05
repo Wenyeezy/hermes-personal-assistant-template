@@ -18,6 +18,16 @@ WeChat message
 
 The gateway is not the model. It is only the message bridge.
 
+In a mature setup, it also performs lightweight routing before the model call:
+
+```text
+message
+  -> command check
+  -> privacy check
+  -> memory snippet retrieval
+  -> provider/tool route
+```
+
 ---
 
 ## Host Requirement
@@ -58,6 +68,18 @@ WeChat/mobile gateway is good for:
 - lightweight summaries;
 - personal assistant reminders or follow-up prompts.
 
+Provider-control commands should be instant:
+
+```text
+/local or /qwen
+  switch this session to a local provider
+
+/cloud or /square
+  switch this session to the normal cloud provider
+```
+
+These commands should not be sent through the full model pipeline.
+
 ---
 
 ## Better In Terminal
@@ -70,6 +92,10 @@ Use Terminal/Codex for:
 - debugging gateway logs;
 - running long commands;
 - handling sensitive local files.
+
+Also prefer Terminal/Codex for large PDF batches, long-running web research, and
+deep debugging. The mobile gateway can trigger those workflows, but the local
+tool path should do the heavy lifting.
 
 ---
 
@@ -93,6 +119,32 @@ For images, files, study, technical, or decision questions, use detailed analysi
 The gateway sends user content to whichever model provider Hermes is configured to use.
 
 If the current provider is a low-cost third-party route, avoid sending sensitive screenshots, private documents, credentials, or raw personal memory through the gateway.
+
+Do not silently fallback to an aggregator or expensive provider. If the user has
+not explicitly approved that route for the current turn, queue the request for
+local handling or ask first.
+
+---
+
+## Speed Notes
+
+Common reasons a gateway feels slower than a dashboard chat:
+
+- it loads too much recent chat history;
+- it injects a full tool catalog into simple turns;
+- it asks a model to perform route-control commands;
+- it sends web/PDF/file tasks to a model without giving it the proper tools;
+- it retries provider failures without telling the user;
+- it waits for image/PDF extraction on the critical reply path.
+
+Practical fixes:
+
+- keep only a small number of recent turns plus relevant memory snippets;
+- use fast command handlers for provider switching;
+- route web/PDF/file questions to a tool-enabled path;
+- summarize long sessions periodically;
+- show visible route notices when provider changes affect privacy, cost, or
+  latency.
 
 ---
 

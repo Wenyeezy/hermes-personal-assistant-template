@@ -35,15 +35,17 @@ User photo/text
   -> dashboard summary
 
 Phone HealthKit data
-  -> small local bridge app or Shortcut
+  -> small native bridge app, with Shortcut as fallback
   -> authenticated local ingest endpoint
   -> local ledger
   -> dashboard summary
 ```
 
-Use cloud models only when the user's privacy policy allows it. Raw health
-records, food photos, and daily activity history should not be sent to general
-cloud providers by default.
+Use cloud models only when the user's privacy policy allows it. Medical/private
+HealthKit exports, unrelated private photos, and raw history should not be sent
+to general cloud providers by default. A project may separately allow small
+daily activity summaries or user-initiated food/activity uploads through a
+limited cloud relay.
 
 ---
 
@@ -81,6 +83,8 @@ Cons:
 - tedious to edit by hand;
 - automation timing can be approximate;
 - not ideal for long-term maintainability.
+- Health sample queries can be easy to misconfigure, causing date or source
+  mismatches.
 
 ### Native HealthKit Bridge App
 
@@ -96,6 +100,28 @@ Cons:
 - requires Xcode;
 - requires signing and HealthKit capability;
 - background delivery is opportunistic, not exact wall-clock scheduling.
+
+For a serious long-term setup, build the native app first and keep the Shortcut
+as a diagnostic fallback. If using free personal-team signing, remember that
+installed builds can expire quickly; paid developer signing or TestFlight is
+cleaner for daily use.
+
+### Third-Party Export App
+
+Pros:
+
+- faster than writing a bridge from scratch;
+- may expose REST or file export options;
+- useful for quick validation.
+
+Cons:
+
+- paid tiers may be required;
+- debugging is limited to the vendor's behavior;
+- the app may not expose the exact Apple Health summary semantics you expect.
+
+Use this as an optional comparison tool, not as the only long-term architecture
+if you intend to own the assistant stack.
 
 ---
 
@@ -127,3 +153,6 @@ view. Keep those in the raw ledger or debug view.
 7. Optionally add HealthKit nutrition write-back for confirmed numeric samples.
 8. Make the dashboard workboard read from a structured task/log file.
 
+For activity estimates, keep calibrated values labelled. For example, a project
+may show "raw Health value" and "adjusted estimate" separately if the user wants
+conservative calorie accounting.

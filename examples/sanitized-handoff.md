@@ -6,7 +6,7 @@ _This is an example handoff file. Replace placeholders with non-sensitive projec
 
 ## Current Status
 
-Hermes is installed and connected to a messaging gateway. A portable markdown memory layer has been created. The current cloud provider is used only for non-sensitive tasks.
+Hermes is installed and connected to a messaging gateway. A portable markdown memory layer has been created. The current cloud provider is used only for non-sensitive tasks, and local provider routing is available for private/simple turns.
 
 The messaging gateway has been tested for voice-to-text style input, and a local desktop mirror can be used when the mobile gateway conversation does not sync cleanly to a desktop messaging client.
 
@@ -35,9 +35,11 @@ Do not include real API keys, account IDs, or private local paths in a public ha
 ```text
 Messaging App
   -> Hermes Gateway
-  -> Hermes Agent
-  -> Model Provider
-  -> Markdown Memory Layer
+  -> Privacy Router
+  -> Memory Router
+  -> Provider Router
+  -> Tool Layer
+  -> Markdown Memory Layer + Local State
 ```
 
 ---
@@ -53,7 +55,13 @@ Trusted cloud model:
 
 Low-cost cloud model:
   non-sensitive, reviewable, low-cost tasks
+
+Aggregator fallback:
+  explicit same-turn user authorization only
 ```
+
+Provider-control commands such as `/local` and `/cloud` should be handled before
+the full model call.
 
 ---
 
@@ -65,6 +73,8 @@ Low-cost cloud model:
 - Tool calls may occasionally produce empty final responses.
 - Gateway/bot conversations may not appear in every desktop client.
 - DNS failures can look like provider failures; test DNS and endpoint reachability before rotating API keys.
+- Too much chat history or full tool injection can make local models slow.
+- Health/finance bridges should report status without exposing raw values.
 
 ---
 
@@ -74,4 +84,5 @@ Low-cost cloud model:
 2. Add task/reminder creation through a local task app integration.
 3. Improve memory triage workflow.
 4. Move private tasks to a local model host.
-5. Keep public templates separate from private memory.
+5. Add sanitized dashboard/health/finance status views.
+6. Keep public templates separate from private memory.

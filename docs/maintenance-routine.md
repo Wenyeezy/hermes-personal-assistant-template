@@ -34,7 +34,10 @@ Do not automatically mirror private files into the public layer.
    - raw logs;
    - identifying screenshots.
 5. Re-read `.gitignore`.
-6. Review the diff before publishing.
+6. Run a leak scan for private paths, hostnames, API-key names, account labels,
+   real people, screenshots, and raw logs.
+7. Review the diff before publishing.
+8. Commit and push only the sanitized public layer.
 
 ---
 
@@ -48,6 +51,7 @@ Good public content:
 - memory policy templates;
 - triage workflow templates;
 - sanitized troubleshooting notes;
+- current-state lessons without private implementation details;
 - diagrams;
 - examples with fake IDs.
 
@@ -60,6 +64,22 @@ Bad public content:
 - private memory files;
 - raw assistant conversations;
 - screenshots with personal information.
+
+---
+
+## Suggested Public Log Pattern
+
+Use `docs/current-state-log.md` for reusable lessons:
+
+```text
+Private log:
+  exact incident, commands, real paths, runtime details
+
+Public log:
+  sanitized pattern, root-cause category, reusable mitigation
+```
+
+Never copy private maintenance-log entries verbatim into the public repository.
 
 ---
 

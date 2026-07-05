@@ -17,15 +17,17 @@ The goal is to build a system that can:
 - keep long-term memory in portable markdown files;
 - use local models for private tasks;
 - use cloud providers for non-sensitive or high-quality work;
-- connect through a mobile messaging gateway such as WeChat/Weixin.
+- connect through a mobile messaging gateway such as WeChat/Weixin;
+- keep private implementation logs separate from sanitized public instructions.
 
 ```text
 Phone / Chat App
   -> Hermes Gateway
   -> Hermes Agent
-  -> Model Provider
-      -> Local model for private tasks
-      -> Cloud model for non-sensitive tasks
+  -> Privacy + Memory + Provider Router
+      -> Local model for private/simple tasks
+      -> Cloud model for non-sensitive or high-quality tasks
+      -> Tools for web/files/tasks/health/finance
   -> Portable Markdown Memory Layer
 ```
 
@@ -38,6 +40,7 @@ Phone / Chat App
 ├── README.md
 ├── docs/
 │   ├── architecture.md
+│   ├── current-state-log.md
 │   ├── desktop-mirror-and-voice.md
 │   ├── m1-max-ollama-migration.md
 │   ├── provider-strategy.md
@@ -137,6 +140,9 @@ Common provider options include:
 - local providers, such as Ollama;
 - other third-party API gateways, only for non-sensitive and reviewable tasks.
 
+For aggregator routes or expensive fallback providers, make opt-in explicit.
+Silent fallback can leak context and spend budget before the user notices.
+
 ---
 
 ## Safety Boundary
@@ -159,6 +165,7 @@ Use this repository as a template, not as a dump of a live assistant environment
 ## Docs
 
 - [Architecture](docs/architecture.md)
+- [Current State Log](docs/current-state-log.md)
 - [Desktop Mirror and Voice Input](docs/desktop-mirror-and-voice.md)
 - [M1 Max + Ollama Migration Checklist](docs/m1-max-ollama-migration.md)
 - [Provider Strategy](docs/provider-strategy.md)
