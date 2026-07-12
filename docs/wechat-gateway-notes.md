@@ -161,3 +161,32 @@ Gateway turn
 ```
 
 This gives the desktop machine a receive-only view and an archive, but it does not replace a true desktop chat input.
+
+---
+
+## Multi-Gateway Pattern
+
+A second gateway can improve file, album, long-instruction, and voice workflows
+without replacing the first one.
+
+Recommended contract:
+
+```text
+Gateway A session ─┐
+                   ├─> shared privacy router, tools, memory, and providers
+Gateway B session ─┘
+```
+
+- keep platform sessions separate;
+- use one owner allowlist per gateway;
+- disable groups, guests, pairing, and open access by default;
+- apply the same secret-file denylist everywhere;
+- aggregate rapid album/caption messages before invoking the agent;
+- set a clear inbound file ceiling and send larger files through an
+  authenticated local dashboard;
+- keep voice STT credentials separate from general inference credentials.
+
+When a gateway supports owner-authorized personal file access, allow ordinary
+documents only through the normal file-tool policy. Continue to deny credential
+stores, OAuth/token files, SSH material, project environment files, and secret
+directories on every surface.

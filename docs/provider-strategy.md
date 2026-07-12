@@ -139,3 +139,23 @@ Automatic routing has hidden complexity:
 - extra routing calls add cost and latency.
 
 Semi-automatic rules are usually more reliable for a personal assistant.
+
+---
+
+## Voice Transcription Is A Separate Permission
+
+Speech-to-text should not silently become a general model-provider credential.
+Use a dedicated restricted key or a local transcription model, and document the
+boundary clearly:
+
+```text
+voice audio
+  -> approved STT provider only
+  -> transcript
+  -> normal Hermes privacy/provider routing
+```
+
+Sending audio to a cloud STT endpoint authorizes transcription only. It does
+not authorize the transcript, attached files, or later agent context to use an
+otherwise disallowed provider. For private/offline workflows, keep a local STT
+route or use a local dashboard where the user can review text before sending.

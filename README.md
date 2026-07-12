@@ -17,7 +17,8 @@ The goal is to build a system that can:
 - keep long-term memory in portable markdown files;
 - use local models for private tasks;
 - use cloud providers for non-sensitive or high-quality work;
-- connect through a mobile messaging gateway such as WeChat/Weixin;
+- connect through owner-gated mobile messaging gateways such as WeChat/Weixin
+  and Telegram;
 - keep private implementation logs separate from sanitized public instructions.
 
 ```text
@@ -48,6 +49,7 @@ Phone / Chat App
 │   ├── conversation-preprocessing.md
 │   ├── final-write-package.md
 │   ├── health-dashboard-workflow.md
+│   ├── local-first-career-os.md
 │   ├── task-app-integrations.md
 │   └── wechat-gateway-notes.md
 ├── templates/
@@ -173,6 +175,7 @@ Use this repository as a template, not as a dump of a live assistant environment
 - [Conversation Preprocessing Workflow](docs/conversation-preprocessing.md)
 - [Final Write Package Workflow](docs/final-write-package.md)
 - [Health Dashboard Workflow](docs/health-dashboard-workflow.md)
+- [Local-First Career OS](docs/local-first-career-os.md)
 - [Task App Integrations](docs/task-app-integrations.md)
 - [WeChat Gateway Notes](docs/wechat-gateway-notes.md)
 - [Maintenance Routine](docs/maintenance-routine.md)

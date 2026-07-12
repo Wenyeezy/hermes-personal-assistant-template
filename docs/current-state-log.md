@@ -102,6 +102,86 @@ Two date modes are useful:
 Both modes should read the same local transaction table. Reviewing a transaction
 should update category/status/notes, not duplicate or mutate the raw row.
 
+A large backlog needs a review workflow, not just a long list:
+
+- preserve manual approved/unsure/rejected decisions across classifier refresh;
+- remove a row from Needs review only after the local server confirms the write;
+- keep the inspector open and advance continuously;
+- make Enter/Shift+Enter and IME behavior explicit;
+- provide one bounded atomic Undo;
+- treat smart queues as views, not new ledger states;
+- generate repeated groups server-side with exact direction/category/channel
+  boundaries, opaque fingerprints, stale-count rejection, explicit confirmation,
+  and a strict batch ceiling;
+- let remembered categories create suggestions, not unattended approval.
+
+A shared category catalog with localized labels, contextual Emoji, and a Custom
+fallback is faster and safer than free-text categories duplicated across views.
+
+---
+
+## Local-First Career OS Lessons
+
+A personal Career OS should not imitate a job board or rely on unattended
+scraping. The safer acquisition contract is one explicit Save/Share or archive
+export from the owner, followed by local normalization, deduplication, ranking,
+deadline tracking, material versioning, and action planning.
+
+Important boundaries:
+
+- do not store authenticated platform cookies or sessions;
+- use official account archives and selected alerts as offline inputs;
+- treat fuzzy company/title/location matches as duplicate candidates, not
+  automatic merges;
+- rank against one canonical local profile and save evidence, gaps, confidence,
+  next action, and ranker version;
+- distinguish deterministic daily maintenance from bounded local-model
+  intelligence over new or changed items;
+- keep ATS assistance current-page-only, confirmed field by field, and never
+  click final submit;
+- render planned and current components with visibly different styles in system
+  maps and status views.
+
+See [Local-First Career OS](local-first-career-os.md) for the reusable pipeline.
+
+---
+
+## Multi-Gateway And Voice Lessons
+
+It is practical to run a lightweight daily gateway and a richer file/album
+gateway against the same Hermes installation. Share tool, memory, privacy, and
+provider policy, but isolate platform sessions and owner allowlists.
+
+For voice, benchmark both speed and multilingual accuracy. A local model may be
+fast after warm-up yet inaccurate for mixed-language speech. If cloud STT is
+explicitly approved, use a dedicated restricted key and keep that permission
+separate from general agent inference.
+
+---
+
+## Scheduled Briefing Reliability Lessons
+
+Preparation and delivery must agree on the same freshness contract. A prep job
+cannot run before a delivery job if the delivery prompt accepts only drafts
+created later in the day.
+
+Reliable pattern:
+
+```text
+bounded prep
+  -> timestamped local draft
+  -> freshness check
+  -> small volatile refresh
+  -> fail-soft delivery
+```
+
+Do not put unbounded webpage extraction or auxiliary LLM summarization on the
+final delivery path. Keep the global watchdog intact, make optional source
+failures section-local, update only the intended scheduled jobs through an
+idempotent scoped command, and verify both successful content generation and
+actual gateway delivery. A job marked successful before checking its delivery
+log is incomplete evidence.
+
 ---
 
 ## Cloud Lite Lessons

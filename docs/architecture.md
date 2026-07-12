@@ -43,6 +43,13 @@ The gateway normalizes messages from chat apps, dashboards, voice input, file
 uploads, and phone bridge apps. It should also handle obvious control commands
 before invoking a model.
 
+Multiple gateways should share the same privacy, tool, memory, and provider
+policies without sharing one conversation session. Keep each platform
+owner-allowlisted, give it a separate session namespace, and disable group/open
+access until that surface has its own threat model. A richer gateway can handle
+albums, documents, and voice while a lighter gateway remains convenient for
+short daily turns.
+
 Examples:
 
 ```text
@@ -116,6 +123,12 @@ The tool layer should own real-world side effects:
 
 Keep raw finance, private health exports, statements, and secrets out of cloud
 tools by default.
+
+For long workflows, split deterministic preparation from user-facing delivery.
+The preparation step can build a timestamped local cache; the delivery step
+should validate cache freshness, refresh only volatile fields, and fail optional
+sections soft. Avoid expensive webpage extraction or auxiliary summarization on
+the final delivery path.
 
 ### 8. Portable Memory Layer
 
