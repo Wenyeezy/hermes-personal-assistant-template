@@ -39,6 +39,25 @@ Do not automatically mirror private files into the public layer.
 7. Review the diff before publishing.
 8. Commit and push only the sanitized public layer.
 
+## Runtime Consistency Checks
+
+After memory or messaging changes, verify behavior rather than file presence:
+
+- the Gateway process is alive and every configured platform adapter connects;
+- platform adapters share policy but return distinct session identifiers;
+- ordinary memory queries never return local-sensitive sources;
+- an explicit local-only test can retrieve the expected local-sensitive source;
+- matched source-registry content reaches the final prompt instead of being
+  crowded out by a large topic pack;
+- scheduled generation success and platform delivery success are reported as
+  separate states;
+- official-export promotion leaves a zero-item human approval queue or clearly
+  records what is still pending.
+
+For multi-platform setups, document one Gateway service and each adapter
+separately. This prevents a healthy Telegram connection from masking a Weixin
+delivery failure, or vice versa.
+
 ---
 
 ## What Belongs Here

@@ -24,8 +24,9 @@ The goal is to build a system that can:
   artifact after every dashboard build, not only the source tree.
 
 ```text
-Phone / Chat App
-  -> Hermes Gateway
+Weixin / Telegram / Dashboard
+  -> one Hermes Gateway service
+      -> platform adapter + platform-scoped session
   -> Hermes Agent
   -> Privacy + Memory + Provider Router
       -> Local model for private/simple tasks
@@ -130,6 +131,12 @@ Every new assistant should read that file first.
 6. Test with simple non-sensitive tasks.
 7. Add a messaging gateway after the core setup works.
 8. Move private workflows to a local model host when available.
+
+When adding more than one chat platform, prefer one long-running Gateway
+service with isolated adapters rather than separate daemons that each invent
+their own policy. Share privacy, memory, provider, tool, and file-access rules;
+keep sessions, media transport, acknowledgements, rate limits, and owner
+allowlists platform-scoped.
 
 Do not start with full automatic multi-model routing. Start with:
 

@@ -59,6 +59,24 @@ back to a deeper route only when needed.
 Keep local-sensitive memory gated. A public template should explain the layer,
 not contain the user's private facts.
 
+For official account exports, use incremental review rather than repeatedly
+resynthesizing the entire archive:
+
+```text
+package hash and dedup
+  -> compare conversation IDs + stable content hashes
+  -> process only new/changed conversations
+  -> local candidate extraction
+  -> direct-evidence/conflict/privacy review
+  -> ordinary pack or explicit local-sensitive source
+  -> golden/card/stale/leak tests
+```
+
+Model confidence is not approval. A locally generated candidate can still mix
+people, copy an assistant recommendation as a user preference, or revive an old
+identity artifact. Promotion needs direct user evidence and canonical conflict
+review.
+
 ---
 
 ## Health and Food Lessons
@@ -156,11 +174,16 @@ See [Local-First Career OS](local-first-career-os.md) for the reusable pipeline.
 
 ---
 
-## Multi-Gateway And Voice Lessons
+## Multi-Adapter Gateway And Voice Lessons
 
-It is practical to run a lightweight daily gateway and a richer file/album
-gateway against the same Hermes installation. Share tool, memory, privacy, and
-provider policy, but isolate platform sessions and owner allowlists.
+It is practical to run lightweight and richer messaging adapters inside one
+Hermes Gateway service. Share tool, memory, privacy, provider, skill, and
+file-access policy, but isolate platform sessions, owner allowlists, media
+transport, acknowledgements, delivery errors, and rate limits.
+
+Do not infer that two chat platforms require two gateway processes. Separate
+daemons make policy drift and duplicate schedulers more likely unless process
+isolation is a deliberate requirement.
 
 For voice, benchmark both speed and multilingual accuracy. A local model may be
 fast after warm-up yet inaccurate for mixed-language speech. If cloud STT is
