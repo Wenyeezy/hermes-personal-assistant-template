@@ -45,6 +45,26 @@ Each adapter should declare allowed hosts, parser version, input/output
 contract, fixtures, refresh policy, rate limit, and structured errors. Company-
 specific parsing should not live inside the gateway or dashboard.
 
+### Rehearsing Official Archives
+
+Official exports can change a column label or timestamp format without changing
+the meaning of the category. Treat that as schema drift, not permission to make
+the parser permissive:
+
+1. Rehearse the real archive against an owner-only temporary database and inbox.
+2. On failure, inspect only member names, headers, format shapes, and aggregate
+   status codes; do not print or copy row values into logs.
+3. Add only the exact observed alias or format behind a failing regression test.
+   Unknown headers and unsupported categories must continue to fail closed.
+4. Replay the rehearsal to prove idempotency, file permissions, and database
+   integrity before touching live state.
+5. Back up the live database, run the bounded import, replay it once more, and
+   record only aggregate status in the maintenance log.
+
+An official profile export is evidence, not automatically the canonical
+profile. When a newer structured memory or owner-confirmed profile exists, keep
+that source authoritative and import only the explicitly approved categories.
+
 ---
 
 ## Ranking Contract
