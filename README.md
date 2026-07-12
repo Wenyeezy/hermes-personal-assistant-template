@@ -20,6 +20,8 @@ The goal is to build a system that can:
 - connect through owner-gated mobile messaging gateways such as WeChat/Weixin
   and Telegram;
 - keep private implementation logs separate from sanitized public instructions.
+- keep derived-metric policy in one canonical contract and verify the deployed
+  artifact after every dashboard build, not only the source tree.
 
 ```text
 Phone / Chat App

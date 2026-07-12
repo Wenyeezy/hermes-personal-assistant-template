@@ -153,6 +153,37 @@ view. Keep those in the raw ledger or debug view.
 7. Optionally add HealthKit nutrition write-back for confirmed numeric samples.
 8. Make the dashboard workboard read from a structured task/log file.
 
-For activity estimates, keep calibrated values labelled. For example, a project
-may show "raw Health value" and "adjusted estimate" separately if the user wants
-conservative calorie accounting.
+## Calibrated Activity Contract
+
+If activity calories are calibrated, treat the calibration as a system
+contract rather than a per-card decoration:
+
+- keep the raw device/HealthKit value unchanged in the private ledger for
+  audit;
+- store or deterministically derive the calibrated value alongside it;
+- use one calibrated policy for day cards, workout details, total burn, net
+  balance, rolling charts, exports, and scheduled reports;
+- label the primary UI value with a quiet `Adjusted` or `Calibrated` badge;
+- version the policy or record its factors so historical recomputation is
+  explainable;
+- migrate historical derived fields atomically, with a backup, and never invent
+  a calibrated value when the source value is missing.
+
+Do not mix a raw single-day number with a calibrated weekly number. The UI may
+offer raw values in an audit/debug view, but the primary product surface should
+have one consistent meaning.
+
+### Preventing Build Regressions
+
+A source-level test is not enough when a dashboard serves generated static
+assets. Another build or worktree can overwrite a correct bundle with stale
+behavior. Add a post-build contract test that:
+
+1. checks the source uses calibrated fields;
+2. resolves the generated JavaScript asset from the production index;
+3. confirms the deployed bundle contains the calibrated-field contract and UI
+   label;
+4. probes the authenticated local and public summary routes after restart.
+
+Run this gate after every production dashboard build, especially when multiple
+branches or agents can rebuild the same shared runtime.

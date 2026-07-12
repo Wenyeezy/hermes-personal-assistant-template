@@ -79,6 +79,16 @@ For food logging, avoid "vision guess first" behavior:
 If activity values are calibrated, label adjusted estimates separately from raw
 device or HealthKit values.
 
+The stronger lesson is to make calibration end to end. A raw day card combined
+with an adjusted weekly report is a semantic bug even if each calculation is
+individually valid. Keep raw values for private audit, but route every primary
+display/report through one versioned derived-metric contract.
+
+Generated frontend assets need their own regression gate. A later build can
+silently restore stale behavior even when the source test remains green. Verify
+the final production bundle and authenticated runtime routes after build and
+restart.
+
 ---
 
 ## Finance Lessons
