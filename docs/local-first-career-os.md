@@ -11,6 +11,7 @@ The owner performs one deliberate Save/Share, imports an official account
 archive, or provides an allowed alert. After that, the local system owns:
 
 - normalization and source history;
+- bounded public-page evidence recovery and safe retry;
 - duplicate/repost review;
 - profile-aware ranking;
 - deadlines and application state;
@@ -33,8 +34,10 @@ explicit Share / selected alert / official archive
   -> canonicalization
   -> duplicate-candidate review
   -> canonical opportunity
+  -> acquisition state (enrich / retry / review / archive)
+  -> bounded official-source recovery
   -> explainable rank vector
-  -> board and action queue
+  -> five-view board and action queue
   -> truthful material workspace
   -> confirmed current-page ATS assistance
   -> human submission
@@ -44,6 +47,34 @@ explicit Share / selected alert / official archive
 Each adapter should declare allowed hosts, parser version, input/output
 contract, fixtures, refresh policy, rate limit, and structured errors. Company-
 specific parsing should not live inside the gateway or dashboard.
+
+### Make Acquisition State Explicit
+
+A saved opportunity is not yet an application. Give every canonical
+opportunity a separate acquisition record with explicit states such as:
+
+```text
+enrichment_pending
+  -> evidence_ready
+  -> enrichment_retry
+  -> review_required
+  -> archived_tombstone
+```
+
+Try the original unauthenticated public page first. If it is broken, search a
+small bounded set of official company or ATS alternatives and require
+title/company agreement before repairing the authoritative URL. Third-party
+copies are discovery hints, not authoritative Apply destinations.
+
+Do not interpret a generic 404, login wall, timeout, or empty search as proof
+that a role is closed. Archive only after explicit official closure evidence;
+otherwise keep the item visible for retry or owner review. Tombstones should
+retain only stable hashes, requisition identity when available, closure reason,
+and timestamps—not JD bodies or private file pointers.
+
+Every future canonical opportunity should enter this lifecycle automatically.
+The recovery lane should be bounded by item count, total runtime, redirects,
+response size, retries, and per-item failure isolation.
 
 ### Keep Intake And Canonicalization Separate
 
@@ -143,7 +174,8 @@ Use two separate lanes:
 
 ```text
 daily deterministic lane
-  import, normalize, deduplicate, check deadlines/errors
+  import, normalize, deduplicate, recover public evidence,
+  retry safely, check deadlines/errors
 
 bounded local-intelligence lane
   process only new/changed opportunities, explain ranking and gaps
@@ -160,6 +192,29 @@ record binds the exact job IDs, schedules, local-only route, runtime/item
 ceilings, and no-submit boundary. Activation should preserve unrelated jobs,
 create an owner-only backup, write atomically, and replay idempotently. A Doctor
 check should reject mismatched authorization hashes or drifted job contracts.
+
+---
+
+## Five-View Board Contract
+
+Do not mix bookmarks, recommendations, and applications in one pipeline:
+
+- **Inbox** — newly captured jobs being enriched or waiting for a bounded retry.
+- **Recommended** — current, complete, ranked jobs that pass owner exclusions.
+- **Active Pipeline** — only jobs the owner explicitly advanced to preparing,
+  ready, applied, screening, interview, or offer.
+- **Deadlines** — only evidence-backed deadlines; never guess a date.
+- **Review Queue** — unresolved link/evidence/duplicate questions that still
+  require human judgment.
+
+Counts should represent distinct opportunities. If one opportunity has several
+gaps, expose a separate attention-unit count rather than inflating the Review
+Queue headline.
+
+Teach this model inside the product. Each view should provide equivalent
+hover, keyboard-focus, and touch help, plus a replayable first-use tour. The
+same value-free canonical guide source can render an in-page guide and an
+offline PDF so documentation does not drift from verified behavior.
 
 ---
 

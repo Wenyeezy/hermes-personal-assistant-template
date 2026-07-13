@@ -174,6 +174,17 @@ Operational lessons from the first live slice:
 
 - make Quick Add an Inbox receipt, then let a bounded deterministic lane perform
   later canonicalization;
+- keep acquisition state separate from application state: every future
+  canonical opportunity enters bounded enrichment automatically, while only an
+  owner decision can put it in Active Pipeline;
+- try the original public page first, then a small official company/ATS search;
+  treat rate limits as retry, generic link failure as review, and archive only
+  with authoritative closure evidence;
+- project Inbox, Recommended, Active Pipeline, Deadlines, and Review Queue as
+  separate views, with evidence-backed counts and no invisible intermediate
+  state;
+- teach the workflow in the page with hover/focus/touch help and a replayable
+  tour generated from the same value-free guide source as the offline PDF;
 - expose strict profile completeness separately from an exact, versioned
   ranking-readiness gate;
 - activate local schedules only through an owner authorization bound to the
