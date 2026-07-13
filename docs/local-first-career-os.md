@@ -45,6 +45,27 @@ Each adapter should declare allowed hosts, parser version, input/output
 contract, fixtures, refresh policy, rate limit, and structured errors. Company-
 specific parsing should not live inside the gateway or dashboard.
 
+### Keep Intake And Canonicalization Separate
+
+An explicit Quick Add should make only the narrow claim it can prove: the
+owner's link or copied text was saved to a private Inbox. It should not claim
+that an opportunity was identified, scored, or added to an application
+pipeline in the same response.
+
+A later deterministic lane can process a bounded number of pending Inbox
+observations through the canonicalization engine. This separation gives the
+system a stable place for incomplete input:
+
+```text
+Quick Add
+  -> owner-only Inbox receipt
+
+bounded Daily lane
+  -> canonicalize when identity is sufficient
+  -> keep incomplete observations visibly reviewable
+  -> never guess the missing identity
+```
+
 ### Rehearsing Official Archives
 
 Official exports can change a column label or timestamp format without changing
@@ -85,6 +106,22 @@ with conversation and drafting, but it should not silently override structured
 profile facts. Models may improve wording; they must not invent scores or
 experience.
 
+Do not collapse profile completeness and ranking eligibility into one boolean.
+A profile may contain explicitly accepted follow-ups that do not prevent a
+bounded rank. Publish both states:
+
+```text
+profile_ready
+  strict completeness for the full profile contract
+
+ranking_ready
+  exact registered conditions sufficient for the current ranker
+```
+
+The exception list must be versioned and tested. A generic rule such as
+"partial is good enough" silently weakens the evidence gate. The UI should say
+that ranking is active while keeping the follow-ups visible.
+
 ---
 
 ## Duplicate Safety
@@ -116,6 +153,38 @@ Both lanes should be idempotent, isolate per-source failures, enforce item/time
 ceilings, expose deferred backlog, and write status-only run reports. Keep
 scheduling dormant until storage, adapters, migrations, privacy, and idempotency
 tests pass.
+
+Activate recurring jobs through a separate owner-authorization receipt rather
+than turning a dry-run planner into an implicit installer. A safe activation
+record binds the exact job IDs, schedules, local-only route, runtime/item
+ceilings, and no-submit boundary. Activation should preserve unrelated jobs,
+create an owner-only backup, write atomically, and replay idempotently. A Doctor
+check should reject mismatched authorization hashes or drifted job contracts.
+
+---
+
+## Evidence Pilot
+
+Passing fixtures is necessary but not sufficient for a personal Career OS.
+Before calling the stage complete, run a real multi-day evidence pilot that
+tests the approved product claims in ordinary use.
+
+Derive what the system can prove from local ledgers:
+
+- Share/Save and canonicalization counts;
+- duplicate-review decisions;
+- confirmed ATS fields approved and written;
+- Daily and due deep-run success;
+- visible backlog.
+
+Ask the owner only for facts the ledgers cannot prove, such as correctness,
+manual minutes, and privacy/boundary incidents. Keep each local day's record
+immutable and owner-only.
+
+An idle pilot must not pass. Metrics with no denominator should remain `null`
+or `not exercised`, not silently become 100%. The final report should require
+both the intended duration and at least one real exercise of every required
+workflow category.
 
 ---
 

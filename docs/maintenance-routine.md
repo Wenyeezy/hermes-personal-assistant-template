@@ -54,6 +54,21 @@ After memory or messaging changes, verify behavior rather than file presence:
 - official-export promotion leaves a zero-item human approval queue or clearly
   records what is still pending.
 
+After Career workflow changes, also verify:
+
+- Inbox receipts do not overclaim canonicalization, ranking, or application
+  creation;
+- bounded Daily processing advances only eligible observations and leaves
+  incomplete items visible;
+- strict profile completeness and ranking eligibility are reported separately;
+- every active recurring job matches one owner-authorization hash and preserves
+  the local-only/no-submit contract;
+- the Doctor reports schedule drift, stale runs, failures, and backlog without
+  exposing job or profile content;
+- a real evidence pilot cannot pass with unexercised denominator categories;
+- plugin API additions are tested after restarting the dashboard backend, not
+  only after reloading static assets.
+
 For multi-platform setups, document one Gateway service and each adapter
 separately. This prevents a healthy Telegram connection from masking a Weixin
 delivery failure, or vice versa.

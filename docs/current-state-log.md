@@ -170,6 +170,20 @@ Important boundaries:
 - render planned and current components with visibly different styles in system
   maps and status views.
 
+Operational lessons from the first live slice:
+
+- make Quick Add an Inbox receipt, then let a bounded deterministic lane perform
+  later canonicalization;
+- expose strict profile completeness separately from an exact, versioned
+  ranking-readiness gate;
+- activate local schedules only through an owner authorization bound to the
+  exact jobs, ceilings, local route, and no-submit contract;
+- use an owner-only multi-day evidence pilot that derives ledger facts and asks
+  only for correctness, time, and incident confirmation;
+- treat missing-denominator pilot metrics as not exercised, never as a pass;
+- restart the dashboard backend after adding plugin API routes; refreshing a
+  static plugin bundle alone does not register new server routes.
+
 See [Local-First Career OS](local-first-career-os.md) for the reusable pipeline.
 
 ---

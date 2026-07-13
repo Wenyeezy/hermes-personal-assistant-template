@@ -22,6 +22,9 @@ The goal is to build a system that can:
 - keep private implementation logs separate from sanitized public instructions.
 - keep derived-metric policy in one canonical contract and verify the deployed
   artifact after every dashboard build, not only the source tree.
+- prove local-first Career automation with explicit schedule authorization,
+  separate completeness/ranking-readiness states, and a real evidence pilot
+  that cannot pass by remaining idle.
 
 ```text
 Weixin / Telegram / Dashboard
