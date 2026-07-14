@@ -128,6 +128,32 @@ previous source-count shape as legacy evidence until one new-contract run is
 recorded. This temporary `invalid` state is safer than treating an older run as
 proof that the expanded pipeline is healthy.
 
+### Isolate Multiple Mailboxes And Design For Reauthorization
+
+A multi-mailbox Career connector should remain one bounded workflow, not one
+duplicated scheduler per account. Keep a value-free registry and isolate each
+mailbox's OAuth client material, token, cursor, selector state, and health. One
+account may be the default processing priority, but it must not become a silent
+fallback identity for another account.
+
+After authorization, verify the actual mailbox profile against the selected
+registry entry. If it does not match, refuse to save the token. A refresh or
+administrator-policy failure should pause only that mailbox and expose a clear
+`reauthorization_required` or `administrator_blocked` state while other approved
+accounts continue within the same global mutation/runtime ceiling.
+
+Do not design scheduled work around repeated MFA prompts. Interactive MFA may be
+required for initial consent or after an organization revokes a refresh grant;
+the connector must never automate passwords, MFA codes, or consent retries.
+Google OAuth projects left in Testing expire non-basic-scope test-user grants
+and offline refresh tokens after seven days. Durable unattended use therefore
+needs an appropriate production publishing state, while each managed Workspace
+may still require an administrator to allow high-risk Gmail scopes.
+
+The account registry and public status should use opaque local aliases. Email
+addresses, OAuth client identifiers, tokens, and organization policy details do
+not belong in public docs, logs, metrics, or cross-gateway messages.
+
 ### Rehearsing Official Archives
 
 Official exports can change a column label or timestamp format without changing

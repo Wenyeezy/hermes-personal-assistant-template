@@ -204,6 +204,12 @@ Operational lessons from the first live slice:
 - when a new source expands the automation contract, let Doctor reject the
   legacy source-count row until a current-contract run succeeds. Do not relabel
   old evidence as current health.
+- for multiple mailboxes, isolate token/cursor/health state per account, verify
+  the authorized profile before accepting a token, and keep one global Daily
+  ceiling rather than multiplying it per mailbox;
+- treat MFA and Workspace policy failures as explicit per-account owner actions.
+  Do not rely on Testing-mode refresh tokens for unattended Gmail work because
+  non-basic-scope grants expire after seven days.
 
 See [Local-First Career OS](local-first-career-os.md) for the reusable pipeline.
 

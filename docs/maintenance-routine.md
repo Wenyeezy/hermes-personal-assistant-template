@@ -39,6 +39,14 @@ Do not automatically mirror private files into the public layer.
 7. Review the diff before publishing.
 8. Commit and push only the sanitized public layer.
 
+When inspecting a private runtime, prefer metadata-only discovery, explicit
+allowlisted directories, and filename-only matches before reading content. Do
+not run broad content searches across credential, token, session, keychain,
+browser-profile, or environment-file stores. If credential-like material is
+rendered in a terminal, agent trace, or log, stop, avoid repeating the value,
+check tracked/public copies, and rotate the credential through a verify-then-
+disable sequence.
+
 ## Runtime Consistency Checks
 
 After memory or messaging changes, verify behavior rather than file presence:
