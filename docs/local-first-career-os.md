@@ -97,6 +97,37 @@ bounded Daily lane
   -> never guess the missing identity
 ```
 
+### Treat Job-Digest Email As A Verified, Bounded Source
+
+A read-only mailbox connection can turn selected job-alert or digest email into
+Career Inbox observations without granting the career system a job-platform
+login. Keep this adapter narrower than a general email reader:
+
+- require the exact sender and return path plus passing DKIM, SPF, and DMARC;
+- decode MIME locally, refuse attachment downloads, and never load remote
+  images or tracking pixels;
+- preserve useful plain text while extracting only allowlisted evidence links
+  from the HTML alternative;
+- split a multi-job digest into individual, versioned observations;
+- cap messages, cards per message, and total Daily mutations independently;
+- save owner-only continuation state so overflow is retried rather than lost;
+- make replay idempotent and expose only aggregate counts in status surfaces.
+
+The mailbox grant should stay exact and read-only. It can be shared by several
+approved Career selectors, but it must not become permission to scan arbitrary
+senders, modify mail, reuse platform cookies, or crawl an authenticated job
+site.
+
+Real-sample validation should retain only aggregate evidence: authentication
+passed or failed, cards parsed, attachments fetched, and remote images loaded.
+Do not copy subject lines, bodies, message identifiers, job identities, or
+private links into tests or public logs.
+
+Adding a source changes the automation contract. A Doctor should reject the
+previous source-count shape as legacy evidence until one new-contract run is
+recorded. This temporary `invalid` state is safer than treating an older run as
+proof that the expanded pipeline is healthy.
+
 ### Rehearsing Official Archives
 
 Official exports can change a column label or timestamp format without changing

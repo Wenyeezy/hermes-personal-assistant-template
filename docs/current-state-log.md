@@ -194,6 +194,16 @@ Operational lessons from the first live slice:
 - treat missing-denominator pilot metrics as not exercised, never as a pass;
 - restart the dashboard backend after adding plugin API routes; refreshing a
   static plugin bundle alone does not register new server routes.
+- treat verified job-digest email as a narrow read-only Career adapter: require
+  exact sender and transport authentication, refuse attachments and remote
+  images, split cards into individual observations, and share the existing
+  Daily mutation ceiling rather than multiplying it per source;
+- validate real MIME shapes without retaining message or job content. Multipart
+  mail may keep readable text in the plain alternative while placing evidence
+  links only in HTML, and SPF results may identify the full sender address;
+- when a new source expands the automation contract, let Doctor reject the
+  legacy source-count row until a current-contract run succeeds. Do not relabel
+  old evidence as current health.
 
 See [Local-First Career OS](local-first-career-os.md) for the reusable pipeline.
 
