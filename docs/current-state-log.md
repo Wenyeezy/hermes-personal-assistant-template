@@ -318,3 +318,20 @@ After a private setup change:
 4. Run a leak scan for paths, tokens, account labels, hostnames, and private
    names.
 5. Commit and publish only after reviewing the diff.
+
+---
+
+## Current-Page Career Companion Hardening
+
+A browser companion can bridge an owner-opened job page into a local Career OS without becoming an authenticated crawler. The reusable boundary is:
+
+- normalize every captured URL before preview, diff, transport, or persistence; remove ordinary query material, allow only registered requisition identifiers, and reject credential-like query keys plus raw or percent-encoded control characters;
+- keep Capture and Track separate, and route changed destination links, status, or description through an explicit local review proposal;
+- enforce description ceilings by UTF-8 bytes in both fixture and injected page paths; share one owner-only snapshot-container ceiling across canonicalization and private-body reads; store only description state, byte count, and digest in the review database, while fetching the bounded private body only after an explicit owner-local review action;
+- normalize date-only listing validity to end-of-day UTC and derive both deadline and status from that same instant;
+- prefer deterministic answers and verified local evidence. Limit optional local-model drafting to unanswered reviewable fields, require citations to the supplied evidence, and impose small call/runtime budgets;
+- make answer reuse opt-in with an explicit scope. Protected fields, files, custom widgets, account/CAPTCHA steps, navigation, Next, and final Submit remain manual;
+- recommend a verified material version by ID/date and deep-link back to the local Career workspace. Never expose a local file path across the browser bridge;
+- bind the final owner-confirmation event to a short-lived single-use local grant covering installation, signing identity, confirmation identity, opportunity, adapter, page fingerprint, evidence, and expiry. A strong local confirmation check can remain effectively instantaneous and still reject mutation, replay, and expiry.
+
+This pattern records only the owner's confirmation that an external event occurred. It is not an application-submission capability and should remain deployment-gated until the live pilot and privacy review close.

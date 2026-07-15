@@ -395,3 +395,30 @@ workflow category.
 A system map should use different visual language for current and planned
 components and should show handoffs between sources, local processing, board,
 materials, and human submission.
+
+---
+
+## Safe Current-Page Companion
+
+An owner-triggered extension can make the Share/Save and confirmed-form steps faster without reading an authenticated platform in the background:
+
+```text
+owner opens one page
+  -> explicit Capture
+  -> normalized local snapshot
+  -> create or review-gated update
+  -> owner opens one registered ATS form
+  -> deterministic field classification
+  -> optional bounded local drafting for reviewable gaps
+  -> preview and owner-selected fill
+  -> manual files, widgets, navigation, CAPTCHA, and Submit
+  -> owner confirms the external result
+```
+
+The bridge should bind to loopback, pair one local installation explicitly, expose aggregate lifecycle status only, and keep bodies/answer values out of Doctor output. URL normalization must happen before every preview, diff, envelope, and database write. Persist only approved requisition identifiers; reject credential-like query material and raw or percent-encoded control characters.
+
+For changing descriptions, enforce the input ceiling by UTF-8 bytes, persist metadata and a digest in the review queue, then load the bounded private body only when the owner asks to inspect it locally. Use one owner-only snapshot-container ceiling for canonicalization and private-body reads, while retaining a smaller independent extracted-text limit. Normalize date-only listing validity to end-of-day UTC and derive deadline/status from the same instant. For materials, return a verified version identifier/date and a Career deep link, never the local path. For reusable answers, require an explicit save and a narrow scope such as global, role family, or organization.
+
+Optional local-model help should run after deterministic matching, use only the current private job description and verified profile evidence, require source citations, and have strict call and time budgets. It must never expand the allowed field class, cross to cloud silently, or fill protected controls.
+
+A final confirmation grant should be short-lived and single-use, bind the installation, signing and confirmation identities, opportunity, named adapter, sanitized page fingerprint, evidence class, and expiry, and reject any mutation or replay. It confirms an owner-observed external submission; it does not provide a Submit primitive.
