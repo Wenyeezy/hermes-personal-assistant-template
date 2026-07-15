@@ -210,6 +210,39 @@ Operational lessons from the first live slice:
 - treat MFA and Workspace policy failures as explicit per-account owner actions.
   Do not rely on Testing-mode refresh tokens for unattended Gmail work because
   non-basic-scope grants expire after seven days.
+- close the browser-to-dashboard gap with a user-triggered current-page
+  companion, not an authenticated crawler: use link-paste mode where DOM access
+  is inappropriate, require one explicit click for a single supported job page,
+  and refuse pagination, result-list scrolling, cookie/session reuse, or
+  background discovery;
+- keep the browser bridge loopback-only, origin-bound, revocable, and free of
+  capability material in service configuration or logs. Public health should
+  expose lifecycle and aggregate boundary counts, never captured page bodies or
+  answer values;
+- classify application fields before filling: verified basics, reviewable
+  preferences, contextual answers, and manual-only protected controls. Bind
+  short-lived fill authorization to the current page fingerprint, fill only
+  owner-selected fields, and provide no upload, Next, navigation, or final
+  Submit primitive;
+- prefer deterministic adapters and approved local evidence for speed. Make
+  optional local-model drafting explicit and slower, with no silent cloud
+  fallback, then record an application event only after the owner confirms an
+  external manual submission;
+- revalidate the exact page and field inside the final browser write, not only
+  during preview. Capture the observation, link, update proposal, idempotency
+  claim, and audit in one transaction, and keep changed destination links
+  pending until explicit review;
+- bind application confirmation to a short-lived, single-use local grant for
+  one installation, opportunity, named adapter, sanitized page fingerprint,
+  and evidence class, then recheck the page before consuming it;
+- let standards-compliant unknown company pages contribute job-listing evidence,
+  but keep form fill and confirmation disabled until their ATS domain has an
+  explicit adapter. This preserves current-page usefulness without turning a
+  generic HTTPS page into an application surface.
+- keep runtime throughput and mutation accounting distinct. `processed` should
+  describe inspected work; a committed-change budget should advance only after
+  a registered durable write. Exact idempotent replay must remain observable
+  without masquerading as a mutation or consuming mutation capacity.
 
 See [Local-First Career OS](local-first-career-os.md) for the reusable pipeline.
 

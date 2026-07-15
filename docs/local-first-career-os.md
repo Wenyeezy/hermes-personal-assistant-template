@@ -174,6 +174,89 @@ An official profile export is evidence, not automatically the canonical
 profile. When a newer structured memory or owner-confirmed profile exists, keep
 that source authoritative and import only the explicitly approved categories.
 
+### Add A Current-Page Browser Companion, Not A Crawler
+
+A browser extension can close the gap between discovery, the local Career
+board, and an external ATS without becoming an authenticated collection agent.
+Keep its acquisition modes deliberately asymmetric:
+
+```text
+platform where DOM access is inappropriate
+  -> owner copies one job link
+  -> paste-only handoff
+
+supported job platform
+  -> owner opens one concrete job
+  -> owner clicks the companion
+  -> current visible page only
+
+external company / ATS page
+  -> link or update the existing opportunity
+  -> inspect the current form only
+```
+
+The extension must not scroll result lists, paginate, enumerate saved jobs,
+reuse cookies or sessions, keep the platform logged in, or run a discovery
+timer. Use an owner-triggered permission such as `activeTab`, narrow host
+adapters, strict field/response limits, and explicit unsupported-page states.
+
+Connect it to the existing opportunity graph rather than creating a shadow
+tracker. A new capture enters Inbox; a possible match becomes an explicit link
+or update review; an external ATS URL joins the source chain; owner-confirmed
+submission produces the normal application event. Every action should remain
+idempotent and auditable in the same store and Board views.
+
+Keep the local bridge loopback-only and pair one browser origin with a
+short-lived one-time challenge plus a revocable capability. Do not put the
+capability in service manifests, process receipts, logs, Doctor output, or
+screenshots. Public health should contain only lifecycle state, schema version,
+last-action time, pending-update count, and aggregate boundary failures.
+
+For form assistance, classify before filling:
+
+- verified basics may be preselected but still require owner confirmation;
+- preferences remain reviewable;
+- contextual answers require deliberate review and limited selection;
+- protected, legal, demographic, security, and file controls remain manual.
+
+Bind each fill authorization to the current page and initial field fingerprint,
+expire it quickly, and revalidate page identity, field identity, and the current
+value inside the final injected write. Fail closed after any navigation, label,
+locator, or value drift. Fill only selected fields. Do not expose upload, Next,
+navigation, or final-submit primitives.
+
+Treat capture and mutation as different trust levels. A standards-compliant
+`JobPosting` on an unknown company page may be captured as evidence, but form
+inspection, filling, and submission confirmation should require a registered
+ATS adapter. Changed canonical or apply links should remain pending until an
+explicit review accepts them; the observation, proposal, idempotency claim,
+and audit should commit atomically.
+
+A visible confirmation page is not enough to mark Applied. Issue a short-lived,
+single-use local grant bound to one installation, opportunity, named adapter,
+sanitized page fingerprint, and evidence class. Recheck that fingerprint when
+the owner confirms that they personally submitted, then consume the grant once.
+
+Use deterministic adapters and approved answer evidence first so ordinary
+forms stay responsive. Optional local-model drafting can help unanswered
+reviewable fields, but it should be explicit, bounded, slower, and have no
+silent cloud fallback.
+
+### Separate Work Inspected From State Mutated
+
+Bounded automation needs two counters with different meanings:
+
+- `processed` counts records the worker inspected during the run;
+- `committed` counts records that produced a registered durable state change.
+
+Do not increment a mutation budget merely because an item was visited. A
+host-budget deferral, idempotent replay, or other no-op should remain visible as
+processed work while consuming zero committed-change capacity. Derive a
+committed item from the same registered audit boundary used by the store, scope
+the check to that entity and the allowed system event types, and keep the
+selection/item ceiling independent so no-op work cannot create an unbounded
+loop.
+
 ---
 
 ## Ranking Contract
