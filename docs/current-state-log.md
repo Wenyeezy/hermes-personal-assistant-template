@@ -335,3 +335,25 @@ A browser companion can bridge an owner-opened job page into a local Career OS w
 - bind the final owner-confirmation event to a short-lived single-use local grant covering installation, signing identity, confirmation identity, opportunity, adapter, page fingerprint, evidence, and expiry. A strong local confirmation check can remain effectively instantaneous and still reject mutation, replay, and expiry.
 
 This pattern records only the owner's confirmation that an external event occurred. It is not an application-submission capability and should remain deployment-gated until the live pilot and privacy review close.
+
+---
+
+## Label-Free Career Mail And Local Companion Activation
+
+Two reusable production lessons now have live evidence:
+
+- A read-only Career mailbox does not need to mutate or depend on a Gmail label.
+  Query a bounded candidate set that excludes Spam and Trash, fetch headers
+  first, apply deterministic provider/Career policy locally, and fetch a body
+  only after that gate. Keep provider-specific digests out of the generic body
+  lane and share one global mutation/runtime ceiling across all aliases.
+- Preserve the virtual-environment launcher path when installing a background
+  browser bridge. Resolving a venv symlink to its base interpreter can silently
+  drop installed packages. Validate both link and resolved target, but write the
+  venv path into the service definition and regression-test that exact contract.
+
+Production acceptance should record only aggregate facts: aliases configured
+and ready, candidate metadata/body counts, verified digest/card counts,
+committed changes, overflow retained, source failures, and whether any mailbox
+mutation method was invoked. A successful system run still does not become a
+human-confirmed pilot day.

@@ -128,6 +128,24 @@ previous source-count shape as legacy evidence until one new-contract run is
 recorded. This temporary `invalid` state is safer than treating an older run as
 proof that the expanded pipeline is healthy.
 
+### Prefer Query-First, Metadata-First Mail Selection
+
+Do not require a mutable Gmail label merely to keep Career intake narrow. A
+label-free read-only connector can remain fail-closed when it uses two stages:
+
+1. issue a bounded server-side candidate query that excludes Spam and Trash;
+2. fetch only sender/subject/date/message identity metadata;
+3. apply a deterministic local Career/provider policy;
+4. fetch the body only for an accepted candidate;
+5. route provider-specific digests to their dedicated verifier/parser rather
+   than the generic body adapter.
+
+Reject ambiguous keyword-only mail locally, retain continuation state when the
+shared change ceiling is reached, and publish aggregate counters rather than
+mailbox content. Exact read-only scope plus body minimization is a stronger
+boundary than broad read access with a conventionally named label, and it does
+not require send, archive, delete, modify, or label permissions.
+
 ### Isolate Multiple Mailboxes And Design For Reauthorization
 
 A multi-mailbox Career connector should remain one bounded workflow, not one
@@ -211,6 +229,13 @@ short-lived one-time challenge plus a revocable capability. Do not put the
 capability in service manifests, process receipts, logs, Doctor output, or
 screenshots. Public health should contain only lifecycle state, schema version,
 last-action time, pending-update count, and aggregate boundary failures.
+
+When a background service must run inside a Python virtual environment, retain
+the venv launcher path in the service definition. Validate both the launcher
+link and its resolved executable for ownership, regular-file target, and execute
+permission, but do not replace the configured launcher with the resolved base
+interpreter. Otherwise the service may start outside the environment and lose
+its installed runtime packages.
 
 For form assistance, classify before filling:
 
