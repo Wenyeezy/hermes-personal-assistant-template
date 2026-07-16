@@ -387,3 +387,10 @@ until at least one complete dated confirmation exists; only then should a real
 zero or positive aggregate be shown. Ending/max backlog and truthful-material
 totals should follow the same unknown-until-confirmed rule. System-derived
 snapshots remain separate and must never backfill those human fields.
+
+Scheduled-run status needs the same lifecycle discipline. Before a run window
+has closed, a false success boolean means "not observed yet," not failure. The
+UI should consume an explicit readiness state such as `scheduled_window_open`
+and show `Pending window`; only after settlement may an expected-but-missing run
+be shown as `Not passed`. A run that is not scheduled for that day remains
+`Not due`. This keeps monitoring truthful without inventing run evidence.
