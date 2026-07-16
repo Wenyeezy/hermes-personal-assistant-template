@@ -379,3 +379,10 @@ must never be documented as an installation or authentication failure. For an
 unpacked local extension, a code refresh should normally mean reloading the
 existing extension while preserving its pairing, not revoking capabilities or
 repeating first-time setup.
+
+Pilot reports must also distinguish unknown from zero. Summing an empty set of
+owner-confirmed days can produce a mathematically valid zero that falsely reads
+as an explicit no-incident judgment. Keep owner-entered incident totals null
+until at least one complete dated confirmation exists; only then should a real
+zero or positive aggregate be shown. System-derived snapshots remain separate
+and must never backfill those human fields.
