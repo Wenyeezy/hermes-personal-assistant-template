@@ -357,3 +357,17 @@ and ready, candidate metadata/body counts, verified digest/card counts,
 committed changes, overflow retained, source failures, and whether any mailbox
 mutation method was invoked. A successful system run still does not become a
 human-confirmed pilot day.
+
+Two additional local-companion lessons are now verified:
+
+- Check writable free space before issuing a browser pairing capability. Low
+  disk can make extension storage appear to accept a value and then lose it.
+  Surface an aggregate storage-pressure health fact and fail before capability
+  issuance. Do not make the owner repeatedly revoke or recreate pairing when
+  the actual problem is local persistence.
+- Pairing success and current-page support are separate states. Move the UI to
+  the capture surface immediately after pairing, then show an unsupported-page
+  prompt if needed. Some registered ATS families expose useful visible content
+  without `JobPosting` JSON-LD; handle those with an explicit current-page-only
+  adapter that strips tracking parameters, performs no network/navigation, and
+  keeps Apply, Next, upload, CAPTCHA, and final Submit manual.
