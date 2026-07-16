@@ -371,3 +371,11 @@ Two additional local-companion lessons are now verified:
   without `JobPosting` JSON-LD; handle those with an explicit current-page-only
   adapter that strips tracking parameters, performs no network/navigation, and
   keeps Apply, Next, upload, CAPTCHA, and final Submit manual.
+
+Generated operator guidance must follow that same state model. When activation
+changes, update the guide's single source, every generated format, and the
+regression contract together. A healthy pairing plus an unsupported current tab
+must never be documented as an installation or authentication failure. For an
+unpacked local extension, a code refresh should normally mean reloading the
+existing extension while preserving its pairing, not revoking capabilities or
+repeating first-time setup.
