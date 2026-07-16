@@ -384,5 +384,6 @@ Pilot reports must also distinguish unknown from zero. Summing an empty set of
 owner-confirmed days can produce a mathematically valid zero that falsely reads
 as an explicit no-incident judgment. Keep owner-entered incident totals null
 until at least one complete dated confirmation exists; only then should a real
-zero or positive aggregate be shown. System-derived snapshots remain separate
-and must never backfill those human fields.
+zero or positive aggregate be shown. Ending/max backlog and truthful-material
+totals should follow the same unknown-until-confirmed rule. System-derived
+snapshots remain separate and must never backfill those human fields.
