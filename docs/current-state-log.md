@@ -394,3 +394,24 @@ UI should consume an explicit readiness state such as `scheduled_window_open`
 and show `Pending window`; only after settlement may an expected-but-missing run
 be shown as `Not passed`. A run that is not scheduled for that day remains
 `Not due`. This keeps monitoring truthful without inventing run evidence.
+
+Installed-extension acceptance needs a separate evidence layer from adapter
+fixtures and direct page probes. A source tree can parse ten job-site families
+correctly while the browser is still running an older unpacked build. Bind the
+local bridge to an exact extension version/build identifier, expose the loaded
+build as an explicit pending gate after an update, and require a real installed
+ledger that proves all of the following before declaring the companion ready:
+
+- the installed browser reports the expected build;
+- pairing survives panel close/reopen, navigation, and a local bridge restart;
+- Capture creates or updates the exact Dashboard opportunity through the
+  production bridge;
+- one supported native field can be previewed and filled without invoking
+  Next, upload, CAPTCHA, or final Submit.
+
+An unsupported page, a stale side panel, or a transient health failure must not
+delete an otherwise valid pairing capability. Treat these as separate states,
+offer a reload/retry path, and clear pairing only after an explicit revocation
+or a cryptographically invalid capability response. For unpacked development
+extensions, reload the existing installation in place so the extension ID and
+local pairing can remain stable.

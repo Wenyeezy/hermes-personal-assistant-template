@@ -389,6 +389,13 @@ Passing fixtures is necessary but not sufficient for a personal Career OS.
 Before calling the stage complete, run a real multi-day evidence pilot that
 tests the approved product claims in ordinary use.
 
+Browser-companion acceptance must also exercise the installed extension, not
+only its parser modules. Record the exact loaded build, a production-bridge
+Capture-to-Dashboard round trip, pairing durability across page/panel and bridge
+lifecycles, and a single confirmed safe-field write. Keep unsupported-page and
+connectivity states independent from the durable pairing state, and never let a
+transient page classification erase a valid local capability.
+
 Derive what the system can prove from local ledgers:
 
 - Share/Save and canonicalization counts;
