@@ -26,6 +26,55 @@ need cloud quality, and some should never leave the local machine.
 
 ---
 
+## 2026-08 Public Template Refresh
+
+The public template now has a Codex-first Easy Setup path:
+
+```text
+fork / download
+  -> open the whole folder in Codex
+  -> repository AGENTS.md explains the setup contract
+  -> read-only check
+  -> owner-approved deterministic scaffold
+  -> Git-ignored private markdown workspace
+```
+
+Opening the repository does not authorize installation, credentials, account
+connections, imports, gateways, schedules, or background services. The public
+tree holds only framework files; generated personal state defaults to
+`private/`, and CI runs both setup tests and a tracked-tree privacy scan.
+
+Recent operational lessons were also reconciled from the private maintenance
+record, current overview, blueprint, and repository history:
+
+- scheduler dispatch, queue delay, execution, durable mutation, delivery, and
+  owner confirmation are different facts. A task can be dispatched on time but
+  start late behind unrelated work in a shared sequential pool;
+- align an outer scheduler timeout with the workflow's documented bounded
+  runtime. Keep network, item, and mutation ceilings independent;
+- disk headroom is an operational dependency. Prefer owner-approved cleanup of
+  rebuildable caches or a restart over deleting runtime data during pressure;
+- read-only mail or export intake should be metadata-first and query-narrow.
+  Match both the authorized source and the expected message/content marker;
+- changing a paginated query may require a new cursor schema. Reset known old
+  cursor state safely and rely on canonical idempotency to prevent duplicates;
+- use one global mutation ceiling across sources and accounts. Adding another
+  adapter or mailbox must not silently multiply write authority;
+- acquisition success is not enrichment or ranking readiness. Login-gated or
+  description-poor records should remain evidence-deferred until an explicit
+  current-page handoff or verified public source fills the gap;
+- process health is not installed-feature acceptance. A paired local companion
+  still needs a bounded live capture/save/read/safe-fill receipt before being
+  called production-ready;
+- authorization registries need drift checks against the approved baseline.
+  An extra ready account or source stays pending owner confirmation;
+- a partial run can recover while the rolling health window remains unhealthy.
+  Preserve the incident evidence instead of rewriting history green;
+- create-only pilot snapshots must never infer owner correctness, time saved,
+  replay success, or incident counts from missing values.
+
+---
+
 ## Provider Routing Lessons
 
 - Use a fast local path for simple private turns.
@@ -318,6 +367,14 @@ After a private setup change:
 4. Run a leak scan for paths, tokens, account labels, hostnames, and private
    names.
 5. Commit and publish only after reviewing the diff.
+
+For this template, also run:
+
+```text
+python3 scripts/privacy_check.py
+python3 -m unittest discover -s tests -p 'test_*.py'
+python3 scripts/easy_setup.py init --dry-run
+```
 
 ---
 

@@ -21,6 +21,32 @@ Hermes Gateway
   -> Local State + Portable Markdown Memory
 ```
 
+## Setup and Control Plane
+
+The public template and private runtime are separate trust zones from the first
+minute:
+
+```text
+public fork opened in Codex
+  -> AGENTS.md + START_HERE.md
+  -> deterministic scaffold
+  -> ignored private markdown workspace
+  -> optional provider / gateway / tools / schedules, each separately approved
+```
+
+The scaffold is intentionally useful before Hermes or any gateway is installed.
+Codex can help the owner fill portable markdown files first. Installation,
+credentials, account connections, data imports, and background jobs are later
+opt-in phases rather than hidden side effects of opening the repository.
+
+Keep three ownership zones:
+
+```text
+tracked public template: architecture, empty templates, validation
+ignored private workspace: owner memory, state, local logs
+external secret storage: keys, tokens, account credentials
+```
+
 ---
 
 ## Runtime Layers
