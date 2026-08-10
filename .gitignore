@@ -13,6 +13,9 @@ real-memory/
 logs/
 sessions/
 cache/
+*.sqlite
+*.sqlite3
+*.db
 
 # Hermes live config/state
 .hermes/
@@ -29,3 +32,5 @@ Thumbs.db
 *.log
 *.tmp
 *.bak
+__pycache__/
+*.pyc

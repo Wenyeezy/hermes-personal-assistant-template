@@ -26,6 +26,55 @@ need cloud quality, and some should never leave the local machine.
 
 ---
 
+## 2026-08 Public Template Refresh
+
+The public template now has a Codex-first Easy Setup path:
+
+```text
+fork / download
+  -> open the whole folder in Codex
+  -> repository AGENTS.md explains the setup contract
+  -> read-only check
+  -> owner-approved deterministic scaffold
+  -> Git-ignored private markdown workspace
+```
+
+Opening the repository does not authorize installation, credentials, account
+connections, imports, gateways, schedules, or background services. The public
+tree holds only framework files; generated personal state defaults to
+`private/`, and CI runs both setup tests and a tracked-tree privacy scan.
+
+Recent operational lessons were also reconciled from the private maintenance
+record, current overview, blueprint, and repository history:
+
+- scheduler dispatch, queue delay, execution, durable mutation, delivery, and
+  owner confirmation are different facts. A task can be dispatched on time but
+  start late behind unrelated work in a shared sequential pool;
+- align an outer scheduler timeout with the workflow's documented bounded
+  runtime. Keep network, item, and mutation ceilings independent;
+- disk headroom is an operational dependency. Prefer owner-approved cleanup of
+  rebuildable caches or a restart over deleting runtime data during pressure;
+- read-only mail or export intake should be metadata-first and query-narrow.
+  Match both the authorized source and the expected message/content marker;
+- changing a paginated query may require a new cursor schema. Reset known old
+  cursor state safely and rely on canonical idempotency to prevent duplicates;
+- use one global mutation ceiling across sources and accounts. Adding another
+  adapter or mailbox must not silently multiply write authority;
+- acquisition success is not enrichment or ranking readiness. Login-gated or
+  description-poor records should remain evidence-deferred until an explicit
+  current-page handoff or verified public source fills the gap;
+- process health is not installed-feature acceptance. A paired local companion
+  still needs a bounded live capture/save/read/safe-fill receipt before being
+  called production-ready;
+- authorization registries need drift checks against the approved baseline.
+  An extra ready account or source stays pending owner confirmation;
+- a partial run can recover while the rolling health window remains unhealthy.
+  Preserve the incident evidence instead of rewriting history green;
+- create-only pilot snapshots must never infer owner correctness, time saved,
+  replay success, or incident counts from missing values.
+
+---
+
 ## Provider Routing Lessons
 
 - Use a fast local path for simple private turns.
@@ -58,6 +107,24 @@ back to a deeper route only when needed.
 
 Keep local-sensitive memory gated. A public template should explain the layer,
 not contain the user's private facts.
+
+For official account exports, use incremental review rather than repeatedly
+resynthesizing the entire archive:
+
+```text
+package hash and dedup
+  -> compare conversation IDs + stable content hashes
+  -> process only new/changed conversations
+  -> local candidate extraction
+  -> direct-evidence/conflict/privacy review
+  -> ordinary pack or explicit local-sensitive source
+  -> golden/card/stale/leak tests
+```
+
+Model confidence is not approval. A locally generated candidate can still mix
+people, copy an assistant recommendation as a user preference, or revive an old
+identity artifact. Promotion needs direct user evidence and canonical conflict
+review.
 
 ---
 
@@ -152,15 +219,94 @@ Important boundaries:
 - render planned and current components with visibly different styles in system
   maps and status views.
 
+Operational lessons from the first live slice:
+
+- make Quick Add an Inbox receipt, then let a bounded deterministic lane perform
+  later canonicalization;
+- keep acquisition state separate from application state: every future
+  canonical opportunity enters bounded enrichment automatically, while only an
+  owner decision can put it in Active Pipeline;
+- try the original public page first, then a small official company/ATS search;
+  treat rate limits as retry, generic link failure as review, and archive only
+  with authoritative closure evidence;
+- project Inbox, Recommended, Active Pipeline, Deadlines, and Review Queue as
+  separate views, with evidence-backed counts and no invisible intermediate
+  state;
+- teach the workflow in the page with hover/focus/touch help and a replayable
+  tour generated from the same value-free guide source as the offline PDF;
+- expose strict profile completeness separately from an exact, versioned
+  ranking-readiness gate;
+- activate local schedules only through an owner authorization bound to the
+  exact jobs, ceilings, local route, and no-submit contract;
+- use an owner-only multi-day evidence pilot that derives ledger facts and asks
+  only for correctness, time, and incident confirmation;
+- treat missing-denominator pilot metrics as not exercised, never as a pass;
+- restart the dashboard backend after adding plugin API routes; refreshing a
+  static plugin bundle alone does not register new server routes.
+- treat verified job-digest email as a narrow read-only Career adapter: require
+  exact sender and transport authentication, refuse attachments and remote
+  images, split cards into individual observations, and share the existing
+  Daily mutation ceiling rather than multiplying it per source;
+- validate real MIME shapes without retaining message or job content. Multipart
+  mail may keep readable text in the plain alternative while placing evidence
+  links only in HTML, and SPF results may identify the full sender address;
+- when a new source expands the automation contract, let Doctor reject the
+  legacy source-count row until a current-contract run succeeds. Do not relabel
+  old evidence as current health.
+- for multiple mailboxes, isolate token/cursor/health state per account, verify
+  the authorized profile before accepting a token, and keep one global Daily
+  ceiling rather than multiplying it per mailbox;
+- treat MFA and Workspace policy failures as explicit per-account owner actions.
+  Do not rely on Testing-mode refresh tokens for unattended Gmail work because
+  non-basic-scope grants expire after seven days.
+- close the browser-to-dashboard gap with a user-triggered current-page
+  companion, not an authenticated crawler: use link-paste mode where DOM access
+  is inappropriate, require one explicit click for a single supported job page,
+  and refuse pagination, result-list scrolling, cookie/session reuse, or
+  background discovery;
+- keep the browser bridge loopback-only, origin-bound, revocable, and free of
+  capability material in service configuration or logs. Public health should
+  expose lifecycle and aggregate boundary counts, never captured page bodies or
+  answer values;
+- classify application fields before filling: verified basics, reviewable
+  preferences, contextual answers, and manual-only protected controls. Bind
+  short-lived fill authorization to the current page fingerprint, fill only
+  owner-selected fields, and provide no upload, Next, navigation, or final
+  Submit primitive;
+- prefer deterministic adapters and approved local evidence for speed. Make
+  optional local-model drafting explicit and slower, with no silent cloud
+  fallback, then record an application event only after the owner confirms an
+  external manual submission;
+- revalidate the exact page and field inside the final browser write, not only
+  during preview. Capture the observation, link, update proposal, idempotency
+  claim, and audit in one transaction, and keep changed destination links
+  pending until explicit review;
+- bind application confirmation to a short-lived, single-use local grant for
+  one installation, opportunity, named adapter, sanitized page fingerprint,
+  and evidence class, then recheck the page before consuming it;
+- let standards-compliant unknown company pages contribute job-listing evidence,
+  but keep form fill and confirmation disabled until their ATS domain has an
+  explicit adapter. This preserves current-page usefulness without turning a
+  generic HTTPS page into an application surface.
+- keep runtime throughput and mutation accounting distinct. `processed` should
+  describe inspected work; a committed-change budget should advance only after
+  a registered durable write. Exact idempotent replay must remain observable
+  without masquerading as a mutation or consuming mutation capacity.
+
 See [Local-First Career OS](local-first-career-os.md) for the reusable pipeline.
 
 ---
 
-## Multi-Gateway And Voice Lessons
+## Multi-Adapter Gateway And Voice Lessons
 
-It is practical to run a lightweight daily gateway and a richer file/album
-gateway against the same Hermes installation. Share tool, memory, privacy, and
-provider policy, but isolate platform sessions and owner allowlists.
+It is practical to run lightweight and richer messaging adapters inside one
+Hermes Gateway service. Share tool, memory, privacy, provider, skill, and
+file-access policy, but isolate platform sessions, owner allowlists, media
+transport, acknowledgements, delivery errors, and rate limits.
+
+Do not infer that two chat platforms require two gateway processes. Separate
+daemons make policy drift and duplicate schedulers more likely unless process
+isolation is a deliberate requirement.
 
 For voice, benchmark both speed and multilingual accuracy. A local model may be
 fast after warm-up yet inaccurate for mixed-language speech. If cloud STT is
@@ -221,3 +367,108 @@ After a private setup change:
 4. Run a leak scan for paths, tokens, account labels, hostnames, and private
    names.
 5. Commit and publish only after reviewing the diff.
+
+For this template, also run:
+
+```text
+python3 scripts/privacy_check.py
+python3 -m unittest discover -s tests -p 'test_*.py'
+python3 scripts/easy_setup.py init --dry-run
+```
+
+---
+
+## Current-Page Career Companion Hardening
+
+A browser companion can bridge an owner-opened job page into a local Career OS without becoming an authenticated crawler. The reusable boundary is:
+
+- normalize every captured URL before preview, diff, transport, or persistence; remove ordinary query material, allow only registered requisition identifiers, and reject credential-like query keys plus raw or percent-encoded control characters;
+- keep Capture and Track separate, and route changed destination links, status, or description through an explicit local review proposal;
+- enforce description ceilings by UTF-8 bytes in both fixture and injected page paths; share one owner-only snapshot-container ceiling across canonicalization and private-body reads; store only description state, byte count, and digest in the review database, while fetching the bounded private body only after an explicit owner-local review action;
+- normalize date-only listing validity to end-of-day UTC and derive both deadline and status from that same instant;
+- prefer deterministic answers and verified local evidence. Limit optional local-model drafting to unanswered reviewable fields, require citations to the supplied evidence, and impose small call/runtime budgets;
+- make answer reuse opt-in with an explicit scope. Protected fields, files, custom widgets, account/CAPTCHA steps, navigation, Next, and final Submit remain manual;
+- recommend a verified material version by ID/date and deep-link back to the local Career workspace. Never expose a local file path across the browser bridge;
+- bind the final owner-confirmation event to a short-lived single-use local grant covering installation, signing identity, confirmation identity, opportunity, adapter, page fingerprint, evidence, and expiry. A strong local confirmation check can remain effectively instantaneous and still reject mutation, replay, and expiry.
+
+This pattern records only the owner's confirmation that an external event occurred. It is not an application-submission capability and should remain deployment-gated until the live pilot and privacy review close.
+
+---
+
+## Label-Free Career Mail And Local Companion Activation
+
+Two reusable production lessons now have live evidence:
+
+- A read-only Career mailbox does not need to mutate or depend on a Gmail label.
+  Query a bounded candidate set that excludes Spam and Trash, fetch headers
+  first, apply deterministic provider/Career policy locally, and fetch a body
+  only after that gate. Keep provider-specific digests out of the generic body
+  lane and share one global mutation/runtime ceiling across all aliases.
+- Preserve the virtual-environment launcher path when installing a background
+  browser bridge. Resolving a venv symlink to its base interpreter can silently
+  drop installed packages. Validate both link and resolved target, but write the
+  venv path into the service definition and regression-test that exact contract.
+
+Production acceptance should record only aggregate facts: aliases configured
+and ready, candidate metadata/body counts, verified digest/card counts,
+committed changes, overflow retained, source failures, and whether any mailbox
+mutation method was invoked. A successful system run still does not become a
+human-confirmed pilot day.
+
+Two additional local-companion lessons are now verified:
+
+- Check writable free space before issuing a browser pairing capability. Low
+  disk can make extension storage appear to accept a value and then lose it.
+  Surface an aggregate storage-pressure health fact and fail before capability
+  issuance. Do not make the owner repeatedly revoke or recreate pairing when
+  the actual problem is local persistence.
+- Pairing success and current-page support are separate states. Move the UI to
+  the capture surface immediately after pairing, then show an unsupported-page
+  prompt if needed. Some registered ATS families expose useful visible content
+  without `JobPosting` JSON-LD; handle those with an explicit current-page-only
+  adapter that strips tracking parameters, performs no network/navigation, and
+  keeps Apply, Next, upload, CAPTCHA, and final Submit manual.
+
+Generated operator guidance must follow that same state model. When activation
+changes, update the guide's single source, every generated format, and the
+regression contract together. A healthy pairing plus an unsupported current tab
+must never be documented as an installation or authentication failure. For an
+unpacked local extension, a code refresh should normally mean reloading the
+existing extension while preserving its pairing, not revoking capabilities or
+repeating first-time setup.
+
+Pilot reports must also distinguish unknown from zero. Summing an empty set of
+owner-confirmed days can produce a mathematically valid zero that falsely reads
+as an explicit no-incident judgment. Keep owner-entered incident totals null
+until at least one complete dated confirmation exists; only then should a real
+zero or positive aggregate be shown. Ending/max backlog and truthful-material
+totals should follow the same unknown-until-confirmed rule. System-derived
+snapshots remain separate and must never backfill those human fields.
+
+Scheduled-run status needs the same lifecycle discipline. Before a run window
+has closed, a false success boolean means "not observed yet," not failure. The
+UI should consume an explicit readiness state such as `scheduled_window_open`
+and show `Pending window`; only after settlement may an expected-but-missing run
+be shown as `Not passed`. A run that is not scheduled for that day remains
+`Not due`. This keeps monitoring truthful without inventing run evidence.
+
+Installed-extension acceptance needs a separate evidence layer from adapter
+fixtures and direct page probes. A source tree can parse ten job-site families
+correctly while the browser is still running an older unpacked build. Bind the
+local bridge to an exact extension version/build identifier, expose the loaded
+build as an explicit pending gate after an update, and require a real installed
+ledger that proves all of the following before declaring the companion ready:
+
+- the installed browser reports the expected build;
+- pairing survives panel close/reopen, navigation, and a local bridge restart;
+- Capture creates or updates the exact Dashboard opportunity through the
+  production bridge;
+- one supported native field can be previewed and filled without invoking
+  Next, upload, CAPTCHA, or final Submit.
+
+An unsupported page, a stale side panel, or a transient health failure must not
+delete an otherwise valid pairing capability. Treat these as separate states,
+offer a reload/retry path, and clear pairing only after an explicit revocation
+or a cryptographically invalid capability response. For unpacked development
+extensions, reload the existing installation in place so the extension ID and
+local pairing can remain stable.

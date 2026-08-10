@@ -43,6 +43,21 @@ Good first-pass tasks:
 
 For domains where naming matters, such as wardrobe, tools, projects, or people, keep the user's original names as canonical handles. Translations or English descriptors should clarify the handle, not replace it.
 
+### Recurring Full Exports
+
+After the first migration, do not blindly resynthesize every full export.
+
+1. Hash the package and reject exact duplicates.
+2. Compare conversation IDs with the previously accepted export.
+3. Use a stable per-conversation content hash to separate new, changed,
+   unchanged, and removed records.
+4. Send only new/changed records to candidate extraction.
+5. Keep private delta bodies owner-only; write a redacted aggregate manifest for
+   ordinary audit.
+
+This reduces cost and lowers the chance that old assistant text overwrites a
+newer user correction.
+
 ---
 
 ## Second Pass: Strong-Model Review
@@ -81,6 +96,9 @@ Before writing to long-term memory, a proctor/auditor should check:
 - Did it include sensitive details that should remain archived only?
 - Did it write to the correct private paths?
 - Can the result be repaired later from the raw archive and intermediate files?
+- Does every promoted fact have direct user evidence rather than only a model
+  confidence score?
+- Does it conflict with a newer canonical identity, role, date, or privacy rule?
 
 If a second-pass model runs outside the proctor's terminal, save the prompt, terminal output, and generated files so they can be reviewed.
 
@@ -120,5 +138,10 @@ This keeps the assistant lightweight while preserving the full source of truth i
 After local preprocessing and strong-model review, create a final write package before loading memory into the assistant.
 
 The package should split ordinary memory, local-sensitive memory, do-not-store rules, audit controls, and a migration handoff. Run at least one leak scan on ordinary memory and keep unresolved facts marked as `needs_human_review`.
+
+After human review, rebuild the source registry and run both positive and
+negative retrieval checks: ordinary queries should retrieve ordinary sources;
+local-sensitive sources should remain absent until an explicit local-only route
+is selected.
 
 See [Final Write Package Workflow](final-write-package.md).

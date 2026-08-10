@@ -4,6 +4,29 @@ A practical template for building a portable personal AI assistant with Hermes A
 
 This repository is intentionally **sanitized**. It is meant to show the architecture, rules, and templates without exposing private configuration, API keys, account IDs, or personal memory.
 
+## Fork-to-Codex Easy Setup
+
+Fork or download the repository, open the whole folder as a Codex project, and
+say:
+
+```text
+Read AGENTS.md and help me start Easy Setup.
+```
+
+Codex will use the repository-local guide and deterministic scaffold. By
+default, personal files are generated only under Git-ignored `private/`; no
+credential, provider, gateway, schedule, or background service is enabled.
+
+Manual equivalent:
+
+```text
+python3 scripts/easy_setup.py check
+python3 scripts/easy_setup.py init
+python3 scripts/easy_setup.py check
+```
+
+See [Start Here](START_HERE.md) and [Codex Easy Setup](docs/easy-setup.md).
+
 ---
 
 ## What This Is
@@ -22,10 +45,14 @@ The goal is to build a system that can:
 - keep private implementation logs separate from sanitized public instructions.
 - keep derived-metric policy in one canonical contract and verify the deployed
   artifact after every dashboard build, not only the source tree.
+- prove local-first Career automation with explicit schedule authorization,
+  separate completeness/ranking-readiness states, and a real evidence pilot
+  that cannot pass by remaining idle.
 
 ```text
-Phone / Chat App
-  -> Hermes Gateway
+Weixin / Telegram / Dashboard
+  -> one Hermes Gateway service
+      -> platform adapter + platform-scoped session
   -> Hermes Agent
   -> Privacy + Memory + Provider Router
       -> Local model for private/simple tasks
@@ -40,8 +67,16 @@ Phone / Chat App
 
 ```text
 .
+├── AGENTS.md
+├── START_HERE.md
 ├── README.md
+├── scripts/
+│   ├── easy_setup.py
+│   └── privacy_check.py
+├── tests/
+│   └── test_easy_setup.py
 ├── docs/
+│   ├── easy-setup.md
 │   ├── architecture.md
 │   ├── current-state-log.md
 │   ├── desktop-mirror-and-voice.md
@@ -122,14 +157,20 @@ Every new assistant should read that file first.
 
 ## Quick Start
 
-1. Install Hermes Agent.
-2. Configure one model provider first.
-3. Create a portable markdown memory folder.
-4. Add `START_HERE.md`.
-5. Add a memory policy and triage workflow.
-6. Test with simple non-sensitive tasks.
-7. Add a messaging gateway after the core setup works.
-8. Move private workflows to a local model host when available.
+1. Open the fork as a Codex project and start Easy Setup.
+2. Create the private markdown scaffold; do not add credentials yet.
+3. Fill response preferences, current state, and one project.
+4. Configure one model provider outside the public tracked tree.
+5. Test with simple non-sensitive tasks.
+6. Define local-only, redacted/aggregate, and cloud-capable zones.
+7. Add a messaging gateway only after the core setup works.
+8. Add bounded automation last, with explicit owner authorization.
+
+When adding more than one chat platform, prefer one long-running Gateway
+service with isolated adapters rather than separate daemons that each invent
+their own policy. Share privacy, memory, provider, tool, and file-access rules;
+keep sessions, media transport, acknowledgements, rate limits, and owner
+allowlists platform-scoped.
 
 Do not start with full automatic multi-model routing. Start with:
 
@@ -168,6 +209,7 @@ Use this repository as a template, not as a dump of a live assistant environment
 
 ## Docs
 
+- [Codex Easy Setup](docs/easy-setup.md)
 - [Architecture](docs/architecture.md)
 - [Current State Log](docs/current-state-log.md)
 - [Desktop Mirror and Voice Input](docs/desktop-mirror-and-voice.md)
@@ -194,4 +236,6 @@ Use this repository as a template, not as a dump of a live assistant environment
 
 ## License
 
-Use whichever license fits your public repo. If unsure, MIT is a simple default for templates and documentation.
+No open-source license has been granted yet. Copyright remains with the
+repository owner while the licensing and intellectual-property strategy is
+being reviewed. Contact the owner before redistribution or commercial use.

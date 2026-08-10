@@ -21,6 +21,32 @@ Hermes Gateway
   -> Local State + Portable Markdown Memory
 ```
 
+## Setup and Control Plane
+
+The public template and private runtime are separate trust zones from the first
+minute:
+
+```text
+public fork opened in Codex
+  -> AGENTS.md + START_HERE.md
+  -> deterministic scaffold
+  -> ignored private markdown workspace
+  -> optional provider / gateway / tools / schedules, each separately approved
+```
+
+The scaffold is intentionally useful before Hermes or any gateway is installed.
+Codex can help the owner fill portable markdown files first. Installation,
+credentials, account connections, data imports, and background jobs are later
+opt-in phases rather than hidden side effects of opening the repository.
+
+Keep three ownership zones:
+
+```text
+tracked public template: architecture, empty templates, validation
+ignored private workspace: owner memory, state, local logs
+external secret storage: keys, tokens, account credentials
+```
+
 ---
 
 ## Runtime Layers
@@ -43,12 +69,22 @@ The gateway normalizes messages from chat apps, dashboards, voice input, file
 uploads, and phone bridge apps. It should also handle obvious control commands
 before invoking a model.
 
-Multiple gateways should share the same privacy, tool, memory, and provider
-policies without sharing one conversation session. Keep each platform
+One long-running Gateway service can host multiple platform adapters. Those
+adapters should share the same privacy, tool, memory, provider, skill, and file
+access policies without sharing one conversation session. Keep each platform
 owner-allowlisted, give it a separate session namespace, and disable group/open
-access until that surface has its own threat model. A richer gateway can handle
-albums, documents, and voice while a lighter gateway remains convenient for
+access until that surface has its own threat model. A richer adapter can handle
+albums, documents, and voice while a lighter adapter remains convenient for
 short daily turns.
+
+```text
+Weixin adapter ----\
+                    -> one Gateway service -> shared routers/tools/state
+Telegram adapter --/
+
+Shared: policy, tools, models, memory sources
+Isolated: sessions, media transport, delivery, rate limits, allowlists
+```
 
 Examples:
 
@@ -86,6 +122,33 @@ small core profile
 
 The gateway retrieves the likely memory snippets before model reasoning. This is
 more stable than hoping the model will remember to search.
+
+A mature router benefits from explicit layers:
+
+```text
+always-resident core
+  -> identity, response style, privacy and routing rules
+
+short Memory Cards
+  -> bounded context for local/fast model routes
+
+ordinary topic packs
+  -> reviewed academic, career, device, health-summary, lifestyle, or project context
+
+source registry
+  -> metadata and paths for deeper reviewed sources
+
+local-sensitive sources
+  -> excluded by default; explicit local route only
+
+audit / do-not-store controls
+  -> maintenance visibility, never normal answer context
+```
+
+Reserve context space for matched source documents. If a large topic pack can
+consume the entire prompt budget before source-registry entries are appended,
+the registry may look healthy in an inventory test while failing to influence
+real answers.
 
 ### 5. Hermes Agent
 
