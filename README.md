@@ -4,6 +4,8 @@ A practical template for building a portable personal AI assistant with Hermes A
 
 This repository is intentionally **sanitized**. It is meant to show the architecture, rules, and templates without exposing private configuration, API keys, account IDs, or personal memory.
 
+New fork owner? Start with [Install Hermes From a Fork](INSTALL_FOR_FRIEND.md).
+
 ## Fork-to-Codex Easy Setup
 
 Fork or download the repository, open the whole folder as a Codex project, and
