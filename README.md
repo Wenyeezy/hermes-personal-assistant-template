@@ -14,8 +14,9 @@ Read AGENTS.md and help me start Easy Setup.
 ```
 
 Codex will use the repository-local guide and deterministic scaffold. By
-default, personal files are generated only under Git-ignored `private/`; no
-credential, provider, gateway, schedule, or background service is enabled.
+default, personal files and runtime state are generated only under Git-ignored
+`private/`; no credential, cloud provider, gateway, schedule, or background
+service is enabled.
 
 Manual equivalent:
 
@@ -23,9 +24,20 @@ Manual equivalent:
 python3 scripts/easy_setup.py check
 python3 scripts/easy_setup.py init
 python3 scripts/easy_setup.py check
+python3 scripts/hermes.py init
+python3 scripts/hermes.py doctor
+python3 scripts/hermes.py serve --open
 ```
 
-See [Start Here](START_HERE.md) and [Codex Easy Setup](docs/easy-setup.md).
+Prerequisite: Python 3.10 or newer. The local starter has no third-party Python
+package installation step. Model providers are optional and configured later
+with the fork owner's own account, API key, or local model.
+
+This opens a real localhost dashboard with an offline provider and working local
+Nutrition, Health, Finance, and Career stores. See [Start Here](START_HERE.md),
+[Codex Easy Setup](docs/easy-setup.md), and
+[Sanitized Runtime Edition](docs/runtime-edition.md). For Apple Health, see the
+[HealthKit Companion guide](docs/healthkit-companion.md).
 
 ---
 
@@ -72,11 +84,21 @@ Weixin / Telegram / Dashboard
 ├── README.md
 ├── scripts/
 │   ├── easy_setup.py
+│   ├── hermes.py
 │   └── privacy_check.py
+├── hermes_lite/
+│   ├── config.py
+│   ├── providers.py
+│   ├── server.py
+│   ├── store.py
+│   └── static/
 ├── tests/
-│   └── test_easy_setup.py
+│   ├── test_easy_setup.py
+│   └── test_runtime.py
 ├── docs/
 │   ├── easy-setup.md
+│   ├── runtime-edition.md
+│   ├── healthkit-companion.md
 │   ├── architecture.md
 │   ├── current-state-log.md
 │   ├── desktop-mirror-and-voice.md
@@ -96,6 +118,7 @@ Weixin / Telegram / Dashboard
 ├── examples/
 │   └── sanitized-handoff.md
 ├── config.example.yaml
+├── runtime.example.json
 ├── env.example
 └── .gitignore
 ```
@@ -158,13 +181,16 @@ Every new assistant should read that file first.
 ## Quick Start
 
 1. Open the fork as a Codex project and start Easy Setup.
-2. Create the private markdown scaffold; do not add credentials yet.
-3. Fill response preferences, current state, and one project.
-4. Configure one model provider outside the public tracked tree.
-5. Test with simple non-sensitive tasks.
-6. Define local-only, redacted/aggregate, and cloud-capable zones.
-7. Add a messaging gateway only after the core setup works.
-8. Add bounded automation last, with explicit owner authorization.
+2. Create the private markdown scaffold and localhost runtime; do not add
+   credentials yet.
+3. Open the dashboard and verify local Nutrition, Health, Finance, and Career
+   entries with fictional or low-risk test data.
+4. Fill response preferences, current state, and one project.
+5. Configure one model provider outside the public tracked tree.
+6. Test with simple non-sensitive tasks.
+7. Define local-only, redacted/aggregate, and cloud-capable zones.
+8. Add device, bank, browser, or messaging adapters one at a time.
+9. Add bounded automation last, with explicit owner authorization.
 
 When adding more than one chat platform, prefer one long-running Gateway
 service with isolated adapters rather than separate daemons that each invent
@@ -184,6 +210,11 @@ Common provider options include:
 - aggregator platforms, such as OpenRouter;
 - local providers, such as Ollama;
 - other third-party API gateways, only for non-sensitive and reviewable tasks.
+
+The runnable starter includes disabled-by-default adapters for OpenAI Responses,
+Codex CLI, Ollama, and OpenAI-compatible endpoints. Its private route map
+supports `/gpt`, `/codex`, `/openai`, `/qwen`, and `/local` after the fork owner
+enables the corresponding adapter with their own account or local model.
 
 For aggregator routes or expensive fallback providers, make opt-in explicit.
 Silent fallback can leak context and spend budget before the user notices.
@@ -210,6 +241,8 @@ Use this repository as a template, not as a dump of a live assistant environment
 ## Docs
 
 - [Codex Easy Setup](docs/easy-setup.md)
+- [Sanitized Runtime Edition](docs/runtime-edition.md)
+- [HealthKit Companion](docs/healthkit-companion.md)
 - [Architecture](docs/architecture.md)
 - [Current State Log](docs/current-state-log.md)
 - [Desktop Mirror and Voice Input](docs/desktop-mirror-and-voice.md)

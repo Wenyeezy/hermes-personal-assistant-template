@@ -26,16 +26,40 @@ CONTENT_PATTERNS = {
     "Windows private path": re.compile(r"[A-Za-z]:\\Users\\[^\\\s`]+\\"),
     "email address": re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.I),
 }
+FALLBACK_EXCLUDED_PARTS = {
+    ".git",
+    ".hermes",
+    ".idea",
+    ".vscode",
+    "__pycache__",
+    "cache",
+    "logs",
+    "private",
+    "real-memory",
+    "sessions",
+}
 
 
 def tracked_files() -> list[Path]:
-    result = subprocess.run(
-        ["git", "ls-files", "-co", "--exclude-standard"],
-        cwd=REPO_ROOT,
-        check=True,
-        text=True,
-        capture_output=True,
-    )
+    try:
+        result = subprocess.run(
+            ["git", "ls-files", "-co", "--exclude-standard"],
+            cwd=REPO_ROOT,
+            check=True,
+            text=True,
+            capture_output=True,
+        )
+    except (FileNotFoundError, subprocess.CalledProcessError):
+        # GitHub ZIP downloads do not include .git. Scan the public tree while
+        # preserving the same private/generated boundaries as .gitignore.
+        return sorted(
+            path
+            for path in REPO_ROOT.rglob("*")
+            if path.is_file()
+            and not FALLBACK_EXCLUDED_PARTS.intersection(path.relative_to(REPO_ROOT).parts)
+            and path.name not in {".DS_Store", "Thumbs.db"}
+            and path.suffix not in {".pyc", ".tmp", ".bak"}
+        )
     return [REPO_ROOT / line for line in result.stdout.splitlines() if line]
 
 
