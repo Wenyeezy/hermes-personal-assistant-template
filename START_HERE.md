@@ -14,7 +14,8 @@ personal assistant data.
    ```
 
 4. Codex will inspect the template, explain the privacy boundary, and—after
-   your approval—create a local knowledge-base scaffold under `private/`.
+   your approval—create a local knowledge base and starter runtime under
+   `private/`.
 
 You can also run the deterministic scaffold yourself:
 
@@ -22,11 +23,15 @@ You can also run the deterministic scaffold yourself:
 python3 scripts/easy_setup.py check
 python3 scripts/easy_setup.py init
 python3 scripts/easy_setup.py check
+python3 scripts/hermes.py init
+python3 scripts/hermes.py doctor
+python3 scripts/hermes.py serve --open
 ```
 
-The generated `private/` directory is ignored by Git. The setup script does not
-request credentials, install background services, connect accounts, or enable
-cloud providers.
+The generated `private/` directory is ignored by Git. The local dashboard starts
+with an offline echo provider plus empty Nutrition, Health, Finance, and Career
+modules. Setup does not request credentials, install background services,
+connect accounts, or enable cloud providers.
 
 ## After the Scaffold
 
@@ -35,4 +40,5 @@ priorities, and one project. Add model providers, messaging gateways, imports,
 and scheduled automation only as separate opt-in phases.
 
 Read [Easy Setup](docs/easy-setup.md) for the full flow and
+[Runtime Edition](docs/runtime-edition.md) for provider/module setup. Read
 [Safety and Privacy](docs/safety-and-privacy.md) before connecting real data.

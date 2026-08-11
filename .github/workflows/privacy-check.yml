@@ -17,3 +17,5 @@ jobs:
           python-version: "3.11"
       - run: python3 scripts/privacy_check.py
       - run: python3 -m unittest discover -s tests -p 'test_*.py'
+      - run: python3 scripts/hermes.py --root "${RUNNER_TEMP}/hermes-runtime" init
+      - run: python3 scripts/hermes.py --root "${RUNNER_TEMP}/hermes-runtime" doctor
