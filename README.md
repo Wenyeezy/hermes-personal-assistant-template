@@ -1,5 +1,7 @@
 # Hermes Personal Assistant Template
 
+[English](README.md) | [简体中文](README.zh-CN.md)
+
 A practical template for building a portable personal AI assistant with Hermes Agent, a messaging gateway, cloud/local model providers, and a markdown-based long-term memory layer.
 
 This repository is intentionally **sanitized**. It is meant to show the architecture, rules, and templates without exposing private configuration, API keys, account IDs, or personal memory.
