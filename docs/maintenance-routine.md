@@ -2,6 +2,20 @@
 
 Use this routine whenever the private Hermes setup changes.
 
+## Proposed weekly public update
+
+Choose one small deliverable from the [roadmap](../ROADMAP.md), review incoming
+feedback, and attach verification to the resulting change. Keep one dated
+record containing: the user problem, what changed, a public evidence link,
+what remains limited, and the next concrete step.
+
+Use that same reviewed record for a short social update. Publish the repository
+change first so social links resolve. Keep publication state explicit:
+`draft -> verified -> repository published -> social published`.
+An unpublished draft or a proposed schedule is not a completed release or an
+active automation. Keep missing usage measurements unknown, and do not infer
+users or successful installations from stars, page views or forks.
+
 ---
 
 ## Two-Layer Update Rule

@@ -5,6 +5,17 @@ building a personal Hermes-style assistant. It intentionally omits private
 hostnames, local paths, account names, raw health/finance records, screenshots,
 tokens, and personal memory.
 
+## 2026-09-21: Public project and feedback entry points
+
+The documentation now connects the Hermes foundation, HIIS and Digital Assets
+Lab through one project map. A fictional research walkthrough makes the
+time/scope/unknown-state problem inspectable without account connections or
+live data. The roadmap and community guide connect feedback to concrete work.
+
+This is a documentation and onboarding update. It does not publish the private
+HIIS implementation, establish live provider coverage, activate a service,
+change the existing rights notice, or establish external user adoption.
+
 ---
 
 ## Stage 8 Baseline

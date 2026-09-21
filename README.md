@@ -4,6 +4,28 @@ A practical template for building a portable personal AI assistant with Hermes A
 
 This repository is intentionally **sanitized**. It is meant to show the architecture, rules, and templates without exposing private configuration, API keys, account IDs, or personal memory.
 
+## Start With the Project Map
+
+The project connects three areas: **Hermes** for persistent personal context and
+workflows, **HIIS** for evidence-based investment research, and **Digital Assets
+Lab** for an early crypto and real-world asset (RWA) research application.
+It builds on Hermes Agent; this repository is the personal project's public
+documentation and scaffold, not the upstream agent runtime.
+
+| Area | What is available in this repository | Next useful step |
+| --- | --- | --- |
+| Hermes foundation | Architecture, memory templates, deterministic Easy Setup, setup tests | Read [Start Here](START_HERE.md) |
+| HIIS research plugin | [Workflow and scope](docs/hiis.md); implementation remains outside this public tree | Review the evidence workflow |
+| Crypto + RWA | [Lab brief](docs/digital-assets-lab.md) and a [fictional evidence walkthrough](examples/digital-assets-evidence-demo.md) | Try the walkthrough and challenge its assumptions |
+
+**Current stage:** early project with a public scaffold and documented research
+workstreams. Easy Setup does not install HIIS or a live crypto/RWA service.
+No open-source license has been granted; the existing rights notice below
+still applies.
+
+[Project map](docs/project-map.md) · [Roadmap](ROADMAP.md) ·
+[Community and feedback](COMMUNITY.md) · [Contributing](CONTRIBUTING.md)
+
 ## Fork-to-Codex Easy Setup
 
 Fork or download the repository, open the whole folder as a Codex project, and
