@@ -1,16 +1,18 @@
 # Community and feedback
 
-This is an early project. The most useful contribution today is one concrete
-experience: where the setup became confusing, which research claim needs more
-evidence, or what would make the project useful in your workflow.
+Hermes Life is the primary public entry point. The most useful contribution
+today is one concrete experience from trying its starter: where setup became
+confusing, what you expected and what happened. Research Labs feedback is also
+welcome, with the understanding that HIIS and Crypto + RWA are in development.
 
 ## Pick one path
 
 | You want to… | Start here |
 | --- | --- |
 | Understand the project | [Project map](docs/project-map.md) |
-| Try the available scaffold | [Start Here](START_HERE.md) |
-| Review the research approach | [Fictional crypto/RWA walkthrough](examples/digital-assets-evidence-demo.md) |
+| Try Hermes Life | [Install the Life starter](START_HERE.md) |
+| Understand the two packages | [Product areas](docs/product-areas.md) |
+| Review Research Labs | [Fictional crypto/RWA walkthrough](examples/digital-assets-evidence-demo.md) |
 | Ask a question or describe a use case | [GitHub Discussions](https://github.com/Wenyeezy/hermes-personal-assistant-template/discussions) |
 | Report an onboarding problem or bug | [GitHub Issues](https://github.com/Wenyeezy/hermes-personal-assistant-template/issues/new/choose) |
 

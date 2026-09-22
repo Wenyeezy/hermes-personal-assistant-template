@@ -2,33 +2,33 @@
 
 [English](README.md) | [简体中文](README.zh-CN.md)
 
-A practical template for building a portable personal AI assistant with Hermes Agent, a messaging gateway, cloud/local model providers, and a markdown-based long-term memory layer.
+A practical, local-first personal assistant project built around two product
+areas: **Hermes Life**, the primary daily-use system, and **Hermes Research
+Labs**, where HIIS and Crypto + RWA are still being developed.
 
 This repository is intentionally **sanitized**. It is meant to show the architecture, rules, and templates without exposing private configuration, API keys, account IDs, or personal memory.
 
-## Start With the Project Map
+## Start With Hermes Life
 
-The project connects three areas: **Hermes** for persistent personal context and
-workflows, **HIIS** for evidence-based investment research, and **Digital Assets
-Lab** for an early crypto and real-world asset (RWA) research application.
-It builds on Hermes Agent; this repository is the personal project's public
-documentation and scaffold, not the upstream agent runtime.
+Hermes Life is the main product. It organizes personal context, decisions and
+daily workflows around portable memory, privacy-aware model routing and clear
+action receipts. The maintainer uses the private Life system every day; it is
+the most mature part of the wider project.
 
-| Area | What is available in this repository | Next useful step |
+| Product area | Status | What you can do here |
 | --- | --- | --- |
-| Hermes foundation | Architecture, memory templates, deterministic Easy Setup, setup tests | Read [Start Here](START_HERE.md) |
-| HIIS research plugin | [Workflow and scope](docs/hiis.md); implementation remains outside this public tree | Review the evidence workflow |
-| Crypto + RWA | [Lab brief](docs/digital-assets-lab.md) and a [fictional evidence walkthrough](examples/digital-assets-evidence-demo.md) | Try the walkthrough and challenge its assumptions |
+| **Hermes Life** | Primary; daily-tested in the maintainer's private system | Download or fork the public starter, then run [Easy Setup](START_HERE.md) |
+| **Hermes Research Labs** | In development; not a finished public plugin | Review [HIIS](docs/hiis.md) and the [Crypto + RWA lab](docs/digital-assets-lab.md) |
 
-**Current stage:** early project with a public scaffold and documented research
-workstreams. Easy Setup does not install HIIS or a live crypto/RWA service.
-No open-source license has been granted; the existing rights notice below
-still applies.
+The public Life download is currently a sanitized starter package: architecture,
+memory templates, deterministic Easy Setup and setup tests. It does not contain
+the maintainer's private data or the entire private runtime. Research Labs is a
+separate optional area and is not installed by Life Easy Setup.
 
-[Project map](docs/project-map.md) · [Roadmap](ROADMAP.md) ·
+[Product and package model](docs/product-areas.md) · [Project map](docs/project-map.md) · [Roadmap](ROADMAP.md) ·
 [Community and feedback](COMMUNITY.md) · [Contributing](CONTRIBUTING.md)
 
-## Fork-to-Codex Easy Setup
+## Install the Hermes Life Starter
 
 Fork or download the repository, open the whole folder as a Codex project, and
 say:
@@ -53,11 +53,11 @@ See [Start Here](START_HERE.md) and [Codex Easy Setup](docs/easy-setup.md).
 
 ---
 
-## What This Is
+## Hermes Life: Primary Product
 
 This setup treats Hermes as an assistant layer, not just a chatbot.
 
-The goal is to build a system that can:
+Hermes Life is designed to:
 
 - remember stable preferences and project state;
 - classify life/project/decision updates before saving them;
@@ -214,6 +214,36 @@ Silent fallback can leak context and spend budget before the user notices.
 
 ---
 
+## Research Labs: HIIS + Crypto/RWA
+
+Research Labs is the second product area. It contains two connected modules:
+
+- **HIIS** — an evidence-first investment research system that keeps claims
+  connected to sources, timestamps, counterevidence and later review;
+- **Crypto + RWA Lab** — an early HIIS application for stablecoin evidence,
+  digital-asset operations and tokenized real-world asset disclosures.
+
+These modules are still being developed and tested. This repository currently
+publishes their scope and a [fictional evidence walkthrough](examples/digital-assets-evidence-demo.md),
+not a finished installer or live financial service.
+
+The intended package model is modular:
+
+```text
+Hermes foundation
+  ├── Hermes Life starter       available now
+  └── Research Labs package     planned
+        ├── HIIS
+        └── Crypto + RWA Lab
+```
+
+People should be able to install Life by itself, install Research Labs later,
+or combine both through the same Hermes foundation. Personal memory and
+research evidence remain separate data domains even when both are installed.
+See [Product areas and package model](docs/product-areas.md).
+
+---
+
 ## Safety Boundary
 
 Do not commit:
@@ -233,6 +263,7 @@ Use this repository as a template, not as a dump of a live assistant environment
 
 ## Docs
 
+- [Product Areas and Package Model](docs/product-areas.md)
 - [Codex Easy Setup](docs/easy-setup.md)
 - [Architecture](docs/architecture.md)
 - [Current State Log](docs/current-state-log.md)

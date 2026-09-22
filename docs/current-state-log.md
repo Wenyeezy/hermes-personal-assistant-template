@@ -5,6 +5,17 @@ building a personal Hermes-style assistant. It intentionally omits private
 hostnames, local paths, account names, raw health/finance records, screenshots,
 tokens, and personal memory.
 
+## 2026-09-22: Life-first product structure
+
+The public introduction now treats Hermes Life as the primary product and the
+current Easy Setup starter as its first public distribution. HIIS and Crypto +
+RWA are grouped under Research Labs and explicitly labeled in development.
+
+The target package model keeps Life and Research Labs independently installable
+while allowing both to share the Hermes foundation. Personal memory and
+research evidence remain separate data domains. Daily private use of Life is
+reported separately from what a public reader can currently reproduce.
+
 ## 2026-09-21: Public project and feedback entry points
 
 The documentation now connects the Hermes foundation, HIIS and Digital Assets

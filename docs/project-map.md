@@ -1,18 +1,18 @@
 # Hermes project map
 
-Status reviewed: 2026-09-21. This page separates the public repository from
+Status reviewed: 2026-09-22. This page separates the public repository from
 development work described by its maintainer.
 
 ## The problem
 
-A useful assistant should carry context from one task to the next, preserve
-the reason behind a decision, and show whether a requested action actually
-completed. Investment research adds another requirement: a convincing answer
-must remain connected to its sources, timestamps, and counterevidence.
+A useful daily assistant should carry context from one task to the next,
+preserve the reason behind a decision, and show whether a requested action
+actually completed. That is the job of Hermes Life, the project's primary
+product.
 
-Hermes is the personal assistant foundation. HIIS applies those ideas to
-research. Digital Assets Lab gives that research layer a focused crypto/RWA
-use case.
+Research adds a different requirement: conclusions must remain connected to
+sources, timestamps and counterevidence. That work belongs to Research Labs,
+where HIIS and Crypto + RWA are still in development.
 
 ## How the workstreams fit
 
@@ -21,15 +21,14 @@ mean every box is installed by the public scaffold.
 
 ```mermaid
 flowchart TD
-    UI[User interfaces] --> H[Hermes personal assistant foundation]
-    H --> M[Portable context and reviewed memory]
-    H --> W[Tools, workflows and action receipts]
-    H --> I[HIIS research application]
-    I --> E[Sources, timestamps and evidence]
-    E --> R[Claims, counterevidence and review]
-    R --> D[Digital Assets Lab]
-    D --> S[Stablecoin evidence reconciliation]
-    D --> A[RWA product and disclosure research]
+    H[Hermes foundation] --> L[Hermes Life]
+    H --> R[Research Labs]
+    L --> M[Portable personal context]
+    L --> W[Daily workflows and action receipts]
+    R --> I[HIIS evidence layer]
+    I --> C[Crypto + RWA Lab]
+    C --> S[Stablecoin evidence reconciliation]
+    C --> A[RWA product and disclosure research]
 ```
 
 Research evidence and personal profile memory have different purposes. A claim
@@ -37,12 +36,12 @@ in an article is not automatically a verified fact or a user preference.
 
 ## What readers can verify today
 
-| Surface | Public evidence | Boundary |
+| Product area | Public evidence | Boundary |
 | --- | --- | --- |
-| Easy Setup | `scripts/easy_setup.py`, setup tests, [setup guide](easy-setup.md) | Generates a private markdown scaffold; does not connect services |
-| System design | [Architecture](architecture.md), memory templates and maintenance notes | Documents reusable patterns; not a packaged copy of the private runtime |
-| HIIS | [Research workflow](hiis.md) | Maintainer development work; plugin source and installer are not bundled here |
-| Digital Assets Lab | [Scope](digital-assets-lab.md), [fictional walkthrough](../examples/digital-assets-evidence-demo.md) | Educational example; no live feed, market claim or execution capability |
+| Hermes Life starter | `scripts/easy_setup.py`, setup tests, [setup guide](easy-setup.md) | Available now; creates a private Markdown scaffold and does not copy the complete private runtime |
+| Hermes Life private system | [Architecture](architecture.md), memory templates and sanitized maintenance lessons | Daily-tested by the maintainer; private features are not automatically public releases |
+| HIIS | [Research workflow](hiis.md) | Research Labs development; plugin source and installer are not bundled here |
+| Crypto + RWA Lab | [Scope](digital-assets-lab.md), [fictional walkthrough](../examples/digital-assets-evidence-demo.md) | Development example; no live feed, market claim or execution capability |
 | Community | [Feedback paths](../COMMUNITY.md), [roadmap](../ROADMAP.md) | Early feedback stage; no claimed adoption or usage metrics |
 
 Development artifacts exist for HIIS and the Lab outside this public tree.
@@ -52,8 +51,8 @@ fixtures, verification instructions and explicit license decision.
 
 ## Choose one entry point
 
-For personal assistant workflows, begin with [Start Here](../START_HERE.md).
-For research design, begin with the [HIIS workflow](hiis.md).
+For the primary Life product, begin with [Start Here](../START_HERE.md).
+For the optional Research Labs, begin with the [HIIS workflow](hiis.md).
 For crypto/RWA, try the [fictional evidence walkthrough](../examples/digital-assets-evidence-demo.md).
 
 Bring one confusing step, counterexample or failed expectation to
