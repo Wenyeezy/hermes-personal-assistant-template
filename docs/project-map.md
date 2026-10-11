@@ -1,6 +1,6 @@
 # Hermes project map
 
-Status reviewed: 2026-09-22. This page separates the public repository from
+Status reviewed: 2026-10-10. This page separates the public repository from
 development work described by its maintainer.
 
 ## The problem
@@ -38,7 +38,8 @@ in an article is not automatically a verified fact or a user preference.
 
 | Product area | Public evidence | Boundary |
 | --- | --- | --- |
-| Hermes Life starter | `scripts/easy_setup.py`, setup tests, [setup guide](easy-setup.md) | Available now; creates a private Markdown scaffold and does not copy the complete private runtime |
+| Hermes Life starter | `scripts/hermes.py start --demo --open`, runtime tests, [setup guide](easy-setup.md) | Runnable localhost dashboard and manual records, plus a private Markdown scaffold; not the complete private system |
+| Fictional browser preview | [Static walkthrough](../site/README.md), allowlisted build and deployment | Scripted, in-tab simulation; not a hosted runtime or private-account connection |
 | Hermes Life private system | [Architecture](architecture.md), memory templates and sanitized maintenance lessons | Daily-tested by the maintainer; private features are not automatically public releases |
 | HIIS | [Research workflow](hiis.md) | Research Labs development; plugin source and installer are not bundled here |
 | Crypto + RWA Lab | [Scope](digital-assets-lab.md), [fictional walkthrough](../examples/digital-assets-evidence-demo.md) | Development example; no live feed, market claim or execution capability |

@@ -5,6 +5,22 @@ building a personal Hermes-style assistant. It intentionally omits private
 hostnames, local paths, account names, raw health/finance records, screenshots,
 tokens, and personal memory.
 
+## 2026-10-10: Runnable Life public preview
+
+The runtime branch now integrates the Life-first main documentation, resolves
+the README conflict, and adds `start --demo --open` for isolated, offline fictional
+samples. Normal first run preserves existing data and scaffolds private Markdown.
+The public static website simulates three reviewed actions without model or
+private gateway calls. The Python runtime remains a separate manual-record starter.
+
+Acceptance: 21 local tests, privacy scan, desktop/mobile browser checks, simulated
+receipts, fictional export/reset, and static-only AWS deployment passed. The
+public temporary HTTPS tunnel excludes runtime APIs; private service units remain
+active. Permanent DNS routing still requires authorized Cloudflare administration.
+Launch images and a short-video storyboard use fictional samples only. A queued
+render is not evidence of a completed video. No X post or advertising purchase
+has been made by this preview workflow. License selection remains pending.
+
 ## 2026-09-22: Life-first product structure
 
 The public introduction now treats Hermes Life as the primary product and the
@@ -57,14 +73,26 @@ fork / download
   -> open the whole folder in Codex
   -> repository AGENTS.md explains the setup contract
   -> read-only check
-  -> owner-approved deterministic scaffold
-  -> Git-ignored private markdown workspace
+  -> owner-approved deterministic knowledge scaffold
+  -> owner-approved localhost runtime initialization
+  -> Git-ignored private markdown + SQLite workspace
 ```
 
 Opening the repository does not authorize installation, credentials, account
 connections, imports, gateways, schedules, or background services. The public
-tree holds only framework files; generated personal state defaults to
-`private/`, and CI runs both setup tests and a tracked-tree privacy scan.
+tree now includes a dependency-free runnable framework: a localhost dashboard,
+local Nutrition/Health/Finance/Career stores, and explicit OpenAI Responses,
+Codex CLI, Ollama, and compatible-provider adapters. Generated state defaults
+to `private/`; all non-echo providers are disabled until the fork owner
+configures them. CI runs runtime, setup, and tracked-tree privacy checks.
+
+The forkable Nutrition/Health boundary is now materially deeper than a UI
+placeholder. Nutrition includes confirmed-versus-review state, expanded
+nutrients, goals, summaries, provenance, and HealthKit export. Health includes
+daily activity/energy/body summaries, workouts, history, an authenticated
+TestFlight-compatible ingest service, and sync status. The Apple app remains a
+separately distributed companion because HealthKit entitlement and signing are
+owner/team specific; no Apple signing asset belongs in the public repository.
 
 Recent operational lessons were also reconciled from the private maintenance
 record, current overview, blueprint, and repository history:

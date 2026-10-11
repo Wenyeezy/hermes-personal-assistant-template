@@ -19,3 +19,7 @@ gateway:
 
 security:
   redact_secrets: true
+
+# The runnable public starter uses runtime.example.json because JSON works with
+# the Python standard library. A private copy is created under
+# private/Hermes_Runtime/config.json by scripts/hermes.py.

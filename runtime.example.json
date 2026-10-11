@@ -1,0 +1,49 @@
+{
+  "schema": "hermes.runtime.v1",
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8765
+  },
+  "privacy": {
+    "allow_sensitive_cloud": false,
+    "include_private_memory_in_cloud_prompts": false,
+    "log_chat_history": false
+  },
+  "providers": {
+    "default": "echo",
+    "routes": {
+      "codex": "codex_cli",
+      "gpt": "codex_cli",
+      "local": "ollama",
+      "openai": "openai",
+      "qwen": "ollama"
+    },
+    "entries": {
+      "echo": {
+        "enabled": true
+      },
+      "openai": {
+        "enabled": false,
+        "api_key_env": "OPENAI_API_KEY",
+        "model_env": "HERMES_OPENAI_MODEL",
+        "default_model": "gpt-5.6"
+      },
+      "codex_cli": {
+        "enabled": false,
+        "timeout_seconds": 180
+      },
+      "ollama": {
+        "enabled": false,
+        "base_url": "http://127.0.0.1:11434",
+        "model_env": "HERMES_OLLAMA_MODEL",
+        "default_model": ""
+      },
+      "openai_compatible": {
+        "enabled": false,
+        "base_url_env": "HERMES_COMPAT_BASE_URL",
+        "api_key_env": "HERMES_COMPAT_API_KEY",
+        "model_env": "HERMES_COMPAT_MODEL"
+      }
+    }
+  }
+}

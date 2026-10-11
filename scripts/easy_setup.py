@@ -83,6 +83,7 @@ def init_workspace(target: Path, *, dry_run: bool, force: bool) -> int:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content, encoding="utf-8")
     print(f"Easy Setup scaffold ready: {display_path(target)}")
+    print("Next local runtime step: python3 scripts/hermes.py init")
     return 0
 
 
@@ -128,6 +129,7 @@ def check_workspace(target: Path) -> int:
     print("Private scaffold: OK")
     print(f"Location: {display_path(target)}")
     print("Integrations authorized: none by default")
+    print("Runtime check: python3 scripts/hermes.py doctor")
     return 0
 
 

@@ -105,9 +105,14 @@ secrets/
 private/
 real-memory/
 logs/
+*.sqlite3
 ```
 
-Also avoid committing raw screenshots, exported chat logs, and provider response logs unless they are sanitized.
+Also avoid committing raw screenshots, exported chat logs, provider response
+logs, and runtime databases unless they are sanitized. The public runtime keeps
+module rows in Git-ignored local SQLite and does not persist raw chat history by
+default. Enabling local chat logging does not make that database safe to
+publish.
 
 ---
 

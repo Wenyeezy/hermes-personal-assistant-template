@@ -11,14 +11,20 @@ When the user asks to set up, onboard, initialize, or continue this template:
 1. Read `START_HERE.md`, `docs/easy-setup.md`, and
    `docs/safety-and-privacy.md`.
 2. Run `python3 scripts/easy_setup.py check` before changing anything.
-3. Explain that the default generated workspace is `private/`, which Git
-   ignores.
+3. Explain that the knowledge base and starter runtime state are created only
+   under `private/`, which Git ignores. The runtime starts with an offline echo
+   provider and no connected account.
 4. Ask only for choices needed for the current phase. Do not ask for API keys,
    tokens, account identifiers, raw exports, or private documents during the
    scaffold phase.
-5. With the user's approval, run `python3 scripts/easy_setup.py init`.
-6. Run `python3 scripts/easy_setup.py check` again and report the next smallest
-   useful step.
+5. With the user's approval, run `python3 scripts/easy_setup.py init`, followed
+   by `python3 scripts/hermes.py init`.
+6. Run `python3 scripts/easy_setup.py check` and
+   `python3 scripts/hermes.py doctor`.
+7. Offer to start the local dashboard with
+   `python3 scripts/hermes.py serve --open`. Connecting OpenAI, Codex CLI,
+   Ollama, HealthKit, bank data, messaging, or browser tools remains a separate
+   opt-in decision.
 
 If the user has an explicit non-setup task, do that task instead of forcing
 onboarding.
@@ -53,4 +59,6 @@ onboarding.
 - `docs/current-state-log.md`: sanitized lessons and current template state.
 - `templates/`: files copied into the private workspace.
 - `scripts/easy_setup.py`: deterministic local scaffold and check.
+- `scripts/hermes.py`: local runtime init, doctor, dashboard, and provider CLI.
+- `hermes_lite/`: dependency-free local dashboard, module stores, and adapters.
 - `scripts/privacy_check.py`: public-tree privacy backstop.

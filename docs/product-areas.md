@@ -1,6 +1,6 @@
 # Product areas and package model
 
-Reviewed: 2026-09-22.
+Reviewed: 2026-10-10.
 
 Hermes has two product areas with different maturity and release paths.
 
@@ -16,6 +16,9 @@ The public repository currently provides a sanitized Life starter:
 - a deterministic, Git-ignored private workspace scaffold;
 - architecture and privacy guidance;
 - setup and privacy checks.
+- a dependency-free localhost dashboard and manual Nutrition, Health, Finance,
+  and Career stores;
+- one-command, isolated fictional setup and a separate static browser walkthrough.
 
 The starter is publicly reproducible, but it is not a packaged copy of the
 complete private runtime. Features documented from private daily use should be

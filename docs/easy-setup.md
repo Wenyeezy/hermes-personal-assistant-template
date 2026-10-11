@@ -3,6 +3,12 @@
 Easy Setup turns this public template into a private, local workspace without
 mixing the two layers.
 
+For the simplest preview, Python 3.10+ is enough. Download and unpack the source,
+then run `python3 scripts/hermes.py start --demo --open` in that folder. No Codex
+or provider account is required. The fictional workspace is isolated; `start
+--open` without `--demo` creates the normal local workspace. The rest of this
+guide describes the optional Codex-assisted and manual scaffold flows.
+
 ## What Success Means
 
 At the end of Phase 1:
@@ -11,6 +17,8 @@ At the end of Phase 1:
 - a private markdown knowledge base exists under `private/` by default;
 - `START_HERE.md`, indexes, policies, current state, projects, and logs have
   placeholder-only files;
+- a localhost-only starter dashboard and local SQLite module store can be
+  initialized without credentials;
 - no provider, gateway, account, schedule, or background service is enabled;
 - the setup checker passes.
 
@@ -31,6 +39,14 @@ created, and ask before initialization. The deterministic commands are:
 python3 scripts/easy_setup.py check
 python3 scripts/easy_setup.py init
 python3 scripts/easy_setup.py check
+python3 scripts/hermes.py init
+python3 scripts/hermes.py doctor
+```
+
+Start the dashboard only after the owner approves local runtime creation:
+
+```text
+python3 scripts/hermes.py serve --open
 ```
 
 Preview without writing:
@@ -64,7 +80,9 @@ Create the local knowledge base and fill only low-risk basics:
 
 Configure one provider outside the public repository. Keep credentials in a
 secret manager or ignored local environment file. Test only non-sensitive
-prompts first.
+prompts first. The runtime supports owner-configured OpenAI Responses API,
+Codex CLI, Ollama, and OpenAI-compatible adapters. See
+[Runtime Edition](runtime-edition.md).
 
 ### Phase 3 — Local-First Privacy Routing
 

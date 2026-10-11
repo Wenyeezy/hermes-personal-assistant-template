@@ -29,21 +29,24 @@ minute:
 ```text
 public fork opened in Codex
   -> AGENTS.md + START_HERE.md
-  -> deterministic scaffold
-  -> ignored private markdown workspace
+  -> deterministic knowledge scaffold
+  -> optional localhost starter runtime
+  -> ignored private markdown + SQLite workspace
   -> optional provider / gateway / tools / schedules, each separately approved
 ```
 
-The scaffold is intentionally useful before Hermes or any gateway is installed.
-Codex can help the owner fill portable markdown files first. Installation,
-credentials, account connections, data imports, and background jobs are later
-opt-in phases rather than hidden side effects of opening the repository.
+The public starter is intentionally useful before any gateway is installed.
+Codex can help the owner fill portable markdown files, and the dependency-free
+runtime can display empty local modules with an offline echo provider.
+Credentials, account connections, device/bank/browser adapters, data imports,
+and background jobs are later opt-in phases rather than hidden side effects of
+opening the repository.
 
 Keep three ownership zones:
 
 ```text
-tracked public template: architecture, empty templates, validation
-ignored private workspace: owner memory, state, local logs
+tracked public template: architecture, empty templates, runtime code, validation
+ignored private workspace: owner memory, SQLite state, local logs
 external secret storage: keys, tokens, account credentials
 ```
 
