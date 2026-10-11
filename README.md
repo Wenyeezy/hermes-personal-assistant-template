@@ -10,10 +10,14 @@ working Python dashboard and manual local stores. It does not include personal
 data, production gateways, automatic memory adoption, or connected accounts.
 
 [Browser walkthrough](site/README.md) ·
+[Live fictional demo (temporary)](https://adapters-durable-linda-lyric.trycloudflare.com) ·
 [Download](https://github.com/Wenyeezy/hermes-personal-assistant-template/releases) ·
 [Installation help](INSTALL_FOR_FRIEND.md) · [Feedback](COMMUNITY.md)
 
 ## Start in one command
+
+The review demo is hosted on AWS behind a temporary HTTPS tunnel; its hostname
+can change after a connector restart. It is not a permanent launch URL.
 
 Download and extract the repository, open a terminal **inside that folder**, and
 run this with Python 3.10 or newer:

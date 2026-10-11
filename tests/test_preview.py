@@ -50,6 +50,24 @@ class PreviewTests(unittest.TestCase):
             store = HermesStore(RuntimePaths.from_root(temp).database)
             self.assertEqual(len(store.recent("nutrition")), 2)
 
+    def test_demo_refuses_goals_or_chat_only_workspaces(self):
+        for existing in ("goals", "chat"):
+            with tempfile.TemporaryDirectory() as temp:
+                paths=RuntimePaths.from_root(temp); initialize_runtime(paths)
+                store=HermesStore(paths.database)
+                if existing == "goals": store.set_nutrition_goals({"calories":2000})
+                else: store.add_chat("test", "echo", "user", "existing local record")
+                with self.assertRaisesRegex(ValueError, "existing records"): seed_demo(paths)
+                self.assertEqual(store.recent("nutrition"), [])
+
+    def test_demo_rejects_untrusted_or_invalid_marker(self):
+        with tempfile.TemporaryDirectory() as temp:
+            paths=RuntimePaths.from_root(temp); initialize_runtime(paths)
+            marker=paths.root/".fictional-demo.json"
+            for value in ([], {"schema":"hermes.fictional-demo.v1","fictional":False}):
+                marker.write_text(json.dumps(value))
+                with self.assertRaisesRegex(ValueError, "Unknown demo marker"): seed_demo(paths)
+
     def test_static_bundle_allowlist_deterministic_and_symlink_safe(self):
         with tempfile.TemporaryDirectory() as temp:
             root=Path(temp); source=root/"site"; source.mkdir()

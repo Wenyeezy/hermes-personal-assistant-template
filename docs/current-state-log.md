@@ -13,12 +13,13 @@ samples. Normal first run preserves existing data and scaffolds private Markdown
 The public static website simulates three reviewed actions without model or
 private gateway calls. The Python runtime remains a separate manual-record starter.
 
-Acceptance: 21 local tests, privacy scan, desktop/mobile browser checks, simulated
+Acceptance: 23 local tests, privacy scan, desktop/mobile browser checks, simulated
 receipts, fictional export/reset, and static-only AWS deployment passed. The
 public temporary HTTPS tunnel excludes runtime APIs; private service units remain
 active. Permanent DNS routing still requires authorized Cloudflare administration.
-Launch images and a short-video storyboard use fictional samples only. A queued
-render is not evidence of a completed video. No X post or advertising purchase
+Launch images and a verified 30-second, 1280 × 720 silent video use fictional
+samples only. PR #2 was merged after owner approval and three-version CI passed.
+No X post or advertising purchase
 has been made by this preview workflow. License selection remains pending.
 
 ## 2026-09-22: Life-first product structure

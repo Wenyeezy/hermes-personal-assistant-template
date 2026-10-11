@@ -20,10 +20,13 @@ def seed_demo(paths: RuntimePaths) -> bool:
     marker = paths.root / ".fictional-demo.json"
     if marker.exists():
         record = json.loads(marker.read_text(encoding="utf-8"))
-        if record.get("schema") != "hermes.fictional-demo.v1":
+        if not isinstance(record, dict) or record.get("schema") != "hermes.fictional-demo.v1" or record.get("fictional") is not True:
             raise ValueError("Unknown demo marker; choose a fresh --root.")
         return False
-    if any(store.recent(module, limit=1) for module in ("nutrition", "health", "workouts", "finance", "career")):
+    tables = ("nutrition_events", "health_daily", "health_workouts", "nutrition_goals", "finance_entries", "career_opportunities", "chat_events")
+    with store.connect() as db:
+        nonempty = any(db.execute(f"SELECT 1 FROM {table} LIMIT 1").fetchone() for table in tables)
+    if nonempty:
         raise ValueError("Refusing to mix fictional samples with existing records. Choose a fresh --root.")
     day = date.today().isoformat()
     store.add_nutrition({"occurred_on": day, "description": "Fictional sample: oat bowl", "calories": 420, "protein_g": 18, "fiber_g": 7, "source": "manual", "status": "confirmed", "notes": "Made-up demonstration, not a real meal."})
