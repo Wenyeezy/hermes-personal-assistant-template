@@ -3,8 +3,8 @@
 Start with [Community and feedback](COMMUNITY.md) and the [roadmap](ROADMAP.md).
 Documentation corrections, reproducible setup reports and fictional research
 counterexamples are the current priorities. Discuss substantial code changes
-and contribution terms with the maintainer before starting them. The existing
-rights notice remains unchanged; no new license is introduced by this guide.
+and contribution terms with the maintainer before starting them. The project
+is [MIT licensed](LICENSE); this guide does not add a separate contributor agreement.
 
 For a proposed change, explain the reader's problem, the resulting behavior,
 how to verify it, and any remaining limitation. Use fictional examples and

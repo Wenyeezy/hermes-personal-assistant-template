@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" data-format="wide" data-mode="poster" data-scene="cover">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#245b46">
+  <meta name="description" content="Hermes Life launch illustrations: fictional meal records and fitness summaries, separate from the local Python runtime.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Hermes Life | Meals + Fitness | Launch asset</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="launch.css">
+  <script src="launch.js" defer></script>
+</head>
+<body>
+  <!-- Deterministic, code-native capture surface. No runtime or demo scripts. -->
+  <div class="launch-canvas">
+    <div class="launch-frame">
+      <header class="launch-header">
+        <div class="brand"><span class="brand-mark" aria-hidden="true">h.</span><span>Hermes Life</span></div>
+        <p class="asset-label"><span class="status-dot" aria-hidden="true"></span>Fictional launch asset</p>
+      </header>
+
+      <main class="launch-content" id="launch-content">
+        <section class="scene cover-layout" data-scene="cover" aria-labelledby="cover-title">
+          <div class="scene-copy">
+            <p class="eyebrow">Meals + Fitness · public preview</p>
+            <h1 id="cover-title">Meals &amp; movement,<br><em>with context.</em></h1>
+            <p class="intro">A local-first place for meal records and fitness summaries. Keep a little more continuity in your day.</p>
+            <div class="topic-strip" aria-label="Launch focus and optional module">
+              <span>Meals</span><span>Fitness</span><span class="topic-off">Finance · off / opt-in</span>
+            </div>
+          </div>
+          <figure class="day-preview" aria-labelledby="day-title">
+            <figcaption class="preview-heading"><h2 id="day-title">A fictional day</h2><span class="sample-label">Sample records</span></figcaption>
+            <div class="sample-records">
+              <article class="sample-record">
+                <div class="record-heading"><span class="record-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 15h22c-1 8-5 12-11 12S6 23 5 15Z"/><path d="M8 10c2-3 5-4 8-4s6 1 8 4M10 12h12"/></svg></span><div><h3>Oat bowl</h3><p>Fictional meal · confirmed sample</p></div></div>
+                <dl class="metric-pair"><div><dt>Sample energy</dt><dd>420 <span>kcal</span></dd></div><div><dt>Sample protein</dt><dd>18 <span>g</span></dd></div></dl>
+              </article>
+              <article class="sample-record">
+                <div class="record-heading"><span class="record-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="19" cy="5" r="2.5"/><path d="m12 13 5-5 4 6 5 2M17 9l-3 10 7 8M14 19l-5 8M7 15l5-2"/></svg></span><div><h3>Walking</h3><p>Fictional workout · manual sample</p></div></div>
+                <dl class="metric-pair"><div><dt>Sample duration</dt><dd>30 <span>min</span></dd></div><div><dt>Sample steps</dt><dd>6,800</dd></div></dl>
+              </article>
+            </div>
+            <p class="preview-note"><span class="checkmark" aria-hidden="true">✓</span> Small records. A clearer day.</p>
+          </figure>
+        </section>
+
+        <section class="scene scene-layout" data-scene="meal" aria-labelledby="meal-title" hidden>
+          <div class="scene-copy">
+            <p class="eyebrow">Meals / illustrative review</p>
+            <h1 id="meal-title">A meal record,<br><em>reviewed by you.</em></h1>
+            <p class="intro">An estimate deserves a review. This fictional oat bowl is shown as a confirmed sample.</p>
+            <p class="copy-note">Illustrative confirmation state; this page does not record a meal.</p>
+          </div>
+          <figure class="detail-card meal-card" aria-labelledby="meal-record-title">
+            <figcaption class="card-topline"><span class="eyebrow">Fictional meal record</span><span class="sample-badge">Fictional sample</span></figcaption>
+            <div class="detail-heading"><div><p class="record-kicker">Meals</p><h2 id="meal-record-title">Oat bowl</h2></div><div class="bowl" aria-hidden="true"><span class="bowl-surface"></span></div></div>
+            <dl class="large-metrics"><div><dt>Sample energy</dt><dd>420 <span>kcal</span></dd></div><div><dt>Sample protein</dt><dd>18 <span>g</span></dd></div></dl>
+            <div class="record-state"><span class="confirmed-badge"><span aria-hidden="true">✓</span> Confirmed sample</span><p>Included in the fictional summary.</p></div>
+            <p class="card-note">All values are made up for this launch illustration.</p>
+          </figure>
+        </section>
+
+        <section class="scene scene-layout" data-scene="workout" aria-labelledby="workout-title" hidden>
+          <div class="scene-copy">
+            <p class="eyebrow">Fitness / manual record</p>
+            <h1 id="workout-title">A walk,<br><em>worth keeping.</em></h1>
+            <p class="intro">Time, steps, and a little continuity. Keep movement alongside your meal records.</p>
+            <p class="copy-note">A fictional workout, entered manually for illustration.</p>
+          </div>
+          <figure class="detail-card workout-card" aria-labelledby="workout-record-title">
+            <figcaption class="card-topline"><span class="eyebrow">Fictional fitness record</span><span class="sample-badge">Fictional sample</span></figcaption>
+            <div class="detail-heading"><div><p class="record-kicker">Fitness</p><h2 id="workout-record-title">Walking</h2></div><span class="walking-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="19" cy="5" r="2.5"/><path d="m12 13 5-5 4 6 5 2M17 9l-3 10 7 8M14 19l-5 8M7 15l5-2"/></svg></span></div>
+            <dl class="large-metrics"><div><dt>Sample duration</dt><dd>30 <span>min</span></dd></div><div><dt>Sample steps</dt><dd>6,800</dd></div></dl>
+            <div class="record-state"><span class="confirmed-badge">Manual sample</span><p>A small record of movement.</p></div>
+            <p class="card-note">No health account or device is connected to this illustration.</p>
+          </figure>
+        </section>
+
+        <section class="scene scene-layout" data-scene="summary" aria-labelledby="summary-title" hidden>
+          <div class="scene-copy">
+            <p class="eyebrow">Meals + Fitness / daily summary</p>
+            <h1 id="summary-title">Small records.<br><em>One clear day.</em></h1>
+            <p class="intro">See confirmed meals and recorded movement together, without losing the detail.</p>
+            <p class="copy-note">Fictional totals shown after illustrative review.</p>
+          </div>
+          <figure class="detail-card summary-card" aria-labelledby="summary-record-title">
+            <figcaption class="card-topline"><h2 id="summary-record-title">A fictional day</h2><span class="sample-badge">Sample totals</span></figcaption>
+            <dl class="large-metrics summary-metrics"><div><dt>Fictional confirmed energy</dt><dd>1,030 <span>kcal</span></dd></div><div><dt>Fictional protein</dt><dd>46 <span>g</span></dd></div></dl>
+            <div class="summary-meals" aria-label="Fictional confirmed meal samples">
+              <p><span>Oat bowl <small>· confirmed sample</small></span><strong>420 kcal · 18 g</strong></p>
+              <p><span>Lunch <small>· confirmed sample</small></span><strong>610 kcal · 28 g</strong></p>
+            </div>
+            <div class="movement-total"><div><p class="record-kicker">Fictional movement</p><h3>Walking</h3></div><p class="movement-value">+30 <span>min</span></p></div>
+            <p class="card-note">Sample totals, not a health recommendation.</p>
+          </figure>
+        </section>
+
+        <section class="scene scene-layout install-layout" data-scene="install" aria-labelledby="install-title" hidden>
+          <div class="scene-copy">
+            <p class="eyebrow">Your own machine / Python starter</p>
+            <h1 id="install-title">Start small.<br><em>Keep it local.</em></h1>
+            <p class="intro">Start your own workspace for manual meal records and fitness summaries.</p>
+            <div class="topic-strip"><span>Python 3.10+</span><span>No API key required</span></div>
+          </div>
+          <article class="detail-card install-card" aria-labelledby="local-title">
+            <div class="card-topline"><span class="eyebrow">Run locally</span><span class="terminal-dots" aria-hidden="true"><i></i><i></i><i></i></span></div>
+            <h2 id="local-title">Your own workspace.</h2>
+            <p class="install-instruction">Download and extract the repository. Open a terminal in that folder, then run:</p>
+            <pre class="command-line"><code>python3 scripts/hermes.py start --open</code></pre>
+            <p class="install-caption">Starts an empty local workspace.</p>
+            <div class="install-boundary"><span class="checkmark" aria-hidden="true">✓</span><p>Meals + Fitness first.<br>Finance is off until you opt in.</p></div>
+            <p class="card-note">This launch storyboard is illustrative; the Python runtime runs separately.</p>
+          </article>
+        </section>
+      </main>
+
+      <footer class="launch-footer">
+        <p>Illustrative launch asset · fictional samples<br>Separate from the local Python runtime.</p>
+        <div class="footer-destination"><span class="scene-position" id="scene-position" hidden>01 / 05</span><a href="https://hermes-preview.wenyeezy.com/">hermes-preview.wenyeezy.com<span aria-hidden="true"> ↗</span></a></div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

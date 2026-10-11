@@ -26,7 +26,7 @@ preview_root=/var/www/hermes-preview
 preview_target="$preview_root/releases/$preview_release"
 # The local builder produces only allowlisted files; independently reject traversal.
 tar -tzf "$preview_staging/bundle.tar.gz" | while IFS= read -r entry; do
-  case "$entry" in index.html|styles.css|media.css|app.js|fixtures.js|icon.svg|manifest.json|media/hermes-preview-wide.png|media/hermes-preview-square.png|media/hermes-preview-30s.mp4) ;; *) echo 'Unexpected public asset' >&2; exit 2 ;; esac
+  case "$entry" in index.html|styles.css|media.css|app.js|fixtures.js|icon.svg|launch.html|launch.css|launch.js|manifest.json|media/hermes-preview-wide.png|media/hermes-preview-square.png|media/hermes-preview-30s.mp4) ;; *) echo 'Unexpected public asset' >&2; exit 2 ;; esac
 done
 sudo install -d -m 755 "$preview_target"
 sudo tar -xzf "$preview_staging/bundle.tar.gz" --no-same-owner -C "$preview_target"

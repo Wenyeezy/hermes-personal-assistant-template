@@ -32,7 +32,6 @@ def seed_demo(paths: RuntimePaths) -> bool:
     store.add_nutrition({"occurred_on": day, "description": "Fictional sample: oat bowl", "calories": 420, "protein_g": 18, "fiber_g": 7, "source": "manual", "status": "confirmed", "notes": "Made-up demonstration, not a real meal."})
     store.add_nutrition({"occurred_on": day, "description": "Fictional sample: lunch estimate", "calories": 610, "protein_g": 28, "source": "provider_estimate", "status": "needs_review", "notes": "Scripted sample; no model was called. Excluded from confirmed totals."})
     store.add_health({"occurred_on": day, "steps": 6800, "exercise_minutes": 30, "source": "fictional_demo"})
-    store.add_finance({"occurred_on": day, "description": "Fictional sample: notebook", "amount": 12, "category": "supplies", "status": "needs_review"})
-    store.add_career({"company": "Harbor Works (fictional)", "role": "Product Operations", "status": "reviewing", "next_step": "Compare the role with your priorities; no application is sent."})
+    store.add_workout({"occurred_on": day, "activity": "Fictional sample: walking", "duration_minutes": 30}, source="fictional_demo")
     marker.write_text(json.dumps({"schema": "hermes.fictional-demo.v1", "fictional": True, "day": day}, indent=2) + "\n", encoding="utf-8")
     return True

@@ -1,95 +1,98 @@
-# Hermes Life · Public Preview
+# Hermes Life · Meals + Fitness Preview
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
-A local-first workspace for reviewed meal records, activity summaries, a simple
-ledger, and career next steps.
+Record a meal. Log a workout. Pick up your day.
 
-**Preview, not the maintainer's private assistant.** This download includes a
-working Python dashboard and manual local stores. It does not include personal
-data, production gateways, automatic memory adoption, or connected accounts.
+A local-first daily journal you can **fork and run without GPT**. Nutrition and
+Fitness are the core; **Finance is optional and off by default**. MIT licensed.
 
-[Browser walkthrough](site/README.md) ·
-[Live fictional demo](https://hermes-preview.wenyeezy.com/) ·
-[Download](https://github.com/Wenyeezy/hermes-personal-assistant-template/releases) ·
-[Installation help](INSTALL_FOR_FRIEND.md) · [Feedback](COMMUNITY.md)
+[Try the fictional demo](https://hermes-preview.wenyeezy.com/) ·
+[Download the latest preview](https://github.com/Wenyeezy/hermes-personal-assistant-template/releases) ·
+[Installation](START_HERE.md) · [Feedback](COMMUNITY.md)
 
-## Start in one command
+![Fictional meals and fitness preview](https://hermes-preview.wenyeezy.com/media/hermes-preview-wide.png)
 
-The fictional browser demo is hosted on AWS at a fixed HTTPS address. It is a
-separate static walkthrough, not a hosted version of the local runtime.
+## Start recording
 
-Download and extract the repository, open a terminal **inside that folder**, and
-run this with Python 3.10 or newer:
-
-```sh
-python3 scripts/hermes.py start --demo --open
-```
-
-No Git, Codex, API key, account, or third-party Python package is required.
-This localhost walkthrough uses **made-up samples** in a separate, Git-ignored
-`private/Hermes_Demo/` directory. Keep the terminal open; Ctrl-C stops it.
-On Windows, use `py -3` instead of `python3`.
-
-1. Open **Career** and save a sample opportunity and next step.
-2. Open **Nutrition** and compare confirmed entries with an unconfirmed sample.
-3. Notice the receipt after saving; records stay in your local SQLite store.
-
-Default chat is an **offline echo, not an AI model**. Model setup is a separate
-opt-in using your own account or local model.
-
-Ready for an empty private workspace instead?
+Install Python 3.10+, download and unpack the preview, and open a terminal
+**inside that folder**:
 
 ```sh
 python3 scripts/hermes.py start --open
 ```
 
-This initializes or checks the private Markdown scaffold and starts an empty
-runtime. Existing configuration and records are preserved. Demo seeding refuses
-nonempty, unmarked databases. See [Start Here](START_HERE.md) for troubleshooting
-and [provider configuration](docs/runtime-edition.md) for optional AI chat.
+That's it: no Git, GPT, Codex, API key, account, or extra Python packages.
+On Windows, use `py -3` instead of `python3`. Included convenience launchers:
+`Start-Hermes.command` on macOS and `Start-Hermes.bat` on Windows. If the OS
+blocks a downloaded launcher, use the terminal command above.
 
-## What works in this download?
+1. **Nutrition:** save a meal and its calories/macros. Pending estimates stay
+   out of confirmed totals; confirm a reviewed entry without duplicating it.
+2. **Fitness:** save a workout or a daily activity summary. See recorded workout
+   minutes, steps and nutrition totals in the dashboard.
+3. **Optional modules:** explicitly enable Finance if you want a manual local
+   ledger. Turning it off hides it, blocks the dashboard API and keeps records.
 
-| Capability | Public preview |
-| --- | --- |
-| Local dashboard and manual Nutrition, Health, Finance, Career records | Working |
-| Confirmed nutrition totals, goals, and export format | Working; no automatic iPhone write |
-| Private Markdown scaffold and local SQLite state | Working; not encrypted by this starter |
-| OpenAI, Codex CLI, Ollama, compatible-provider adapters | Included, disabled until configured |
-| Automatic memory review, owner-wide recall, production MCP gateways | Private system; not included |
-| Bank sync, job applications, messaging, scheduled automation | Not enabled by this starter |
-| HIIS and Crypto + RWA Research Labs | Separate research documentation; in development |
+Keep the terminal open; Ctrl-C stops Hermes. No background service is installed.
+Existing files and configuration are preserved. State stays in Git-ignored
+`private/Hermes_Runtime/`; the local database is **not encrypted**.
 
-The browser demo is a **scripted simulation** of review workflows using
-fictional data. It is not a hosted AI assistant or a connection to the
-maintainer's records. No demo input is sent to a model or account gateway.
+Prefer fictional samples first?
 
-## Privacy boundaries
-
-- Config, databases and knowledge files live under Git-ignored `private/` by
-  default. Never publish that directory.
-- First-run setup connects no model, bank, email or messaging account.
-  Raw chat logging is off by default.
-- The dashboard listens on `127.0.0.1`. **Do not expose it to the internet.**
-  The public website is an independent static browser demo.
-- Optional cloud adapters send requests to the provider you explicitly enable.
-  Text checks are a backstop, not a guarantee of redaction.
-- Use fictional data first. Read [Safety](docs/safety-and-privacy.md) before
-  connecting real records.
-
-## Understandable structure
-
-```text
-hermes_lite/  Python runtime, local stores and localhost UI
-site/         Static landing page and fictional browser walkthrough
-scripts/      Safe first run, privacy checks and preview build/deployment
-tests/        Runtime, setup and preview regression checks
-templates/    Placeholder-only private knowledge scaffold
-docs/         Optional integrations, architecture and Research Labs
+```sh
+python3 scripts/hermes.py start --demo --open
 ```
 
-## Development checks
+The offline sample is isolated in `private/Hermes_Demo/`. It never seeds an
+unmarked database containing existing records. The public browser demo is a
+separate static simulation, not a hosted personal-data service.
+
+## Optional AI — later, not a setup requirement
+
+The default Echo adapter is an offline test, **not AI**. You can independently
+configure your own OpenAI API, Codex CLI sign-in, Ollama, or compatible chat
+endpoint. Selected prompts/photos may leave your machine when you enable a
+cloud provider. Chat does **not** automatically write meals or workouts.
+
+A local Hermes Gateway can be used through the compatible chat adapter **only
+if it exposes the required chat-completions protocol**. Production Hermes MCP,
+owner-wide memory and write-tool/receipt bridging are not shipped in this
+starter. See [model and endpoint setup](docs/runtime-edition.md).
+
+## What's included?
+
+| Capability | Preview |
+| --- | --- |
+| Manual meals, confirmation, macros, summaries and optional goals | Working without AI |
+| Manual daily activity and workouts; daily workout totals | Working without wearable or iPhone |
+| Finance ledger | Explicit opt-in; disabled by default |
+| Career tracker | Optional extension; disabled by default |
+| Local SQLite and private Markdown scaffold | Working; unencrypted |
+| Model adapters and optional photo estimates | Included; disabled until you configure them |
+| iOS companion, bank sync, production memory/gateway system | Not included |
+
+## Privacy
+
+- Never commit `private/`, real photos, exports, databases or credentials.
+- First run connects no account or model. Raw chat logging is off.
+- The dashboard binds to `127.0.0.1`. **Do not expose it to the internet.**
+- Disabling an optional module is not deletion or encryption; records stay local.
+- The AWS website contains only fictional data. It has no signup or analytics.
+- Read [Safety](docs/safety-and-privacy.md) before using real records.
+
+## Project structure
+
+```text
+hermes_lite/  Dependency-free Python runtime and localhost UI
+site/         Static fictional demo and code-native launch layouts
+scripts/      First run, checks, build and isolated static deployment
+tests/        Runtime, opt-in, setup and privacy regression checks
+templates/    Placeholder-only private knowledge scaffold
+docs/         Optional models, integrations and architecture
+```
+
+Development checks:
 
 ```sh
 python3 scripts/privacy_check.py
@@ -97,12 +100,10 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 python3 scripts/build_preview.py
 ```
 
-[Architecture](docs/architecture.md) · [Product areas](docs/product-areas.md) ·
-[Roadmap](ROADMAP.md) · [Contributing](CONTRIBUTING.md).
+[Architecture](docs/architecture.md) · [Roadmap](ROADMAP.md) ·
+[Contributing](CONTRIBUTING.md)
 
 ## License
 
-No open-source license has been granted yet. Public visibility is not an
-open-source license; the owner retains rights while licensing is decided.
-This is an early preview, with no medical, financial or employment guarantee.
-Feedback and bug reports are welcome through the repository's issue templates.
+[MIT](LICENSE): fork, modify and reuse, including commercially, under its terms.
+This early preview is provided as-is; it is not medical or financial advice.

@@ -11,15 +11,17 @@ Prerequisites:
 - Python 3.10 or newer on macOS, Linux, or Windows;
 - a terminal and a browser. GitHub and Codex are optional for local setup.
 
-For a quick trial, download and extract the repository, open a terminal inside
-that folder, and run:
+Download and extract the latest preview, open a terminal inside that folder,
+and start your own empty Nutrition + Fitness workspace:
 
 ```sh
-python3 scripts/hermes.py start --demo --open
+python3 scripts/hermes.py start --open
 ```
 
-Windows: replace `python3` with `py -3`. Fictional samples are isolated in
-`private/Hermes_Demo/`. Use `start --open` without `--demo` for an empty workspace.
+Windows: replace `python3` with `py -3`. You can also use the included
+`Start-Hermes.command` (macOS) or `Start-Hermes.bat` (Windows). If your OS blocks
+a downloaded launcher, use the terminal command. Add `--demo` to try fictional
+samples, isolated in `private/Hermes_Demo/`.
 Existing files and records are preserved. The public browser demo is a separate
 scripted simulation, not the maintainer's private assistant.
 
@@ -52,9 +54,16 @@ Working without an account:
 - private knowledge scaffold;
 - Nutrition records, goals, summaries, and review flow;
 - manual Health summaries and workouts;
-- Finance review ledger;
-- Career opportunity tracker;
+- optional Finance review ledger, off by default;
+- optional Career extension, off by default;
 - offline echo provider.
+
+Under **Optional modules**, choose **Enable Finance** only if you want it.
+Disabling it hides the module, blocks its dashboard API, and keeps records.
+It connects no bank or provider. The CLI equivalent is
+`python3 scripts/hermes.py module enable finance`; restart a running dashboard
+after CLI changes. With older configs, missing flags also mean off; no old
+records are deleted. The project is [MIT licensed](LICENSE).
 
 ## 3. Optional GPT/Codex Connection
 
@@ -62,7 +71,7 @@ Install Codex CLI separately and sign in with your own ChatGPT account. Verify:
 
 ```text
 codex --version
-codex
+codex login
 ```
 
 Then enable it for Hermes:
@@ -74,6 +83,16 @@ python3 scripts/hermes.py doctor
 
 Dashboard chat can now use `/gpt` or `/codex`. This does not use the template
 maintainer's ChatGPT account.
+
+It is read-only chat: it does not automatically write meals or workouts. The
+core recording forms work without this setup. See the official
+[Codex sign-in guidance](https://learn.chatgpt.com/docs/auth#codex-cli).
+
+For an existing local Hermes Gateway, use the compatible adapter only if the
+gateway exposes `/chat/completions` under its base URL. See
+[compatible endpoint configuration](docs/runtime-edition.md#openai-compatible-provider).
+An MCP-only gateway is not supported by that text adapter. Do not expose the
+local dashboard publicly or borrow the maintainer's gateway credentials.
 
 ## 4. Optional OpenAI Food-Photo Estimates
 

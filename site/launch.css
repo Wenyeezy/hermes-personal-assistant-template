@@ -1,0 +1,299 @@
+@charset "UTF-8";
+
+:root {
+  --paper: #f5f4ed;
+  --white: #fffefa;
+  --ink: #202b26;
+  --muted: #627267;
+  --green: #245b46;
+  --line: #dce0d7;
+  --soft: #e9eee5;
+  color-scheme: light;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+* { box-sizing: border-box; }
+body, h1, h2, h3, p, figure, dl, dd, pre { margin: 0; }
+body { min-width: 280px; }
+[hidden] { display: none !important; }
+svg { display: block; width: 100%; height: 100%; }
+a { color: var(--green); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 4px; }
+a:focus-visible { outline: 3px solid var(--green); outline-offset: 6px; }
+
+/* Container units keep the composition proportional at both wide sizes. */
+.launch-canvas {
+  position: relative;
+  width: min(100%, 1280px);
+  aspect-ratio: 16 / 9;
+  margin-inline: auto;
+  container-type: inline-size;
+}
+.launch-frame {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 2.25cqw;
+  padding: 3.25cqw 4.5cqw 2.5cqw;
+  background: var(--paper);
+}
+.launch-header, .launch-footer, .brand, .asset-label,
+.preview-heading, .record-heading, .card-topline,
+.detail-heading, .record-state, .movement-total, .footer-destination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand { justify-content: flex-start; gap: 1cqw; font: 2.3cqw/1 Georgia, serif; letter-spacing: -.06cqw; }
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 3.4cqw;
+  height: 3.4cqw;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--green);
+  background: var(--soft);
+  font: italic 2.45cqw/1 Georgia, serif;
+  padding-bottom: .2cqw;
+}
+.asset-label { gap: .65cqw; font-size: 1.02cqw; letter-spacing: .06cqw; color: var(--muted); }
+.status-dot { width: .55cqw; height: .55cqw; border-radius: 50%; background: #719754; flex-shrink: 0; }
+.launch-content { min-width: 0; min-height: 0; display: grid; }
+.scene { min-width: 0; min-height: 0; align-items: center; }
+.cover-layout, .scene-layout { display: grid; grid-template-columns: 1fr 1.08fr; gap: 4cqw; }
+.scene-copy { min-width: 0; }
+.eyebrow { font-size: 1.02cqw; font-weight: 650; letter-spacing: .09cqw; line-height: 1.5; color: var(--green); }
+.scene-copy > .eyebrow { margin-bottom: 1.7cqw; }
+h1 { font: normal 5.1cqw/1.07 Georgia, serif; letter-spacing: -.19cqw; text-wrap: balance; }
+h1 em { color: var(--green); font-weight: normal; }
+.intro { font-size: 1.62cqw; line-height: 1.55; color: var(--muted); margin-top: 1.85cqw; max-width: 35cqw; }
+.topic-strip { display: flex; flex-wrap: wrap; gap: .7cqw; margin-top: 2cqw; }
+.topic-strip > span { padding: .62cqw .9cqw; border: 1px solid var(--line); border-radius: 999px; font-size: 1.03cqw; color: var(--green); }
+.topic-strip .topic-off { color: var(--muted); border-style: dashed; }
+.copy-note { margin-top: 2cqw; max-width: 31cqw; font-size: 1.15cqw; line-height: 1.5; color: var(--muted); }
+
+.day-preview, .detail-card { min-width: 0; padding: 2cqw; border: 1px solid var(--line); border-radius: 1.6cqw; background: var(--white); box-shadow: 0 1.25cqw 4cqw #273b2708; }
+.preview-heading { gap: 1cqw; margin-bottom: 1.6cqw; }
+.preview-heading h2, .card-topline h2 { font: normal 2.25cqw/1.2 Georgia, serif; letter-spacing: -.05cqw; }
+.sample-label { color: var(--muted); font-size: 1.01cqw; white-space: nowrap; }
+.sample-records { display: grid; gap: 1.1cqw; }
+.sample-record { padding: 1.35cqw; border: 1px solid var(--line); border-radius: .9cqw; background: #f7f8f1; }
+.record-heading { justify-content: flex-start; gap: .9cqw; margin-bottom: 1.1cqw; }
+.record-icon { width: 2.8cqw; height: 2.8cqw; flex-shrink: 0; padding: .38cqw; border-radius: .65cqw; background: var(--soft); color: var(--green); }
+.record-icon svg, .walking-mark svg { fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.record-heading h3 { font-size: 1.4cqw; line-height: 1.3; font-weight: 600; }
+.record-heading p { font-size: .97cqw; line-height: 1.4; margin-top: .3cqw; color: var(--muted); }
+.metric-pair, .large-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4cqw; }
+.metric-pair dt, .large-metrics dt { font-size: 1.02cqw; line-height: 1.4; color: var(--muted); margin-bottom: .3cqw; }
+.metric-pair dd { font-size: 3.15cqw; line-height: 1.15; font-weight: 500; letter-spacing: -.1cqw; }
+dd { font-variant-numeric: tabular-nums; }
+.metric-pair dd span { font-size: 1.18cqw; letter-spacing: 0; color: var(--muted); font-weight: 400; }
+.preview-note { margin-top: 1.45cqw; padding-top: 1.1cqw; border-top: 1px solid var(--line); font-size: 1.05cqw; color: var(--muted); display: flex; align-items: center; gap: .65cqw; }
+.checkmark { color: var(--green); font-weight: 600; }
+
+.scene-layout { grid-template-columns: .95fr 1.2fr; }
+.scene-layout h1 { font-size: 4.7cqw; }
+.detail-card { padding: 2.5cqw; }
+.card-topline { gap: 1cqw; margin-bottom: 2cqw; }
+.card-topline .eyebrow { font-size: .95cqw; letter-spacing: .075cqw; }
+.sample-badge { color: var(--green); background: var(--soft); border-radius: 999px; padding: .5cqw .75cqw; font-size: .95cqw; white-space: nowrap; }
+.detail-heading { gap: 1.5cqw; margin-bottom: 2.1cqw; }
+.record-kicker { font-size: 1.05cqw; line-height: 1.5; color: var(--muted); margin-bottom: .35cqw; }
+.detail-heading h2, .install-card h2 { font: normal 3.4cqw/1.15 Georgia, serif; letter-spacing: -.07cqw; }
+.large-metrics { gap: 1.5cqw; }
+.large-metrics dt { font-size: 1.08cqw; margin-bottom: .7cqw; }
+.large-metrics dd { color: var(--green); font-size: 5.4cqw; line-height: 1.1; letter-spacing: -.2cqw; font-weight: 500; }
+.large-metrics dd span { font-size: 1.45cqw; letter-spacing: 0; color: var(--muted); font-weight: 400; }
+.record-state { align-items: flex-start; flex-direction: column; gap: .8cqw; margin-top: 2.4cqw; padding-top: 1.6cqw; border-top: 1px solid var(--line); }
+.confirmed-badge { display: inline-flex; align-items: center; gap: .45cqw; color: var(--green); font-size: 1.15cqw; font-weight: 600; }
+.record-state p { font-size: 1.2cqw; line-height: 1.5; color: var(--muted); }
+.card-note { margin-top: 1.6cqw; font-size: 1.02cqw; line-height: 1.5; color: var(--muted); }
+
+/* A small bowl drawn entirely in CSS; no external photos or generated assets. */
+.bowl { position: relative; width: 7cqw; height: 5.3cqw; flex-shrink: 0; }
+.bowl::before { content: ""; position: absolute; inset: 1.45cqw 0 .4cqw; background: #e4e9dd; border: 1px solid #c7d2c0; border-radius: 8% 8% 50% 50% / 10% 10% 90% 90%; }
+.bowl-surface { position: absolute; top: .5cqw; left: 0; width: 100%; height: 2.75cqw; border-radius: 50%; border: .28cqw solid #fffefa; box-shadow: 0 0 0 1px #c7d2c0; background: radial-gradient(ellipse at 25% 38%, #d8b56d 0 7%, transparent 8%), radial-gradient(ellipse at 45% 62%, #ca9e5d 0 6%, transparent 7%), radial-gradient(ellipse at 62% 25%, #e0bd7e 0 8%, transparent 9%), radial-gradient(circle at 72% 56%, #677b71 0 8%, transparent 9%), radial-gradient(circle at 55% 50%, #596f63 0 8%, transparent 9%), radial-gradient(ellipse at 34% 70%, #e3c890 0 9%, transparent 10%), #eee2c5; }
+.walking-mark { width: 5.1cqw; height: 5.1cqw; padding: .9cqw; border-radius: 50%; background: var(--soft); color: var(--green); flex-shrink: 0; }
+.workout-card .large-metrics { grid-template-columns: .8fr 1.2fr; }
+.workout-card .large-metrics dd { font-size: 5.15cqw; }
+
+.summary-card { padding-top: 2.1cqw; padding-bottom: 2.1cqw; }
+.summary-card .card-topline { margin-bottom: 1.6cqw; }
+.summary-metrics { grid-template-columns: 1.25fr 1fr; gap: 1cqw; }
+.summary-metrics dd { font-size: 4.5cqw; }
+.summary-metrics dt { font-size: .98cqw; }
+.summary-meals { margin-top: 1.5cqw; border-top: 1px solid var(--line); }
+.summary-meals p { display: flex; justify-content: space-between; align-items: baseline; gap: 1cqw; padding: .85cqw 0; border-bottom: 1px solid var(--line); font-size: 1.08cqw; line-height: 1.5; }
+.summary-meals small { display: block; font-size: .92cqw; color: var(--muted); }
+.summary-meals strong { font-size: 1.05cqw; font-weight: 500; white-space: nowrap; }
+.movement-total { gap: 1cqw; margin-top: 1.4cqw; background: var(--soft); padding: 1cqw 1.25cqw; border-radius: .8cqw; }
+.movement-total h3 { font-size: 1.3cqw; font-weight: 600; }
+.movement-total .record-kicker { font-size: .95cqw; }
+.movement-value { font-size: 3.1cqw; line-height: 1.2; color: var(--green); letter-spacing: -.07cqw; font-variant-numeric: tabular-nums; }
+.movement-value span { font-size: 1.2cqw; letter-spacing: 0; }
+.summary-card .card-note { margin-top: 1.2cqw; }
+
+.install-layout { grid-template-columns: .85fr 1.3fr; gap: 3.5cqw; }
+.install-card { padding: 2.2cqw 2.5cqw; }
+.install-card .card-topline { margin-bottom: 2cqw; }
+.terminal-dots { display: inline-flex; gap: .45cqw; }
+.terminal-dots i { width: .6cqw; height: .6cqw; border-radius: 50%; background: #c5d0be; }
+.install-card h2 { font-size: 2.8cqw; }
+.install-instruction { margin-top: 1.25cqw; font-size: 1.35cqw; line-height: 1.55; color: var(--muted); max-width: 40cqw; }
+.command-line { margin-top: 1.7cqw; padding: 1.4cqw 1.2cqw; border: 1px solid var(--line); border-radius: .65cqw; background: #edf0e7; white-space: pre-wrap; overflow-wrap: anywhere; }
+.command-line code { font: 1.45cqw/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--green); }
+.install-caption { color: var(--muted); font-size: 1.05cqw; line-height: 1.5; margin-top: .65cqw; }
+.install-boundary { display: flex; gap: .9cqw; align-items: flex-start; border-top: 1px solid var(--line); margin-top: 1.8cqw; padding-top: 1.4cqw; font-size: 1.25cqw; line-height: 1.6; }
+.install-card .card-note { margin-top: 1.2cqw; }
+
+.launch-footer { align-items: flex-end; gap: 2cqw; padding-top: 1.4cqw; border-top: 1px solid var(--line); }
+.launch-footer > p { font-size: 1.04cqw; line-height: 1.55; color: var(--muted); }
+.footer-destination { gap: 1.6cqw; font-size: 1.15cqw; line-height: 1.55; }
+.scene-position { font-size: .98cqw; color: var(--muted); white-space: nowrap; }
+
+/* Square posters keep full-size type and put the demonstration below the copy. */
+html[data-format="square"] .launch-canvas { width: min(100%, 1080px); aspect-ratio: 1; }
+html[data-format="square"] .launch-frame { padding: 4.5cqw 5cqw 3.5cqw; gap: 3cqw; }
+html[data-format="square"] .brand { font-size: 3cqw; gap: 1.2cqw; }
+html[data-format="square"] .brand-mark { width: 4.3cqw; height: 4.3cqw; font-size: 3.1cqw; }
+html[data-format="square"] .asset-label { font-size: 1.3cqw; }
+html[data-format="square"] .cover-layout,
+html[data-format="square"] .scene-layout { grid-template-columns: 1fr; gap: 3cqw; align-content: center; }
+html[data-format="square"] .scene-copy > .eyebrow { font-size: 1.4cqw; margin-bottom: 1.5cqw; }
+html[data-format="square"] h1,
+html[data-format="square"] .scene-layout h1 { font-size: 6.5cqw; line-height: 1.06; letter-spacing: -.2cqw; }
+html[data-format="square"] .intro { font-size: 1.95cqw; margin-top: 1.5cqw; max-width: 79cqw; }
+html[data-format="square"] .topic-strip { margin-top: 1.6cqw; }
+html[data-format="square"] .topic-strip > span { font-size: 1.3cqw; padding: .65cqw 1.1cqw; }
+html[data-format="square"] .copy-note { font-size: 1.4cqw; max-width: 80cqw; margin-top: 1.2cqw; }
+html[data-format="square"] .day-preview { padding: 2.6cqw; }
+html[data-format="square"] .preview-heading { margin-bottom: 2cqw; }
+html[data-format="square"] .preview-heading h2,
+html[data-format="square"] .card-topline h2 { font-size: 3cqw; }
+html[data-format="square"] .sample-label { font-size: 1.3cqw; }
+html[data-format="square"] .sample-records { grid-template-columns: 1fr 1fr; gap: 1.7cqw; }
+html[data-format="square"] .sample-record { padding: 1.8cqw; }
+html[data-format="square"] .record-heading { gap: 1cqw; margin-bottom: 2.3cqw; align-items: flex-start; }
+html[data-format="square"] .record-icon { width: 3.5cqw; height: 3.5cqw; padding: .5cqw; }
+html[data-format="square"] .record-heading h3 { font-size: 1.85cqw; }
+html[data-format="square"] .record-heading p { font-size: 1.25cqw; max-width: 24cqw; }
+html[data-format="square"] .metric-pair dt { font-size: 1.25cqw; }
+html[data-format="square"] .metric-pair dd { font-size: 4cqw; }
+html[data-format="square"] .metric-pair dd span { font-size: 1.4cqw; }
+html[data-format="square"] .preview-note { margin-top: 2cqw; padding-top: 1.4cqw; font-size: 1.35cqw; }
+html[data-format="square"] .detail-card { padding: 3cqw; }
+html[data-format="square"] .card-topline .eyebrow { font-size: 1.3cqw; }
+html[data-format="square"] .sample-badge { font-size: 1.25cqw; }
+html[data-format="square"] .detail-heading h2 { font-size: 4cqw; }
+html[data-format="square"] .record-kicker { font-size: 1.4cqw; }
+html[data-format="square"] .large-metrics dt { font-size: 1.4cqw; }
+html[data-format="square"] .large-metrics dd,
+html[data-format="square"] .workout-card .large-metrics dd,
+html[data-format="square"] .summary-metrics dd { font-size: 6.6cqw; }
+html[data-format="square"] .large-metrics dd span { font-size: 1.7cqw; }
+html[data-format="square"] .record-state { flex-direction: row; align-items: center; }
+html[data-format="square"] .confirmed-badge,
+html[data-format="square"] .record-state p { font-size: 1.5cqw; }
+html[data-format="square"] .card-note { font-size: 1.35cqw; }
+html[data-format="square"] .summary-meals p,
+html[data-format="square"] .summary-meals strong { font-size: 1.5cqw; }
+html[data-format="square"] .summary-meals small { display: inline; font-size: 1.25cqw; }
+html[data-format="square"] .movement-total h3 { font-size: 1.75cqw; }
+html[data-format="square"] .movement-total .record-kicker { font-size: 1.3cqw; }
+html[data-format="square"] .movement-value { font-size: 4cqw; }
+html[data-format="square"] .movement-value span { font-size: 1.6cqw; }
+html[data-format="square"] .install-card h2 { font-size: 3.7cqw; }
+html[data-format="square"] .install-instruction { font-size: 1.65cqw; max-width: 80cqw; }
+html[data-format="square"] .command-line code { font-size: 2.15cqw; }
+html[data-format="square"] .install-caption { font-size: 1.35cqw; }
+html[data-format="square"] .install-boundary { font-size: 1.6cqw; }
+html[data-format="square"] .launch-footer > p { font-size: 1.3cqw; }
+html[data-format="square"] .footer-destination { font-size: 1.45cqw; flex-direction: column; align-items: flex-end; gap: .3cqw; }
+html[data-format="square"] .scene-position { font-size: 1.2cqw; }
+
+/* Small windows remain readable; target captures use the aspect-ratio layouts. */
+@media (max-width: 759px) {
+  .launch-canvas, html[data-format="square"] .launch-canvas { aspect-ratio: auto; }
+  .launch-frame, html[data-format="square"] .launch-frame { position: relative; min-height: 100svh; padding: 26px 22px; gap: 30px; }
+  .launch-header { gap: 16px; flex-wrap: wrap; }
+  .brand, html[data-format="square"] .brand { font-size: 27px; gap: 10px; }
+  .brand-mark, html[data-format="square"] .brand-mark { width: 38px; height: 38px; font-size: 28px; }
+  .asset-label, html[data-format="square"] .asset-label { font-size: 12px; gap: 7px; }
+  .status-dot { width: 6px; height: 6px; }
+  .cover-layout, .scene-layout, html[data-format="square"] .cover-layout,
+  html[data-format="square"] .scene-layout { grid-template-columns: 1fr; gap: 28px; }
+  .scene-copy > .eyebrow, html[data-format="square"] .scene-copy > .eyebrow { font-size: 12px; margin-bottom: 18px; }
+  h1, .scene-layout h1, html[data-format="square"] h1,
+  html[data-format="square"] .scene-layout h1 { font-size: clamp(39px, 7.8vw, 58px); letter-spacing: -1.6px; }
+  .intro, html[data-format="square"] .intro { font-size: 18px; max-width: 100%; margin-top: 18px; }
+  .copy-note, html[data-format="square"] .copy-note { max-width: 100%; font-size: 14px; margin-top: 18px; }
+  .topic-strip, html[data-format="square"] .topic-strip { margin-top: 20px; gap: 8px; }
+  .topic-strip > span, html[data-format="square"] .topic-strip > span { font-size: 12px; padding: 7px 10px; }
+  .day-preview, .detail-card, html[data-format="square"] .day-preview,
+  html[data-format="square"] .detail-card { padding: 20px; border-radius: 17px; }
+  .preview-heading, html[data-format="square"] .preview-heading { margin-bottom: 20px; gap: 12px; flex-wrap: wrap; }
+  .preview-heading h2, .card-topline h2, html[data-format="square"] .preview-heading h2,
+  html[data-format="square"] .card-topline h2 { font-size: 25px; }
+  .sample-label, html[data-format="square"] .sample-label { font-size: 12px; }
+  .sample-records, html[data-format="square"] .sample-records { grid-template-columns: 1fr; gap: 12px; }
+  .sample-record, html[data-format="square"] .sample-record { padding: 17px; border-radius: 10px; }
+  .record-heading, html[data-format="square"] .record-heading { gap: 12px; margin-bottom: 16px; }
+  .record-icon, html[data-format="square"] .record-icon { width: 35px; height: 35px; padding: 5px; border-radius: 8px; }
+  .record-heading h3, html[data-format="square"] .record-heading h3 { font-size: 18px; }
+  .record-heading p, html[data-format="square"] .record-heading p { font-size: 12px; max-width: 100%; margin-top: 4px; }
+  .metric-pair, .large-metrics { gap: 14px; }
+  .metric-pair dt, .large-metrics dt, html[data-format="square"] .metric-pair dt,
+  html[data-format="square"] .large-metrics dt { font-size: 12px; margin-bottom: 6px; }
+  .metric-pair dd, html[data-format="square"] .metric-pair dd { font-size: 37px; letter-spacing: -1px; }
+  .metric-pair dd span, html[data-format="square"] .metric-pair dd span { font-size: 14px; }
+  .preview-note, html[data-format="square"] .preview-note { font-size: 13px; margin-top: 20px; padding-top: 16px; gap: 8px; }
+  .card-topline, .install-card .card-topline, html[data-format="square"] .install-card .card-topline,
+  .summary-card .card-topline { gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+  .card-topline .eyebrow, html[data-format="square"] .card-topline .eyebrow { font-size: 11px; }
+  .sample-badge, html[data-format="square"] .sample-badge { font-size: 11px; padding: 6px 9px; }
+  .detail-heading { gap: 20px; margin-bottom: 24px; }
+  .detail-heading h2, .install-card h2, html[data-format="square"] .detail-heading h2,
+  html[data-format="square"] .install-card h2 { font-size: 33px; }
+  .record-kicker, html[data-format="square"] .record-kicker { font-size: 13px; margin-bottom: 4px; }
+  .large-metrics dd, .summary-metrics dd, .workout-card .large-metrics dd,
+  html[data-format="square"] .large-metrics dd, html[data-format="square"] .summary-metrics dd,
+  html[data-format="square"] .workout-card .large-metrics dd { font-size: clamp(36px, 7.5vw, 58px); letter-spacing: -1px; }
+  .large-metrics dd span, html[data-format="square"] .large-metrics dd span { font-size: 15px; }
+  .record-state, html[data-format="square"] .record-state { flex-direction: column; align-items: flex-start; gap: 10px; margin-top: 24px; padding-top: 20px; }
+  .confirmed-badge, .record-state p, html[data-format="square"] .confirmed-badge,
+  html[data-format="square"] .record-state p { font-size: 14px; }
+  .card-note, .summary-card .card-note, .install-card .card-note, html[data-format="square"] .card-note { font-size: 12px; margin-top: 18px; }
+  .bowl { width: 76px; height: 59px; }
+  .bowl::before { inset: 19px 0 5px; }
+  .bowl-surface { top: 7px; height: 31px; border-width: 3px; }
+  .walking-mark { width: 58px; height: 58px; padding: 10px; }
+  .summary-meals { margin-top: 20px; }
+  .summary-meals p, .summary-meals strong, html[data-format="square"] .summary-meals p,
+  html[data-format="square"] .summary-meals strong { font-size: 13px; gap: 10px; padding-block: 12px; }
+  .summary-meals small, html[data-format="square"] .summary-meals small { display: block; font-size: 11px; }
+  .movement-total { gap: 12px; margin-top: 20px; padding: 14px; border-radius: 10px; }
+  .movement-total h3, html[data-format="square"] .movement-total h3 { font-size: 16px; }
+  .movement-total .record-kicker, html[data-format="square"] .movement-total .record-kicker { font-size: 12px; }
+  .movement-value, html[data-format="square"] .movement-value { font-size: 36px; }
+  .movement-value span, html[data-format="square"] .movement-value span { font-size: 14px; }
+  .terminal-dots { gap: 5px; }
+  .terminal-dots i { width: 7px; height: 7px; }
+  .install-instruction, html[data-format="square"] .install-instruction { font-size: 16px; max-width: 100%; margin-top: 16px; }
+  .command-line { margin-top: 20px; padding: 16px 12px; border-radius: 8px; }
+  .command-line code, html[data-format="square"] .command-line code { font-size: clamp(12px, 2.7vw, 17px); }
+  .install-caption, html[data-format="square"] .install-caption { font-size: 12px; margin-top: 10px; }
+  .install-boundary, html[data-format="square"] .install-boundary { gap: 10px; margin-top: 20px; padding-top: 18px; font-size: 14px; }
+  .launch-footer { align-items: flex-start; flex-direction: column; gap: 12px; padding-top: 18px; }
+  .launch-footer > p, html[data-format="square"] .launch-footer > p { font-size: 12px; }
+  .footer-destination, html[data-format="square"] .footer-destination { align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 14px; font-size: 13px; }
+  .scene-position, html[data-format="square"] .scene-position { font-size: 12px; }
+}
+
+@media print {
+  .launch-canvas { break-inside: avoid; }
+  .launch-frame { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}

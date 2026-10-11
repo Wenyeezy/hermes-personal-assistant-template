@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import os
+import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -11,6 +12,33 @@ from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 EXAMPLE_CONFIG = REPO_ROOT / "runtime.example.json"
+OPTIONAL_MODULES = ("finance", "career")
+
+
+def module_settings(config: dict[str, Any]) -> dict[str, bool]:
+    """Older configs also default optional modules off; existing records are kept."""
+    settings = config.get("modules", {})
+    return {"nutrition": True, "health": True, **{
+        name: settings.get(name, {}).get("enabled") is True
+        for name in OPTIONAL_MODULES
+    }}
+
+
+def save_config(paths: "RuntimePaths", config: dict[str, Any]) -> None:
+    """Atomically save local preferences, preserving unrelated configuration."""
+    paths.root.mkdir(parents=True, exist_ok=True)
+    temporary = None
+    try:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=paths.root, delete=False) as stream:
+            temporary = Path(stream.name)
+            json.dump(config, stream, indent=2, sort_keys=True)
+            stream.write("\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        temporary.replace(paths.config)
+    finally:
+        if temporary and temporary.exists():
+            temporary.unlink()
 
 
 @dataclass(frozen=True)

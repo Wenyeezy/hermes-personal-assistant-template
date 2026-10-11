@@ -1,50 +1,64 @@
-# Start Here
+# Start Here · Meals + Fitness
 
-## Try a fictional local walkthrough
+## Start your own workspace
 
-Install Python 3.10+, download and extract this repository, and open a terminal
-in the extracted folder. Git and Codex are optional.
-
-```sh
-python3 scripts/hermes.py start --demo --open
-```
-
-Made-up entries go in a separate `private/Hermes_Demo/` directory. No model is
-called. Try Career or Nutrition first. Keep the terminal open; Ctrl-C stops it.
-
-## Start your own empty workspace
+Install Python 3.10+, download and unpack the latest preview, then open a
+terminal in the extracted folder:
 
 ```sh
 python3 scripts/hermes.py start --open
 ```
 
-This initializes or checks the private knowledge scaffold and local runtime
-without replacing existing files. State stays under Git-ignored `private/`.
-Providers, gateways, schedules and account connections remain off by default.
+Windows: `py -3 scripts/hermes.py start --open`.
+Convenience launchers: `Start-Hermes.command` (macOS) and `Start-Hermes.bat`
+(Windows). Use the terminal command if your OS blocks a downloaded launcher.
+No Git, GPT, Codex, account, API key or extra Python dependency is required.
 
-Prefer Codex? Open this folder as a project and say:
+The browser opens an empty **Nutrition + Fitness** dashboard.
+Save a meal, log a workout, then check the daily totals.
+Finance is off until you explicitly enable it under **Optional modules**.
+Career is a separate, disabled extension.
 
-```text
-Read AGENTS.md and help me start Easy Setup.
+State is written only under Git-ignored `private/` by default and is not
+encrypted. Existing configuration and records are preserved. Keep the terminal
+open; Ctrl-C stops the runtime. No account or background service is connected.
+
+## Try fictional samples instead
+
+```sh
+python3 scripts/hermes.py start --demo --open
 ```
+
+Made-up meals, activity and a workout go into separate `private/Hermes_Demo/`.
+No model is called. Confirm the pending meal and explore Fitness.
+
+## Optional models / gateway
+
+Start manually first. Models are optional, with your own credentials or local
+service. Chat is an offline Echo unless separately configured, and does not
+automatically save records. See [model setup](docs/runtime-edition.md).
 
 ## Troubleshooting
 
 | Symptom | Next step |
 | --- | --- |
-| `python3` not found | Install Python 3.10+; on Windows try `py -3` |
+| Python missing or too old | Install Python 3.10+; Windows can use `py -3` |
 | Script not found | Run inside the extracted repository folder |
-| Browser did not open | Open the localhost URL printed in the terminal |
-| Port in use | Add `--port 8766` to the start command |
-| Chat repeats your message | Expected offline echo; configure a provider separately |
-| Demo refuses existing data | Choose a fresh `--root` before the command; do not overwrite |
-| Partial knowledge scaffold | Run `python3 scripts/easy_setup.py check`; inspect existing files |
+| Launcher blocked | Use the terminal command above |
+| Browser did not open | Open the printed localhost URL |
+| Port in use | Add `--port 8766` |
+| Chat repeats your message | Expected Echo; models are separate opt-ins |
+| Finance or Career absent | Explicitly enable under Optional modules |
+| Old config has no module flags | Optional modules default off; existing data is kept |
+| Demo refuses existing data | Choose a fresh `--root`; do not overwrite |
+| Partial knowledge scaffold | Run `python3 scripts/easy_setup.py check` and inspect files |
 
-Example isolated location:
+Isolated demo location:
 
 ```sh
 python3 scripts/hermes.py --root ./private/My_Demo start --demo --open
 ```
 
-[Full installation](INSTALL_FOR_FRIEND.md) · [Providers](docs/runtime-edition.md) ·
-[Safety](docs/safety-and-privacy.md)
+Prefer Codex-guided onboarding? Open this folder and ask it to read
+`AGENTS.md` and start Easy Setup.
+[Full installation](INSTALL_FOR_FRIEND.md) · [Safety](docs/safety-and-privacy.md)

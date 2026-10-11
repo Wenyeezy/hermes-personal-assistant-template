@@ -1,57 +1,66 @@
-# Hermes Life preview launch kit
+# Hermes Preview launch kit · Meals + Fitness
 
-Status: draft material, not a published X post. Advertising is deferred.
+Prepared material, not a published X post. Advertising and paid memberships are deferred.
+
+## Downloads and demo
+
+- Public fictional demo: https://hermes-preview.wenyeezy.com/
+- Release: https://github.com/Wenyeezy/hermes-personal-assistant-template/releases/tag/v0.1.0-preview.2
+- Exact post and reply text: [x-first-post.txt](x-first-post.txt).
+- License: MIT. Fork, modify and reuse under the [LICENSE](../LICENSE) terms.
 
 ## Images
 
-- `site/media/hermes-preview-wide.png`: 1200 × 675, homepage / pinned post.
-- `site/media/hermes-preview-square.png`: 1080 × 1080, alternate feed image.
-- `site/media/hermes-preview-30s.mp4`: verified 30-second, 1280 × 720 silent walkthrough; the current Descript export has a visible Descript watermark.
+- `site/media/hermes-preview-wide.png`: 1200 × 675, first X post / pinned post.
+- `site/media/hermes-preview-square.png`: 1080 × 1080, alternative cover.
+- `site/media/hermes-preview-30s.mp4`: 30 seconds, 1280 × 720, silent illustrative launch video. The export has a visible Descript watermark.
 
-These are native browser captures of the code-rendered fictional preview, not pictures of the owner's data. They are rebuildable exports excluded from Git. Downloadable copies belong in the release assets.
+These are browser captures of repo-native HTML/CSS launch sheets, using only fictional samples. They are illustrations of the product focus, not screenshots of owner data or an AI-generated interface. Rebuildable binary exports are excluded from Git and attached to the release.
 
-To reproduce, run the static server from `site/README.md`, open `/?media=wide` at a 1200 × 675 viewport or `/?media=square` at 1080 × 1080, and capture the viewport. No photographic editing or invented interface elements are required.
+Run the static server from [site/README.md](../site/README.md). Capture `launch.html?format=wide` at 1200 × 675, or `launch.html?format=square` at 1080 × 1080. Video stills use a 1280 × 720 viewport and the `scene` query below. No photographic editing is required.
 
-## 30-second video storyboard
+## 30-second storyboard
 
-An explicitly scripted, silent walkthrough assembled from fictional UI frames:
-
-| Time | Scene | Message |
+| Time | Scene query | Message |
 | --- | --- | --- |
-| 0–6 s | Wide homepage | A local-first public preview, using a fictional day. |
-| 6–12 s | Career / saved sample | One opportunity and a visible next step. No application sent. |
-| 12–17 s | Nutrition / pending | 420 kcal confirmed; fictional lunch stays separate. |
-| 17–24 s | Nutrition / confirmed | A simulated review changes the total to 1,030 kcal. |
-| 24–30 s | Local installation | Python 3.10+, one command, no API key required. |
+| 0–6 s | `scene=cover` | Meals + fitness first; finance is off / opt-in. |
+| 6–12 s | `scene=meal` | A fictional confirmed meal, reviewed by the user. |
+| 12–18 s | `scene=workout` | A manually entered fictional walk. No device connected. |
+| 18–24 s | `scene=summary` | Fictional confirmed meal totals and recorded movement. |
+| 24–30 s | `scene=install` | Python 3.10+, one command, no GPT or API key required. |
 
-Scene frames use 1280 × 720 and `/?media=career`, `/?media=nutrition`, and `/?media=install`. The nutrition before/after transition is a **browser simulation**, not a claim that the Python runtime already has in-place editing. The Adobe render was accepted but its completion-query tool was unavailable. The final video was assembled/exported through Descript and verified in-browser for duration, dimensions and scene content; it is not an AI-generated product screen recording.
+This is a scripted slideshow of launch illustrations, not a live screen recording. The separate interactive browser demo simulates confirmation and record receipts. The Python runtime now also supports real local manual records and in-place meal confirmation; its storage is separate from the website.
 
-## X launch post (draft)
+Adobe accepted a render but did not expose its compatible completion-query tool in this session. The delivered video was assembled and exported through Descript. Its duration, dimensions and all five scenes were checked in-browser. No paid plan was purchased, and the watermark was not removed.
 
-> Hermes Life public preview: a local-first workspace for career, nutrition, activity & expense records.
+## X first post
+
+> After months of building & polishing, Hermes Preview is live.
 >
-> Try a fictional day—no signup or model calls. Or run the Python starter locally.
+> A local-first workspace for meals, workouts & daily activity.
 >
-> Early, small, useful. Feedback welcome.
->
+> Try the fictional demo, or run it locally. No GPT required.
 > https://hermes-preview.wenyeezy.com/
+>
+> Feedback welcome.
 
-Attach the wide image or the verified 30-second MP4. Do not post both versions of the same cover in one tweet. The fixed AWS demo URL above has passed HTTPS, mobile interaction, export and public API-isolation checks. The MP4 still has a visible Descript watermark.
+Use the wide cover or MP4; do not attach both cover variants to one post. “Months” avoids asserting an unverified June start or exact three-month polish period.
 
-## Follow-up thread (draft)
+## Follow-up reply
 
-1. Why: everyday context gets scattered. This preview starts with a few simple records and a clear next step.
-2. What runs locally: manual records, summaries, a dashboard, SQLite, and Markdown. No third-party Python dependencies.
-3. Boundary: offline Echo is a test adapter. Real model integrations are optional and use your own accounts. Private owner memory and services are not in the download.
-4. Try it: download the preview, then run `python3 scripts/hermes.py start --demo --open`. Tell me where you got stuck.
+Link the repository and explain the essentials:
 
-## Before publishing
+- MIT licensed; fork it or download the source ZIP.
+- Start with `python3 scripts/hermes.py start --open` (Windows: `py -3`). Add `--demo` only to try isolated fictional data.
+- Manual meals, workout records and local summaries work without an AI account.
+- Finance requires explicit opt-in; disabling it keeps local records and blocks dashboard API access.
+- Optional AI chat uses the user's own setup and does not automatically save meals or workouts. A compatible local chat gateway is optional; native production Hermes MCP/memory is not bundled.
+- iOS companion is later. Bank sync and a hosted personal-data service are not included.
 
-- Use the verified fixed HTTPS hostname above, not the earlier Quick Tunnel link.
-- The current MP4 is a watermarked preview export. For a clean launch video,
-  obtain an authorized watermark-free export; no paid plan was purchased here.
-- Confirm the release download and one-command setup on a fresh ZIP copy.
-- Verify images show only fictional samples; label the scripted walkthrough.
-- Avoid “open source” until an explicit license is selected; the repository is public, license pending.
-- Keep CertiK consulting messaging separate from Hermes product claims. Don't imply endorsement, data sharing, or a bundled commercial relationship.
-- No post, paid membership, campaign registration, or advertising purchase is authorized by preparing this kit.
+Keep CertiK consulting messaging separate. Do not imply endorsement, shared private data or a bundled commercial relationship.
+
+## Publishing boundaries
+
+Use the fixed HTTPS demo hostname, not the old Quick Tunnel URL. Inspect the latest release ZIP and fictional assets before posting. Local data is unencrypted. Do not promise medical, financial or employment outcomes.
+
+The current video is usable as a watermarked preview; a clean promotional export would require a separately authorized export. Preparing this kit does not publish to X, connect an account, buy a membership, register a campaign or spend on advertising.

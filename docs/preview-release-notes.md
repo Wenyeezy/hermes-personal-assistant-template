@@ -1,4 +1,44 @@
-# Hermes Life v0.1.0-preview.1
+# Hermes Life v0.1.0-preview.2 · Meals + Fitness
+
+## New in this preview
+
+- Nutrition and Fitness are the default first-run experience. No GPT required.
+- Finance and Career are off by default, with explicit persisted opt-in and
+  dashboard API gates. Existing data is preserved; older configs also default off.
+- Review and confirm an existing meal without duplicating it.
+- Daily workout totals and a fix for multiple independent manual workouts.
+- Collapsed optional AI/photo settings and simpler workout-first forms.
+- macOS/Windows convenience launchers, bilingual README and one-command start.
+- MIT license, explicitly selected by the repository owner.
+- Updated fictional AWS demo and meals/fitness launch media.
+
+Download the latest source ZIP and run:
+
+```sh
+python3 scripts/hermes.py start --open
+```
+
+Python 3.10+; Windows can use `py -3`. Add `--demo` for isolated fictional data.
+The demo website is not a hosted personal-data service. Chat adapters do not
+auto-write records. The iOS companion, bank sync and production Hermes memory
+or MCP gateway are not included. Local data is unencrypted.
+
+## Verified for this update
+
+29 Python tests and the privacy scan pass. Desktop and mobile browser checks
+cover local meal confirmation, multiple workouts, persisted Finance opt-in and
+disabled API access. Static-demo reset and fictional export were also checked.
+The new video is 30 seconds at 1280 × 720; all five scenes were inspected.
+It is an illustrative slideshow with a visible Descript watermark, not a live
+screen recording. No paid plan, advertising or X post was purchased/published.
+
+## Historical notes: v0.1.0-preview.1
+
+The following describes the original archive and its original launch assets.
+Its tag and downloadable source have not been replaced. The current repository
+and v0.1.0-preview.2 use MIT licensing and the new meals/fitness-first workflow.
+
+### Original release
 
 An early public preview, not the maintainer's private assistant and not a stable production release.
 

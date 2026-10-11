@@ -1,0 +1,18 @@
+FIRST POST (copy only the text below; ASCII; under 280 characters)
+
+After months of building & polishing, Hermes Preview is live.
+
+A local-first workspace for meals, workouts & daily activity.
+
+Try the fictional demo, or run it locally. No GPT required.
+https://hermes-preview.wenyeezy.com/
+
+Feedback welcome.
+
+OPTIONAL REPLY (repository and current limits)
+
+MIT licensed: fork, run, make it yours.
+https://github.com/Wenyeezy/hermes-personal-assistant-template
+
+No GPT required. Finance is opt-in. Optional AI chat doesn't auto-save records.
+iOS comes later. Demo data is fictional.

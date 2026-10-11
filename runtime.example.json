@@ -1,5 +1,9 @@
 {
   "schema": "hermes.runtime.v1",
+  "modules": {
+    "finance": {"enabled": false},
+    "career": {"enabled": false}
+  },
   "server": {
     "host": "127.0.0.1",
     "port": 8765

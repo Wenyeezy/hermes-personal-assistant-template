@@ -10,7 +10,7 @@ import tarfile
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-PUBLIC_FILES = ("index.html", "styles.css", "media.css", "app.js", "fixtures.js", "icon.svg")
+PUBLIC_FILES = ("index.html", "styles.css", "media.css", "app.js", "fixtures.js", "icon.svg", "launch.html", "launch.css", "launch.js")
 MEDIA_FILES = ("media/hermes-preview-wide.png", "media/hermes-preview-square.png", "media/hermes-preview-30s.mp4")
 
 
@@ -47,7 +47,7 @@ def build(source: Path, output: Path, version: str) -> Path:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--version", default="0.1.0-preview.1")
+    parser.add_argument("--version", default="0.1.0-preview.2")
     parser.add_argument("--output", type=Path, default=REPO_ROOT / "dist")
     args = parser.parse_args()
     try:

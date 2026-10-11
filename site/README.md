@@ -11,9 +11,18 @@ Open `http://127.0.0.1:8088`. No build dependencies are required. All text, styl
 Build a strictly allowlisted deployment bundle:
 
 ```bash
-python3 scripts/build_preview.py --version 0.1.0-preview.1
+python3 scripts/build_preview.py --version 0.1.0-preview.2
 ```
 
 `dist/` is ignored. The builder rejects symlinks and excludes all runtime code, private records, configuration, credentials, and knowledge folders. Deployment instructions are in [docs/preview-deployment.md](../docs/preview-deployment.md). Never deploy the repository root as a website.
 
-The public walkthrough includes simulated confirmation/review transitions for storytelling. The current downloaded runtime supports manual record creation and summaries; it does **not** yet implement these exact in-place edit transitions. This difference is stated on the website and should also be stated in launch material.
+Nutrition is the default demo. Confirm a fictional meal, log a fictional walk,
+and optionally enable Finance. Reset or reload returns Finance to off.
+Exports omit the fictional ledger while Finance is off. All receipts are
+simulated browser events, not private runtime writes.
+
+The downloaded runtime now supports explicit in-place meal confirmation and
+manual workouts, but this website remains an independent simulation.
+`launch.html?format=wide` / `square` supplies native 1200×675 / 1080×1080
+launch layouts. `launch.html?scene=cover|meal|workout|summary|install` supplies
+1280×720 fictional storyboard frames. No photo editing is needed.

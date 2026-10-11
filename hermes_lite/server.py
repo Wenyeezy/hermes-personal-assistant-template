@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 import mimetypes
+import threading
+import copy
 from datetime import date
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -12,6 +14,7 @@ from typing import Any
 from urllib.parse import parse_qs, urlparse
 
 from .providers import ProviderError, ProviderRouter
+from .config import OPTIONAL_MODULES, RuntimePaths, module_settings, save_config
 from .store import HermesStore
 
 
@@ -23,6 +26,7 @@ class HermesHTTPServer(ThreadingHTTPServer):
     store: HermesStore
     router: ProviderRouter
     demo_mode: bool
+    settings_lock: threading.RLock
 
 
 class HermesHandler(BaseHTTPRequestHandler):
@@ -73,6 +77,14 @@ class HermesHandler(BaseHTTPRequestHandler):
         body = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
         self._send_bytes(status, body, "application/json; charset=utf-8")
 
+    def _module_guard(self, path: str) -> bool:
+        for module in OPTIONAL_MODULES:
+            if path == f"/api/{module}" or path.startswith(f"/api/{module}/"):
+                if not module_settings(self.app.router.config)[module]:
+                    self._json(HTTPStatus.FORBIDDEN, {"error": f"{module.title()} is off. Enable it explicitly in Optional modules first."})
+                    return False
+        return True
+
     def _read_json(self) -> dict[str, Any]:
         raw_length = self.headers.get("Content-Length", "0")
         try:
@@ -93,13 +105,16 @@ class HermesHandler(BaseHTTPRequestHandler):
         if not self._guard_request():
             return
         parsed = urlparse(self.path)
+        if not self._module_guard(parsed.path):
+            return
         if parsed.path == "/api/status":
             self._json(
                 HTTPStatus.OK,
                 {
                     "ok": True,
                     "demo_mode": self.app.demo_mode,
-                    "modules": self.app.store.dashboard(),
+                    "modules": self.app.store.dashboard(module_settings(self.app.router.config)),
+                    "module_settings": module_settings(self.app.router.config),
                     "providers": self.app.router.status(),
                 },
             )
@@ -155,8 +170,22 @@ class HermesHandler(BaseHTTPRequestHandler):
         if not self._guard_request(write=True):
             return
         parsed = urlparse(self.path)
+        if not self._module_guard(parsed.path):
+            return
         try:
             payload = self._read_json()
+            if parsed.path == "/api/modules":
+                module = payload.get("module")
+                enabled = payload.get("enabled")
+                if module not in OPTIONAL_MODULES or type(enabled) is not bool:
+                    raise ValueError("Choose finance or career and an explicit boolean enabled value")
+                with self.app.settings_lock:
+                    updated = copy.deepcopy(self.app.router.config)
+                    updated.setdefault("modules", {})[module] = {"enabled": enabled}
+                    save_config(RuntimePaths.from_root(self.app.router.state_root), updated)
+                    self.app.router.config = updated
+                self._json(HTTPStatus.OK, {"module_settings": module_settings(updated), "records_preserved": True})
+                return
             if parsed.path == "/api/chat":
                 session_id = str(payload.get("session_id") or "dashboard")[:80]
                 message = str(payload.get("message") or "")
@@ -178,6 +207,7 @@ class HermesHandler(BaseHTTPRequestHandler):
                 return
             routes = {
                 "/api/nutrition": self.app.store.add_nutrition,
+                "/api/nutrition/confirm": self.app.store.confirm_nutrition,
                 "/api/health": self.app.store.add_health,
                 "/api/health/import": self.app.store.import_health,
                 "/api/health/workouts": self.app.store.add_workout,
@@ -225,4 +255,5 @@ def create_server(
     server.store = store
     server.router = router
     server.demo_mode = demo_mode
+    server.settings_lock = threading.RLock()
     return server

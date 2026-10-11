@@ -9,53 +9,57 @@
 <body>
   <header class="shell hero">
     <div>
-      <p class="eyebrow">LOCAL-FIRST PERSONAL ASSISTANT</p>
+      <p class="eyebrow">MEALS + FITNESS · LOCAL FIRST</p>
       <h1>Hermes</h1>
-      <p class="lede">A private workspace you can grow one module at a time.</p>
+      <p class="lede">Record a meal. Log a workout. Pick up your day.</p>
     </div>
     <div class="health-pill"><span></span> Local runtime</div>
   </header>
 
   <main class="shell">
     <section class="onboarding" aria-label="First steps">
-      <div><p class="eyebrow">YOUR FIRST FIVE MINUTES</p><h2 id="workspace-mode">Start with one small record.</h2><p id="workspace-guidance">Use a module below to save and review a local entry. Chat is an offline echo until you explicitly enable your own model provider.</p></div>
-      <div class="first-actions"><button type="button" data-jump="career">Try the career tracker</button><button type="button" data-jump="nutrition">Review a meal</button><a href="https://github.com/Wenyeezy/hermes-personal-assistant-template/blob/main/docs/runtime-edition.md" target="_blank" rel="noopener noreferrer">Optional model setup ↗</a></div>
+      <div><p class="eyebrow">YOUR FIRST FIVE MINUTES</p><h2 id="workspace-mode">Start with today's meal or workout.</h2><p id="workspace-guidance">Save and review records on your own machine. No GPT, account, or API key needed. Finance stays off until you choose to enable it.</p></div>
+      <div class="first-actions"><button type="button" data-jump="nutrition">Record a meal</button><button type="button" data-jump="health">Log a workout</button><a href="#optional-modules">Choose optional modules ↓</a></div>
     </section>
     <section class="metrics" aria-label="System overview">
       <article class="metric"><p>Nutrition today</p><strong id="nutrition-metric">—</strong><small id="nutrition-detail">No entries yet</small></article>
-      <article class="metric"><p>Latest health</p><strong id="health-metric">—</strong><small id="health-detail">Manual bridge ready</small></article>
-      <article class="metric"><p>Finance entries</p><strong id="finance-metric">—</strong><small id="finance-detail">Local ledger ready</small></article>
-      <article class="metric"><p>Career pipeline</p><strong id="career-metric">—</strong><small id="career-detail">Local tracker ready</small></article>
+      <article class="metric"><p>Protein today</p><strong id="protein-metric">—</strong><small>Confirmed meals only</small></article>
+      <article class="metric"><p>Latest activity</p><strong id="health-metric">—</strong><small id="health-detail">Add a daily summary</small></article>
+      <article class="metric"><p>Workouts today</p><strong id="workout-metric">—</strong><small id="workout-detail">No workout saved yet</small></article>
     </section>
 
-    <section class="panel chat-panel">
+    <details class="panel chat-panel">
+      <summary>Optional AI chat · not needed for recording</summary>
       <div class="panel-heading">
         <div><p class="eyebrow">PROVIDER ROUTER</p><h2>Chat with Hermes</h2></div>
         <select id="provider-select" aria-label="Provider"></select>
       </div>
+      <p class="status-line">Chat does not save meals or workouts. Use the forms below. <a href="https://github.com/Wenyeezy/hermes-personal-assistant-template/blob/main/docs/runtime-edition.md" target="_blank" rel="noopener noreferrer">Optional model / local endpoint setup ↗</a></p>
       <div id="chat-log" class="chat-log" aria-live="polite">
-        <div class="message assistant">Hermes is running locally. The default echo provider needs no account; enable your own provider when ready.</div>
+        <div class="message assistant">The default echo is an offline test, not AI. Models are optional and use your own setup.</div>
       </div>
       <form id="chat-form" class="composer">
         <textarea name="message" rows="2" placeholder="Ask Hermes…" required></textarea>
         <button type="submit">Send</button>
       </form>
       <p id="chat-status" class="status-line"></p>
-    </section>
+    </details>
 
     <nav class="tabs" aria-label="Modules">
       <button class="tab active" data-target="nutrition">Nutrition</button>
-      <button class="tab" data-target="health">Health</button>
-      <button class="tab" data-target="finance">Finance</button>
-      <button class="tab" data-target="career">Career</button>
+      <button class="tab" data-target="health">Fitness</button>
+      <button class="tab" data-target="finance" data-optional="finance" hidden>Finance · optional</button>
+      <button class="tab" data-target="career" data-optional="career" hidden>Career · extension</button>
     </nav>
 
     <section id="nutrition" class="module active">
       <div class="module-copy"><p class="eyebrow">NUTRITION</p><h2>Confirm a meal</h2><p>Track full macros and provenance locally. Only confirmed entries count toward totals and HealthKit export.</p></div>
       <form class="entry-form" data-api="nutrition">
-        <label>Optional food photo<input id="nutrition-photo" type="file" accept="image/jpeg,image/png,image/webp"></label>
+        <details class="advanced-fields"><summary>Optional photo estimate · requires your OpenAI setup</summary>
+        <label>Food photo<input id="nutrition-photo" type="file" accept="image/jpeg,image/png,image/webp"></label>
         <button id="analyze-nutrition-photo" type="button">Estimate with configured OpenAI</button>
         <p id="nutrition-photo-status" class="status-line">Explicit cloud action: the selected image is sent only when you press Estimate and is not saved by Hermes.</p>
+        </details>
         <label>Description<input name="description" placeholder="Lunch" required></label>
         <label>Date<input type="date" name="occurred_on"></label>
         <div class="form-grid four">
@@ -64,20 +68,20 @@
           <label>Carbs g<input type="number" step="0.1" name="carbs_g" value="0"></label>
           <label>Fat g<input type="number" step="0.1" name="fat_g" value="0"></label>
         </div>
-        <div class="form-grid four">
+        <details class="advanced-fields"><summary>Extra nutrients and meal type · optional</summary><div class="form-grid four">
           <label>Fiber g<input type="number" step="0.1" name="fiber_g" value="0"></label>
           <label>Sugar g<input type="number" step="0.1" name="sugar_g" value="0"></label>
           <label>Sodium mg<input type="number" step="0.1" name="sodium_mg" value="0"></label>
           <label>Meal<select name="meal_type"><option>unspecified</option><option>breakfast</option><option>lunch</option><option>dinner</option><option>snack</option></select></label>
-        </div>
+        </div></details>
         <div class="form-grid two">
           <label>Source<select name="source"><option>manual</option><option>label</option><option>restaurant</option><option>provider_estimate</option></select></label>
           <label>Status<select name="status"><option>confirmed</option><option>needs_review</option></select></label>
         </div>
         <label>Notes<input name="notes" placeholder="Optional local note"></label>
-        <button type="submit">Add confirmed meal</button><p class="status-line"></p>
+        <button type="submit">Save meal locally</button><p class="status-line" aria-live="polite"></p>
       </form>
-      <form id="nutrition-goals-form" class="entry-form compact-form">
+      <details class="advanced-fields full-width"><summary>Optional daily goals</summary><form id="nutrition-goals-form" class="entry-form compact-form">
         <h3>Daily goals</h3>
         <div class="form-grid four">
           <label>Calories<input type="number" step="0.1" name="calories"></label>
@@ -86,13 +90,24 @@
           <label>Carbs g<input type="number" step="0.1" name="carbs_g"></label>
         </div>
         <button type="submit">Save local goals</button><p class="status-line"></p>
-      </form>
+      </form></details>
       <p id="nutrition-summary" class="status-line"></p>
       <div class="recent" data-list="nutrition"></div>
     </section>
 
     <section id="health" class="module">
-      <div class="module-copy"><p class="eyebrow">HEALTH</p><h2>Daily activity bridge</h2><p>Manual input works now. HealthKit ingest is an optional, authenticated adapter; an iPhone app is not included in this download.</p></div>
+      <div class="module-copy"><p class="eyebrow">FITNESS</p><h2>Keep moving. Keep a record.</h2><p>Save a workout without a wearable or AI. Daily activity is optional; HealthKit needs a separate adapter. The iOS companion comes later.</p></div>
+      <form class="entry-form" data-api="health/workouts">
+        <h3>Add workout</h3>
+        <div class="form-grid two">
+          <label>Activity<input name="activity" placeholder="walking" required></label>
+          <label>Duration min<input type="number" step="0.1" min="0" name="duration_minutes" required></label>
+          <label>Date<input type="date" name="occurred_on"></label>
+          <label>Active kcal · optional<input type="number" step="0.1" name="active_calories"></label>
+        </div>
+        <button type="submit">Save workout</button><p class="status-line" aria-live="polite"></p>
+      </form>
+      <details class="advanced-fields full-width"><summary>Optional daily activity summary</summary>
       <form class="entry-form" data-api="health">
         <label>Date<input type="date" name="occurred_on"></label>
         <div class="form-grid four">
@@ -108,24 +123,14 @@
           <label>Weight kg<input type="number" step="0.1" name="weight_kg"></label>
         </div>
         <input type="hidden" name="source" value="manual">
-        <button type="submit">Save daily summary</button><p class="status-line"></p>
-      </form>
-      <form class="entry-form compact-form" data-api="health/workouts">
-        <h3>Add workout</h3>
-        <div class="form-grid four">
-          <label>Activity<input name="activity" placeholder="walking" required></label>
-          <label>Date<input type="date" name="occurred_on"></label>
-          <label>Duration min<input type="number" step="0.1" name="duration_minutes" required></label>
-          <label>Active kcal<input type="number" step="0.1" name="active_calories"></label>
-        </div>
-        <button type="submit">Save workout</button><p class="status-line"></p>
-      </form>
-      <p id="health-summary" class="status-line"></p>
-      <div class="recent" data-list="health"></div>
+        <button type="submit">Save daily summary</button><p class="status-line" aria-live="polite"></p>
+      </form></details>
+      <p id="health-summary" class="status-line full-width"></p>
       <div class="recent" data-list="health/workouts"></div>
+      <div class="recent" data-list="health"></div>
     </section>
 
-    <section id="finance" class="module">
+    <section id="finance" class="module" data-optional="finance" hidden>
       <div class="module-copy"><p class="eyebrow">FINANCE</p><h2>Local review ledger</h2><p>Manual entries stay in local SQLite. Bank sync and statement imports are not enabled by this starter.</p></div>
       <form class="entry-form" data-api="finance">
         <label>Description<input name="description" placeholder="Example expense" required></label>
@@ -139,7 +144,7 @@
       <div class="recent" data-list="finance"></div>
     </section>
 
-    <section id="career" class="module">
+    <section id="career" class="module" data-optional="career" hidden>
       <div class="module-copy"><p class="eyebrow">CAREER</p><h2>Opportunity pipeline</h2><p>Track opportunities locally. Browser capture, email import, and application actions remain optional owner-gated adapters.</p></div>
       <form class="entry-form" data-api="career">
         <div class="form-grid two">
@@ -153,9 +158,16 @@
       </form>
       <div class="recent" data-list="career"></div>
     </section>
+    <section class="panel optional-modules" id="optional-modules" aria-labelledby="optional-title">
+      <p class="eyebrow">YOUR CHOICE</p><h2 id="optional-title">Optional modules</h2>
+      <p>Both are off by default. Disabling a module hides it and blocks its dashboard API; existing local records are kept. No bank or account is connected.</p>
+      <label class="toggle-label"><input id="enable-finance" type="checkbox" data-module="finance"> Enable Finance · manual local ledger</label>
+      <details><summary>Other extensions</summary><label class="toggle-label"><input id="enable-career" type="checkbox" data-module="career"> Enable Career · local opportunity tracker</label></details>
+      <p class="status-line" id="module-status" aria-live="polite">Finance and Career are optional.</p>
+    </section>
   </main>
 
-  <footer class="shell">Local by default · No account connection or background service is implied</footer>
+  <footer class="shell">Local by default · No account required · Records are not encrypted · Not medical or financial advice</footer>
   <script src="app.js"></script>
 </body>
 </html>

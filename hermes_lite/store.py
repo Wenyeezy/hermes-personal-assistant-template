@@ -234,7 +234,8 @@ class HermesStore:
     def add_workout(self, payload: dict[str, Any], *, source: str = "manual") -> dict[str, Any]:
         event_time = str(payload.get("event_time") or payload.get("occurred_on") or "")
         occurred_on = self._day(event_time[:10] if event_time else None)
-        source_id = str(payload.get("source_id") or "").strip()
+        # Imported source IDs deduplicate; separate manual workouts need unique IDs.
+        source_id = str(payload.get("source_id") or "").strip() or uuid.uuid4().hex
         row = {
             "id": uuid.uuid4().hex,
             "occurred_on": occurred_on,
@@ -431,7 +432,20 @@ class HermesStore:
             ).fetchall()
         return [dict(row) for row in rows]
 
-    def dashboard(self) -> dict[str, Any]:
+    def confirm_nutrition(self, payload: dict[str, Any]) -> dict[str, Any]:
+        if payload.get("confirmed") is not True:
+            raise ValueError("Explicit confirmation is required")
+        identifier = self._required_text(payload.get("id"), "id")
+        with self.connect() as db:
+            row = db.execute("SELECT * FROM nutrition_events WHERE id=?", (identifier,)).fetchone()
+            if row is None:
+                raise ValueError("Meal not found")
+            db.execute("UPDATE nutrition_events SET status='confirmed' WHERE id=?", (identifier,))
+            result = dict(row)
+            result["status"] = "confirmed"
+        return result
+
+    def dashboard(self, enabled_modules: dict[str, bool] | None = None) -> dict[str, Any]:
         today = date.today().isoformat()
         with self.connect() as db:
             nutrition = self.nutrition_summary(today, today)["totals"]
@@ -444,16 +458,21 @@ class HermesStore:
                     COALESCE(SUM(CASE WHEN status='needs_review' THEN 1 ELSE 0 END),0) AS needs_review
                     FROM finance_entries"""
                 ).fetchone()
-            )
+            ) if enabled_modules is None or enabled_modules.get("finance") else None
             career = {
                 row["status"]: row["count"]
                 for row in db.execute(
                     "SELECT status, COUNT(*) AS count FROM career_opportunities GROUP BY status"
                 ).fetchall()
-            }
+            } if enabled_modules is None or enabled_modules.get("career") else None
+            workout = dict(db.execute(
+                "SELECT COUNT(*) AS entries, COALESCE(SUM(duration_minutes),0) AS minutes FROM health_workouts WHERE occurred_on=?",
+                (today,),
+            ).fetchone())
         return {
             "nutrition": nutrition,
             "health": dict(health_row) if health_row else None,
+            "workout": workout,
             "finance": finance,
             "career": career,
         }

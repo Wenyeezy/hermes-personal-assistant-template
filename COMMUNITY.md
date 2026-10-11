@@ -33,5 +33,5 @@ return with feedback, not merely accumulate reactions or stars.
 
 Keep discussion respectful and specific. Challenge methods and claims rather
 than people. Avoid unsolicited promotions and requests for private credentials.
-The existing [rights notice](README.md#license) applies; this community page
-does not introduce an open-source license.
+The project uses the [MIT license](LICENSE). Keep its copyright and permission
+notice when reusing the code; private data and credentials are not distributed.

@@ -15,7 +15,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
-from hermes_lite.config import RuntimePaths, initialize_runtime, load_config  # noqa: E402
+from hermes_lite.config import OPTIONAL_MODULES, RuntimePaths, initialize_runtime, load_config, module_settings, save_config  # noqa: E402
 from hermes_lite.demo import seed_demo  # noqa: E402
 from hermes_lite.ingest import create_ingest_server  # noqa: E402
 from hermes_lite.providers import ProviderError, ProviderRouter  # noqa: E402
@@ -77,7 +77,8 @@ def command_doctor(args: argparse.Namespace) -> int:
         "state_root": str(paths.root),
         "server": config.get("server", {}),
         "providers": router.status(),
-        "modules": store.dashboard(),
+        "modules": store.dashboard(module_settings(config)),
+        "module_settings": module_settings(config),
     }
     if getattr(args, "json", False):
         print(json.dumps(report, indent=2, sort_keys=True))
@@ -86,7 +87,9 @@ def command_doctor(args: argparse.Namespace) -> int:
         print(f"Private state: {paths.root}")
         for name, status in report["providers"].items():
             print(f"Provider {name}: {status['reason']}")
-        print("Modules: nutrition, health, finance, career")
+        print("Core: nutrition, fitness (health)")
+        for name in OPTIONAL_MODULES:
+            print(f"Optional {name}: {'enabled' if module_settings(config)[name] else 'off'}")
     return 0
 
 
@@ -161,11 +164,21 @@ def command_provider(args: argparse.Namespace) -> int:
             print("A disabled provider cannot be the default.", file=sys.stderr)
             return 2
         config["providers"]["default"] = args.name
-    paths.config.write_text(json.dumps(config, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    save_config(paths, config)
     print(f"Provider {args.name}: {args.action}d")
     if args.default:
         print(f"Default provider: {args.name}")
     print("No credential was read or written. Run doctor to check environment readiness.")
+    return 0
+
+
+def command_module(args: argparse.Namespace) -> int:
+    paths = RuntimePaths.from_root(args.root)
+    config = load_config(paths)
+    config.setdefault("modules", {})[args.name] = {"enabled": args.action == "enable"}
+    save_config(paths, config)
+    print(f"{args.name.title()}: {'enabled' if args.action == 'enable' else 'off'}. Existing records kept.")
+    print("Restart a running dashboard to load CLI changes, or use its Optional modules controls.")
     return 0
 
 
@@ -211,6 +224,10 @@ def build_parser() -> argparse.ArgumentParser:
     provider.add_argument("name", choices=["echo", "openai", "codex_cli", "ollama", "openai_compatible"])
     provider.add_argument("--default", action="store_true", help="also make the enabled provider the default")
     provider.set_defaults(func=command_provider)
+    module = sub.add_parser("module", help="explicitly opt into or disable an optional local module")
+    module.add_argument("action", choices=["enable", "disable"])
+    module.add_argument("name", choices=OPTIONAL_MODULES)
+    module.set_defaults(func=command_module)
     return parser
 
 
