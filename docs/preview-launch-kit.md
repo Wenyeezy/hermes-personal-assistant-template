@@ -34,9 +34,9 @@ Scene frames use 1280 × 720 and `/?media=career`, `/?media=nutrition`, and `/?m
 >
 > Early, small, useful. Feedback welcome.
 >
-> [Replace with the verified permanent demo URL]
+> https://hermes-preview.wenyeezy.com/
 
-Attach the wide image or the verified 30-second MP4. Do not post both versions of the same cover in one tweet. The temporary AWS quick-tunnel hostname is for review, not the permanent launch link.
+Attach the wide image or the verified 30-second MP4. Do not post both versions of the same cover in one tweet. The fixed AWS demo URL above has passed HTTPS, mobile interaction, export and public API-isolation checks. The MP4 still has a visible Descript watermark.
 
 ## Follow-up thread (draft)
 
@@ -47,7 +47,7 @@ Attach the wide image or the verified 30-second MP4. Do not post both versions o
 
 ## Before publishing
 
-- Use a permanent HTTPS hostname, not a transient Quick Tunnel link.
+- Use the verified fixed HTTPS hostname above, not the earlier Quick Tunnel link.
 - The current MP4 is a watermarked preview export. For a clean launch video,
   obtain an authorized watermark-free export; no paid plan was purchased here.
 - Confirm the release download and one-command setup on a fresh ZIP copy.

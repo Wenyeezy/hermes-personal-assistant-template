@@ -8,14 +8,14 @@
 Dashboard 和本地手动记录；不包含个人数据、生产网关、自动记忆采纳或已连接账户。
 
 [浏览器演示](site/README.md) ·
-[在线虚构演示（临时地址）](https://adapters-durable-linda-lyric.trycloudflare.com) ·
+[在线虚构演示](https://hermes-preview.wenyeezy.com/) ·
 [下载预览版](https://github.com/Wenyeezy/hermes-personal-assistant-template/releases) ·
 [详细安装](INSTALL_FOR_FRIEND.md) · [反馈](COMMUNITY.md)
 
 ## 一条命令开始
 
-在线 demo 位于 AWS，通过临时 HTTPS 隧道访问；隧道重启后地址可能变化。
-正式推广前还需要配置固定域名。
+在线 demo 位于 AWS，已配置固定 HTTPS 地址。它是独立的静态模拟演示，
+不是本地运行版的托管服务。
 
 下载并解压仓库，**进入解压后的文件夹**，使用 Python 3.10 或以上运行：
 

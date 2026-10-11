@@ -5,6 +5,20 @@ building a personal Hermes-style assistant. It intentionally omits private
 hostnames, local paths, account names, raw health/finance records, screenshots,
 tokens, and personal memory.
 
+## 2026-10-10: Fixed HTTPS preview address
+
+After owner-confirmed Cloudflare login, a new public hostname route was added
+only for the existing isolated static origin. The three private routes, their
+ordering, connector tokens and Access policies were left untouched. No service
+restart or new inbound port was required.
+
+Fixed-domain HTTPS, all three simulated actions, fictional JSON export and a
+390-pixel mobile viewport passed. Public runtime API GET/POST returned 404 and
+dotfile access returned 403. Existing private-service health remained unchanged.
+The bilingual README, release notes and unposted X draft now use the fixed demo
+address. Release archives and the original tag were preserved; advertising and
+X publishing remain deferred. The current video export still has its watermark.
+
 ## 2026-10-10: Runnable Life public preview
 
 The runtime branch now integrates the Life-first main documentation, resolves
@@ -15,8 +29,8 @@ private gateway calls. The Python runtime remains a separate manual-record start
 
 Acceptance: 23 local tests, privacy scan, desktop/mobile browser checks, simulated
 receipts, fictional export/reset, and static-only AWS deployment passed. The
-public temporary HTTPS tunnel excludes runtime APIs; private service units remain
-active. Permanent DNS routing still requires authorized Cloudflare administration.
+initial public temporary HTTPS tunnel excludes runtime APIs; private service
+units remain active. Fixed DNS routing was subsequently added as recorded above.
 Launch images and a verified 30-second, 1280 × 720 silent video use fictional
 samples only. PR #2 was merged after owner approval and three-version CI passed.
 No X post or advertising purchase

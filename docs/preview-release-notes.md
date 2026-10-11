@@ -4,7 +4,7 @@ An early public preview, not the maintainer's private assistant and not a stable
 
 ## Try it
 
-- [AWS fictional browser demo — temporary review URL](https://adapters-durable-linda-lyric.trycloudflare.com).
+- [AWS fictional browser demo](https://hermes-preview.wenyeezy.com/).
 - Download `hermes-life-v0.1.0-preview.1.zip`, extract it, and open a terminal in the extracted folder. With Python 3.10+ installed:
 
   ```sh
@@ -33,6 +33,6 @@ review; a clean promotional export remains a separate step. No paid plan was pur
 
 The browser's in-place confirmation transitions are simulated; the downloaded runtime currently creates manual records and summaries. Owner-wide memory, production gateways, private accounts, automatic applications and bank sync are not included. Local SQLite/Markdown are not encrypted. Cloud providers and device adapters are optional and use your own setup/accounts.
 
-The AWS site currently has a **temporary** Quick Tunnel hostname that can change after restart. Permanent HTTPS/DNS routing requires an authorized Cloudflare session. Do not use the temporary URL as a long-term launch link.
+The AWS site now has a fixed HTTPS hostname pointing only to the isolated static origin. The previous temporary Quick Tunnel address is not the launch link. Existing private tunnel routes and Access policies were not changed. The fixed domain was added after the initial release packaging; the original source archive and release tag remain unchanged, while the current README on main and these release notes point to the fixed address.
 
 No open-source license has been granted; public visibility is not a license. Rights remain with the repository owner. No medical, financial or employment guarantee is offered. No X post, advertising registration, ad spend or paid membership purchase is part of this release.
