@@ -17,6 +17,10 @@
   </header>
 
   <main class="shell">
+    <section class="onboarding" aria-label="First steps">
+      <div><p class="eyebrow">YOUR FIRST FIVE MINUTES</p><h2 id="workspace-mode">Start with one small record.</h2><p id="workspace-guidance">Use a module below to save and review a local entry. Chat is an offline echo until you explicitly enable your own model provider.</p></div>
+      <div class="first-actions"><button type="button" data-jump="career">Try the career tracker</button><button type="button" data-jump="nutrition">Review a meal</button><a href="https://github.com/Wenyeezy/hermes-personal-assistant-template/blob/main/docs/runtime-edition.md" target="_blank" rel="noopener noreferrer">Optional model setup ↗</a></div>
+    </section>
     <section class="metrics" aria-label="System overview">
       <article class="metric"><p>Nutrition today</p><strong id="nutrition-metric">—</strong><small id="nutrition-detail">No entries yet</small></article>
       <article class="metric"><p>Latest health</p><strong id="health-metric">—</strong><small id="health-detail">Manual bridge ready</small></article>
@@ -88,7 +92,7 @@
     </section>
 
     <section id="health" class="module">
-      <div class="module-copy"><p class="eyebrow">HEALTH</p><h2>Daily activity bridge</h2><p>Manual input and authenticated HealthKit/TestFlight sync use the same private local store.</p></div>
+      <div class="module-copy"><p class="eyebrow">HEALTH</p><h2>Daily activity bridge</h2><p>Manual input works now. HealthKit ingest is an optional, authenticated adapter; an iPhone app is not included in this download.</p></div>
       <form class="entry-form" data-api="health">
         <label>Date<input type="date" name="occurred_on"></label>
         <div class="form-grid four">

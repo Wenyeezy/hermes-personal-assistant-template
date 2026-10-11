@@ -1,44 +1,50 @@
 # Start Here
 
-This repository is a privacy-safe framework, not a copy of somebody else's
-personal assistant data.
+## Try a fictional local walkthrough
 
-## Easiest Path
+Install Python 3.10+, download and extract this repository, and open a terminal
+in the extracted folder. Git and Codex are optional.
 
-1. Fork or download this repository.
-2. Open the whole folder as a project in Codex.
-3. Say:
-
-   ```text
-   Read AGENTS.md and help me start Easy Setup.
-   ```
-
-4. Codex will inspect the template, explain the privacy boundary, and—after
-   your approval—create a local knowledge base and starter runtime under
-   `private/`.
-
-You can also run the deterministic scaffold yourself:
-
-```text
-python3 scripts/easy_setup.py check
-python3 scripts/easy_setup.py init
-python3 scripts/easy_setup.py check
-python3 scripts/hermes.py init
-python3 scripts/hermes.py doctor
-python3 scripts/hermes.py serve --open
+```sh
+python3 scripts/hermes.py start --demo --open
 ```
 
-The generated `private/` directory is ignored by Git. The local dashboard starts
-with an offline echo provider plus empty Nutrition, Health, Finance, and Career
-modules. Setup does not request credentials, install background services,
-connect accounts, or enable cloud providers.
+Made-up entries go in a separate `private/Hermes_Demo/` directory. No model is
+called. Try Career or Nutrition first. Keep the terminal open; Ctrl-C stops it.
 
-## After the Scaffold
+## Start your own empty workspace
 
-Fill the generated files gradually. Start with response preferences, current
-priorities, and one project. Add model providers, messaging gateways, imports,
-and scheduled automation only as separate opt-in phases.
+```sh
+python3 scripts/hermes.py start --open
+```
 
-Read [Easy Setup](docs/easy-setup.md) for the full flow and
-[Runtime Edition](docs/runtime-edition.md) for provider/module setup. Read
-[Safety and Privacy](docs/safety-and-privacy.md) before connecting real data.
+This initializes or checks the private knowledge scaffold and local runtime
+without replacing existing files. State stays under Git-ignored `private/`.
+Providers, gateways, schedules and account connections remain off by default.
+
+Prefer Codex? Open this folder as a project and say:
+
+```text
+Read AGENTS.md and help me start Easy Setup.
+```
+
+## Troubleshooting
+
+| Symptom | Next step |
+| --- | --- |
+| `python3` not found | Install Python 3.10+; on Windows try `py -3` |
+| Script not found | Run inside the extracted repository folder |
+| Browser did not open | Open the localhost URL printed in the terminal |
+| Port in use | Add `--port 8766` to the start command |
+| Chat repeats your message | Expected offline echo; configure a provider separately |
+| Demo refuses existing data | Choose a fresh `--root` before the command; do not overwrite |
+| Partial knowledge scaffold | Run `python3 scripts/easy_setup.py check`; inspect existing files |
+
+Example isolated location:
+
+```sh
+python3 scripts/hermes.py --root ./private/My_Demo start --demo --open
+```
+
+[Full installation](INSTALL_FOR_FRIEND.md) · [Providers](docs/runtime-edition.md) ·
+[Safety](docs/safety-and-privacy.md)

@@ -23,6 +23,12 @@ h2 { margin: 0; font-family: Georgia, serif; font-size: clamp(1.8rem, 4vw, 2.6re
 .health-pill { display: flex; gap: 9px; align-items: center; padding: 10px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); }
 .health-pill span { width: 9px; height: 9px; border-radius: 50%; background: #38a169; box-shadow: 0 0 0 5px rgba(56,161,105,.12); }
 .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.onboarding { display: flex; gap: 24px; justify-content: space-between; align-items: center; margin-bottom: 22px; padding: 24px; border: 1px solid var(--line); border-radius: 22px; background: var(--accent-soft); }
+.onboarding h2 { font-size: 1.7rem; }
+.onboarding p:last-child { max-width: 640px; color: var(--muted); line-height: 1.6; }
+.first-actions { display: grid; gap: 8px; min-width: 210px; }
+.first-actions a { color: var(--accent); padding: 8px 0; font-size: .85rem; }
+:focus-visible { outline: 3px solid #b36b33; outline-offset: 4px; }
 .metric, .panel, .module { border: 1px solid var(--line); background: var(--card); box-shadow: var(--shadow); backdrop-filter: blur(14px); }
 .metric { padding: 22px; border-radius: 22px; }
 .metric p, .metric small { margin: 0; color: var(--muted); }
@@ -62,8 +68,11 @@ footer { padding: 32px 0 48px; color: var(--muted); font-size: .82rem; }
   .form-grid.four { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 560px) {
+  .onboarding { align-items: stretch; flex-direction: column; padding: 20px; }
   .hero { min-height: 220px; padding-top: 44px; align-items: flex-start; flex-direction: column; }
-  .metrics { grid-template-columns: 1fr; }
+  .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .metric { padding: 16px; min-width: 0; }
+  .metric strong { font-size: 1.2rem; }
   .panel-heading { align-items: stretch; flex-direction: column; }
   .panel-heading select { width: 100%; }
   .composer { grid-template-columns: 1fr; }

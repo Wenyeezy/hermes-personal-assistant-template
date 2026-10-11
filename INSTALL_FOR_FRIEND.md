@@ -1,16 +1,29 @@
-# Install Hermes From a Fork
+# Install the Hermes Public Preview
 
 This guide is for a new owner installing the sanitized Hermes starter on their
-own Mac and iPhone. Your accounts, credentials, Health data, and private memory
+own computer. Your accounts, credentials, Health data, and private memory
 remain separate from the template maintainer.
 
-## 1. Fork and Open in Codex
+## 1. Download and Try It
 
 Prerequisites:
 
-- macOS with Python 3.10 or newer;
-- a GitHub account;
-- Codex Desktop, or another Codex environment that can open the whole folder.
+- Python 3.10 or newer on macOS, Linux, or Windows;
+- a terminal and a browser. GitHub and Codex are optional for local setup.
+
+For a quick trial, download and extract the repository, open a terminal inside
+that folder, and run:
+
+```sh
+python3 scripts/hermes.py start --demo --open
+```
+
+Windows: replace `python3` with `py -3`. Fictional samples are isolated in
+`private/Hermes_Demo/`. Use `start --open` without `--demo` for an empty workspace.
+Existing files and records are preserved. The public browser demo is a separate
+scripted simulation, not the maintainer's private assistant.
+
+If you want Codex-guided setup instead:
 
 Fork this repository into your own GitHub account, clone or download your fork,
 then open the entire repository folder in Codex. Tell Codex:
@@ -27,12 +40,7 @@ generated `private/` directory is ignored by Git.
 If you prefer Terminal:
 
 ```text
-python3 scripts/easy_setup.py check
-python3 scripts/easy_setup.py init
-python3 scripts/easy_setup.py check
-python3 scripts/hermes.py init
-python3 scripts/hermes.py doctor
-python3 scripts/hermes.py serve --open
+python3 scripts/hermes.py start --open
 ```
 
 The last command opens the local Hermes Dashboard. Keep that Terminal window
@@ -83,6 +91,10 @@ Hermes does not store the selected image. The returned estimate is always marked
 `needs_review`; inspect portions and values before confirming it.
 
 ## 5. Optional Apple Health Companion
+
+An iPhone companion app is not included in this public download. Manual Health
+records work without it. Any private TestFlight invitation is a separate arrangement,
+not a promised part of this preview.
 
 The maintainer may invite you by email to a private TestFlight group. On iPhone:
 

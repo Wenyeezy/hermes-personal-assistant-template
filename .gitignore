@@ -34,3 +34,11 @@ Thumbs.db
 *.bak
 __pycache__/
 *.pyc
+
+# Rebuildable public preview output and synthetic media exports
+dist/
+release-assets/
+site/media/*.png
+site/media/*.jpg
+site/media/*.mp4
+site/media/*.webm

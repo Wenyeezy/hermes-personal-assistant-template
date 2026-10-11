@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#245b46">
+  <meta name="description" content="Explore Hermes Life through a fictional day. A local-first personal workspace public preview, with no signup or model calls in this demo.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Hermes Life — a quieter place for your day</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="media.css">
+  <script src="fixtures.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#demo">Skip to interactive demo</a>
+  <header class="navigation wrap">
+    <a class="brand" href="#top" aria-label="Hermes Life home"><span class="brand-symbol" aria-hidden="true">h.</span> Hermes Life</a>
+    <nav aria-label="Main navigation"><a href="#demo">Try it</a><a href="#boundaries">What ships</a><a href="#install">Run locally <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main id="top">
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> Public preview · local-first</p>
+        <h1 id="hero-title">Your day.<br><em>With context.</em></h1>
+        <p class="lede">A quieter place for your records, reviews, and next steps. Meet Hermes Life through one fictional day.</p>
+        <div class="actions"><a class="button primary" href="#demo">Explore the demo <span aria-hidden="true">↓</span></a><a class="text-link" href="https://github.com/Wenyeezy/hermes-personal-assistant-template">See the project <span aria-hidden="true">↗</span></a></div>
+        <p class="small muted">No signup. Fictional data. No model calls.</p>
+      </div>
+      <div class="day-card" aria-label="Illustrative fictional workspace for Alex">
+        <div class="day-top"><span class="mini-brand">h.</span><span>ALEX'S WORKSPACE</span><span class="pill">Fictional day</span></div>
+        <div class="day-heading"><div><p class="small muted">A LITTLE LESS SCATTERED</p><h2>One place to pick up.</h2></div><span class="day-number" aria-hidden="true">01</span></div>
+        <div class="day-opportunity"><div><p class="label">CAREER · DRAFT</p><h3>Product Operations</h3><p>Harbor Works <span class="muted">(fictional)</span></p></div><span class="round-arrow" aria-hidden="true">↗</span></div>
+        <div class="next-step"><span class="status-dot"></span> Next: review the role and write one question.</div>
+        <div class="day-metrics"><div><p class="label">NUTRITION</p><strong>420 <small>kcal</small></strong><p>Confirmed · 610 pending</p></div><div><p class="label">ACTIVITY</p><strong>6,800 <small>steps</small></strong><p>Fictional sample · 30 min</p></div></div>
+        <div class="day-footer"><span>Keep the estimate separate from the fact.</span><span aria-hidden="true">✓</span></div>
+      </div>
+    </section>
+    <div class="principles wrap"><span>01 / Keep your records local</span><span>02 / Make uncertainty visible</span><span>03 / Choose what connects</span></div>
+    <section class="demo-section wrap" id="demo" aria-labelledby="demo-title">
+      <div class="section-heading"><div><p class="eyebrow">A FICTIONAL DAY, IN THREE SMALL STEPS</p><h2 id="demo-title">Try the shape of it.</h2></div><p>This browser walkthrough simulates a few actions. It is not connected to anyone's account or to the local runtime.</p></div>
+      <div class="demo-shell">
+        <aside class="demo-sidebar"><div class="workspace-label"><span class="mini-brand">h.</span><div><strong>Alex's day</strong><span>Fictional workspace</span></div></div><div class="tabs" role="tablist" aria-label="Demo modules" aria-orientation="vertical"><button id="tab-career" role="tab" aria-selected="true" aria-controls="panel-career" data-tab="career">Career <span>01</span></button><button id="tab-nutrition" role="tab" aria-selected="false" aria-controls="panel-nutrition" tabindex="-1" data-tab="nutrition">Nutrition <span>02</span></button><button id="tab-finance" role="tab" aria-selected="false" aria-controls="panel-finance" tabindex="-1" data-tab="finance">Finance <span>03</span></button></div><p class="sidebar-note">Only fictional samples.<br>Changes live in this tab and reset when you reload.</p><button class="quiet-button" id="reset-demo">Reset demo <span aria-hidden="true">↺</span></button></aside>
+        <div class="demo-content">
+          <div class="demo-toolbar"><span class="label">PUBLIC WALKTHROUGH</span><span class="pill">Browser simulation</span></div>
+          <section id="panel-career" role="tabpanel" aria-labelledby="tab-career" class="demo-panel">
+            <p class="eyebrow">01 / CAREER</p><h3>A next step you can see.</h3><p class="panel-description">Start with one opportunity, not another pile of tabs.</p>
+            <div class="record-card"><div class="record-heading"><span class="label">FICTIONAL OPPORTUNITY</span><span class="badge" id="career-status">Draft</span></div><h4>Product Operations</h4><p class="muted">Harbor Works · a fictional company</p><dl><div><dt>Next step</dt><dd>Review the role and write one question.</dd></div><div><dt>Action boundary</dt><dd>No application or message will be sent.</dd></div></dl><button id="save-career" class="button primary">Save fictional opportunity</button></div>
+          </section>
+          <section id="panel-nutrition" role="tabpanel" aria-labelledby="tab-nutrition" class="demo-panel" hidden>
+            <p class="eyebrow">02 / NUTRITION</p><h3>An estimate is not a fact.</h3><p class="panel-description">The pending sample stays out of confirmed totals until you review it.</p>
+            <div class="nutrition-total"><div><span class="label">CONFIRMED ENERGY</span><strong><span id="calorie-total">420</span> <small>kcal</small></strong></div><p id="nutrition-summary">18 g protein · 1 confirmed sample</p></div>
+            <div class="meal-row"><div><strong>Oat bowl</strong><span>420 kcal · 18 g protein</span></div><span class="badge">Confirmed</span></div><div class="meal-row"><div><strong>Lunch estimate</strong><span>610 kcal · 28 g protein · fictional estimate</span></div><span class="badge pending" id="lunch-status">Needs review</span></div><button id="confirm-lunch" class="button primary">Confirm fictional lunch</button><p class="small muted">No photo, AI estimate, or real meal is processed by this website.</p>
+          </section>
+          <section id="panel-finance" role="tabpanel" aria-labelledby="tab-finance" class="demo-panel" hidden>
+            <p class="eyebrow">03 / FINANCE</p><h3>Small records. Clear review.</h3><p class="panel-description">A simple review queue, with nothing connected to a bank.</p><div class="record-card"><div class="record-heading"><span class="label">FICTIONAL EXPENSE</span><span class="badge pending" id="finance-status">Needs review</span></div><h4 class="expense-amount">$12.00</h4><p>Notebook <span class="muted">· Supplies</span></p><dl><div><dt>Source</dt><dd>Fictional sample, not a transaction feed.</dd></div><div><dt>Action boundary</dt><dd>No money moves. No account is connected.</dd></div></dl><button id="review-expense" class="button primary">Mark fictional expense reviewed</button></div>
+          </section>
+          <div class="receipt-area" aria-live="polite" aria-atomic="true"><span class="receipt-label">SIMULATED RECEIPT</span><p id="receipt-text">Try an action above. Its simulated receipt will appear here.</p></div>
+        </div>
+      </div>
+      <div class="demo-bottom"><p class="small muted">Want to inspect the sample? Exporting downloads a fictional JSON file from this tab.</p><button class="text-link" id="export-demo">Export fictional sample <span aria-hidden="true">↓</span></button></div>
+    </section>
+    <section class="boundary-section wrap" id="boundaries" aria-labelledby="boundary-title"><div class="section-heading"><div><p class="eyebrow">THE HONEST VERSION</p><h2 id="boundary-title">A starter. Not a promise.</h2></div><p>The downloadable preview is a small, runnable local workspace. This public website is a separate, scripted walkthrough.</p></div><div class="boundary-grid"><article><span class="boundary-number">01</span><h3>What runs today</h3><p>Manual career, nutrition, activity, and expense records. A local dashboard, SQLite storage, and a Markdown knowledge base.</p></article><article><span class="boundary-number">02</span><h3>What you opt into</h3><p>Model adapters and integrations require your own setup. The default Echo adapter is an offline connectivity test, not an AI assistant.</p></article><article><span class="boundary-number">03</span><h3>What isn't included</h3><p>The owner's private memory and accounts, automatic applications, bank sync, and a finished Research Lab. No private service is exposed here.</p></article></div></section>
+    <section class="install-section wrap" id="install" aria-labelledby="install-title"><div><p class="eyebrow">TAKE THE NEXT SMALL STEP</p><h2 id="install-title">Try it on your own machine.</h2><p>Download and unpack the source. With Python 3.10+ installed, open a terminal in that folder and run:</p><div class="command"><code id="install-command">python3 scripts/hermes.py start --demo --open</code><button id="copy-command" aria-label="Copy installation command">Copy</button></div><p class="small muted" id="copy-status" aria-live="polite">Windows: replace python3 with py -3. No Git, Codex, or API key required.</p><div class="actions"><a class="button primary" href="https://github.com/Wenyeezy/hermes-personal-assistant-template/releases">Get the preview <span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/Wenyeezy/hermes-personal-assistant-template/blob/main/START_HERE.md">Installation guide</a></div></div><aside class="install-note"><span class="mini-brand">h.</span><h3>Your data stays separate.</h3><p>The sample starts in an isolated demo directory. For real records, run without <code>--demo</code>.</p><p>Local files are not encrypted. Enabling a cloud provider can send your selected prompts to that provider.</p></aside></section>
+  </main>
+  <footer class="wrap"><div><a class="brand" href="#top"><span class="brand-symbol" aria-hidden="true">h.</span> Hermes Life</a><p>Made for a little more continuity.</p></div><div class="footer-links"><a href="https://github.com/Wenyeezy/hermes-personal-assistant-template/issues/new">Share feedback ↗</a><a href="https://github.com/Wenyeezy/hermes-personal-assistant-template/blob/main/README.zh-CN.md">中文说明 ↗</a><span>Public preview · license selection pending</span></div><p class="privacy-note">This website uses fictional data only, with no account signup, analytics, cookies, model calls, or persistent browser storage. Hosting and network providers may keep ordinary access logs. Not medical, financial, or employment advice.</p></footer>
+</body>
+</html>

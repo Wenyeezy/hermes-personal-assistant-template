@@ -31,6 +31,10 @@ function displayNumber(value, digits = 0) {
 
 async function refreshStatus() {
   const data = await api("/api/status");
+  if (data.demo_mode) {
+    $("#workspace-mode").textContent = "A fictional day. A real local workspace.";
+    $("#workspace-guidance").textContent = "Every starter entry is made up. This isolated demo stays offline; it is not your real health, finance or career history. Try saving one more sample record below.";
+  }
   const {nutrition, health, finance, career} = data.modules;
   $("#nutrition-metric").textContent = `${displayNumber(nutrition.calories)} kcal`;
   $("#nutrition-detail").textContent = `${nutrition.entries} entries · ${displayNumber(nutrition.protein_g, 1)} g protein`;
@@ -192,13 +196,17 @@ $("#chat-form").addEventListener("submit", async (event) => {
   log.scrollTop = log.scrollHeight;
 });
 
-$$('.tab').forEach((tab) => {
-  tab.addEventListener("click", () => {
-    $$('.tab, .module').forEach((item) => item.classList.remove("active"));
-    tab.classList.add("active");
-    $(`#${tab.dataset.target}`).classList.add("active");
-  });
-});
+function activateModule(target) {
+  $$('.tab, .module').forEach((item) => item.classList.remove("active"));
+  $(`[data-target="${target}"]`).classList.add("active");
+  $(`#${target}`).classList.add("active");
+}
+$$('.tab').forEach((tab) => tab.addEventListener("click", () => activateModule(tab.dataset.target)));
+$$('[data-jump]').forEach((button) => button.addEventListener("click", () => {
+  activateModule(button.dataset.jump);
+  $(`#${button.dataset.jump}`).scrollIntoView({behavior: "smooth", block: "start"});
+  $("input", $(`#${button.dataset.jump}`)).focus({preventScroll: true});
+}));
 
 async function start() {
   todayInputs();

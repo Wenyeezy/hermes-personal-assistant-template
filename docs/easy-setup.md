@@ -3,6 +3,12 @@
 Easy Setup turns this public template into a private, local workspace without
 mixing the two layers.
 
+For the simplest preview, Python 3.10+ is enough. Download and unpack the source,
+then run `python3 scripts/hermes.py start --demo --open` in that folder. No Codex
+or provider account is required. The fictional workspace is isolated; `start
+--open` without `--demo` creates the normal local workspace. The rest of this
+guide describes the optional Codex-assisted and manual scaffold flows.
+
 ## What Success Means
 
 At the end of Phase 1:

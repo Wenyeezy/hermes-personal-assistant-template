@@ -22,6 +22,7 @@ MAX_BODY_BYTES = 8_000_000
 class HermesHTTPServer(ThreadingHTTPServer):
     store: HermesStore
     router: ProviderRouter
+    demo_mode: bool
 
 
 class HermesHandler(BaseHTTPRequestHandler):
@@ -39,7 +40,28 @@ class HermesHandler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(length))
         self.send_header("Cache-Control", "no-store")
         self.send_header("X-Content-Type-Options", "nosniff")
-        self.send_header("Content-Security-Policy", "default-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'")
+        self.send_header("Referrer-Policy", "no-referrer")
+        self.send_header("Content-Security-Policy", "default-src 'self'; style-src 'self'; script-src 'self'; connect-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; frame-ancestors 'none'")
+
+    def _guard_request(self, *, write: bool = False) -> bool:
+        host = self.headers.get("Host", "")
+        try:
+            hostname = urlparse("//" + host).hostname
+        except ValueError:
+            self._json(HTTPStatus.BAD_REQUEST, {"error": "Invalid Host header."})
+            return False
+        if self.app.server_address[0] in {"127.0.0.1", "::1"} and hostname not in {"127.0.0.1", "localhost", "::1"}:
+            self._json(HTTPStatus.FORBIDDEN, {"error": "Local dashboard requires a loopback Host."})
+            return False
+        if write:
+            origin = self.headers.get("Origin")
+            if origin and origin != "http://" + host:
+                self._json(HTTPStatus.FORBIDDEN, {"error": "Cross-origin writes are not allowed."})
+                return False
+            if self.headers.get("Content-Type", "").split(";", 1)[0].strip().lower() != "application/json":
+                self._json(HTTPStatus.UNSUPPORTED_MEDIA_TYPE, {"error": "Use application/json."})
+                return False
+        return True
 
     def _send_bytes(self, status: int, body: bytes, content_type: str) -> None:
         self.send_response(status)
@@ -68,12 +90,15 @@ class HermesHandler(BaseHTTPRequestHandler):
         return payload
 
     def do_GET(self) -> None:  # noqa: N802
+        if not self._guard_request():
+            return
         parsed = urlparse(self.path)
         if parsed.path == "/api/status":
             self._json(
                 HTTPStatus.OK,
                 {
                     "ok": True,
+                    "demo_mode": self.app.demo_mode,
                     "modules": self.app.store.dashboard(),
                     "providers": self.app.router.status(),
                 },
@@ -127,6 +152,8 @@ class HermesHandler(BaseHTTPRequestHandler):
         self._serve_static(parsed.path)
 
     def do_POST(self) -> None:  # noqa: N802
+        if not self._guard_request(write=True):
+            return
         parsed = urlparse(self.path)
         try:
             payload = self._read_json()
@@ -191,8 +218,11 @@ def create_server(
     router: ProviderRouter,
     host: str,
     port: int,
+    *,
+    demo_mode: bool = False,
 ) -> HermesHTTPServer:
     server = HermesHTTPServer((host, port), HermesHandler)
     server.store = store
     server.router = router
+    server.demo_mode = demo_mode
     return server

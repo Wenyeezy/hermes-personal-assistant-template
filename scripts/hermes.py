@@ -16,6 +16,7 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from hermes_lite.config import RuntimePaths, initialize_runtime, load_config  # noqa: E402
+from hermes_lite.demo import seed_demo  # noqa: E402
 from hermes_lite.ingest import create_ingest_server  # noqa: E402
 from hermes_lite.providers import ProviderError, ProviderRouter  # noqa: E402
 from hermes_lite.server import create_server  # noqa: E402
@@ -41,6 +42,33 @@ def command_init(args: argparse.Namespace) -> int:
     return 0
 
 
+def command_start(args: argparse.Namespace) -> int:
+    """One explicit local setup; never replace existing configuration or data."""
+    if args.demo and not args.root:
+        args.root = str(REPO_ROOT / "private" / "Hermes_Demo")
+    paths = RuntimePaths.from_root(args.root)
+    try:
+        initialize_runtime(paths)
+        if args.demo:
+            created = seed_demo(paths)
+            print(f"Fictional sample workspace: {'created' if created else 'kept existing'}")
+            print("Demo is offline-only and separate from the normal Hermes_Runtime directory.")
+        else:
+            from scripts.easy_setup import DEFAULT_TARGET, check_workspace, init_workspace
+            target = paths.root / "AI_Knowledge_Base" if args.root else DEFAULT_TARGET
+            result = check_workspace(target) if target.exists() else init_workspace(target, dry_run=False, force=False)
+            if result:
+                return result
+        if command_doctor(args):
+            return 1
+        if args.setup_only:
+            return 0
+        return command_serve(args)
+    except (ValueError, OSError) as exc:
+        print(f"Could not start Hermes: {exc}", file=sys.stderr)
+        return 2
+
+
 def command_doctor(args: argparse.Namespace) -> int:
     paths, config, store, router = runtime(args)
     report = {
@@ -51,7 +79,7 @@ def command_doctor(args: argparse.Namespace) -> int:
         "providers": router.status(),
         "modules": store.dashboard(),
     }
-    if args.json:
+    if getattr(args, "json", False):
         print(json.dumps(report, indent=2, sort_keys=True))
     else:
         print("Hermes runtime: OK")
@@ -70,7 +98,7 @@ def command_serve(args: argparse.Namespace) -> int:
     if host not in {"127.0.0.1", "localhost", "::1"} and not args.allow_network:
         print("Refusing non-loopback binding without --allow-network.", file=sys.stderr)
         return 2
-    server = create_server(store, router, host, port)
+    server = create_server(store, router, host, port, demo_mode=bool(getattr(args, "demo", False)))
     actual_port = server.server_address[1]
     url = f"http://{host}:{actual_port}"
     print(f"Hermes dashboard: {url}")
@@ -145,6 +173,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", help="owner-selected private runtime directory")
     sub = parser.add_subparsers(dest="command", required=True)
+
+    start = sub.add_parser("start", help="initialize safely and start the localhost dashboard")
+    start.add_argument("--demo", action="store_true", help="use a separate, offline fictional sample workspace")
+    start.add_argument("--open", action="store_true", help="open the dashboard in your browser")
+    start.add_argument("--port", type=int)
+    start.add_argument("--setup-only", action="store_true", help="initialize and check without starting a server")
+    start.set_defaults(func=command_start, host="127.0.0.1", allow_network=False)
 
     init = sub.add_parser("init", help="create private runtime config and database")
     init.add_argument("--force", action="store_true", help="replace private config only")

@@ -37,6 +37,8 @@ FALLBACK_EXCLUDED_PARTS = {
     "private",
     "real-memory",
     "sessions",
+    "dist",
+    "release-assets",
 }
 
 

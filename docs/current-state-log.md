@@ -5,6 +5,44 @@ building a personal Hermes-style assistant. It intentionally omits private
 hostnames, local paths, account names, raw health/finance records, screenshots,
 tokens, and personal memory.
 
+## 2026-10-10: Runnable Life public preview
+
+The runtime branch now integrates the Life-first main documentation, resolves
+the README conflict, and adds `start --demo --open` for isolated, offline fictional
+samples. Normal first run preserves existing data and scaffolds private Markdown.
+The public static website simulates three reviewed actions without model or
+private gateway calls. The Python runtime remains a separate manual-record starter.
+
+Acceptance: 21 local tests, privacy scan, desktop/mobile browser checks, simulated
+receipts, fictional export/reset, and static-only AWS deployment passed. The
+public temporary HTTPS tunnel excludes runtime APIs; private service units remain
+active. Permanent DNS routing still requires authorized Cloudflare administration.
+Launch images and a short-video storyboard use fictional samples only. A queued
+render is not evidence of a completed video. No X post or advertising purchase
+has been made by this preview workflow. License selection remains pending.
+
+## 2026-09-22: Life-first product structure
+
+The public introduction now treats Hermes Life as the primary product and the
+current Easy Setup starter as its first public distribution. HIIS and Crypto +
+RWA are grouped under Research Labs and explicitly labeled in development.
+
+The target package model keeps Life and Research Labs independently installable
+while allowing both to share the Hermes foundation. Personal memory and
+research evidence remain separate data domains. Daily private use of Life is
+reported separately from what a public reader can currently reproduce.
+
+## 2026-09-21: Public project and feedback entry points
+
+The documentation now connects the Hermes foundation, HIIS and Digital Assets
+Lab through one project map. A fictional research walkthrough makes the
+time/scope/unknown-state problem inspectable without account connections or
+live data. The roadmap and community guide connect feedback to concrete work.
+
+This is a documentation and onboarding update. It does not publish the private
+HIIS implementation, establish live provider coverage, activate a service,
+change the existing rights notice, or establish external user adoption.
+
 ---
 
 ## Stage 8 Baseline
